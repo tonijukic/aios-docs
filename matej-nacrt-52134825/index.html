@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matej — računovodstvo: načrt avtomatizacije</title>
+<style>
+  :root{--ink:#14232e;--muted:#5b6b78;--line:#e3e9ee;--teal:#0f7b74;--teal2:#0b5a55;
+        --amber:#e6a417;--good:#1a8a5a;--bad:#c0392b;--bg:#f5f8f8;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+       background:var(--bg);line-height:1.62;font-size:16px}
+  a{color:var(--teal)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 70px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line);margin:0 -22px 0;padding:10px 22px;font-size:13px;overflow-x:auto;white-space:nowrap}
+  nav a{margin-right:16px;text-decoration:none;color:var(--muted);font-weight:600}
+  nav a:hover{color:var(--teal)}
+  /* hero */
+  header{background:linear-gradient(135deg,var(--teal2),var(--teal));color:#fff;margin:0 -22px;padding:46px 22px 40px}
+  .hp{max-width:900px;margin:0 auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700;opacity:.85}
+  h1{font-size:30px;line-height:1.18;margin:8px 0 8px}
+  header p{opacity:.94;max-width:680px}
+  section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  h2{font-size:23px;color:var(--teal2);margin:6px 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .num{background:var(--teal);color:#fff;width:30px;height:30px;border-radius:8px;display:inline-flex;
+          align-items:center;justify-content:center;font-size:15px;flex:0 0 30px}
+  h3{font-size:17px;margin:18px 0 6px}
+  p{margin:10px 0}
+  ul,ol{margin:8px 0 8px 22px}li{margin:6px 0}
+  .lead{font-size:17.5px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+  @media(max-width:680px){.grid,.grid3{grid-template-columns:1fr}nav{display:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:center}
+  .stat .big{font-size:26px;font-weight:800;color:var(--teal2)}
+  .stat .lbl{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+  @media(max-width:680px){.kpi{grid-template-columns:1fr 1fr}}
+  table{width:100%;border-collapse:collapse;margin:14px 0;background:#fff;border:1px solid var(--line);
+        border-radius:12px;overflow:hidden;font-size:14.5px}
+  th{background:#eaf3f2;text-align:left;padding:10px 12px;font-size:12px;text-transform:uppercase;
+     letter-spacing:.5px;color:var(--teal2)}
+  td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+  .tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px}
+  .t-hi{background:#e0f3ec;color:#0f6a41}.t-mid{background:#fdf2d8;color:#8a6a12}.t-lo{background:#eef1f4;color:#4a5a68}
+  .flow{counter-reset:s;margin:14px 0}
+  .step{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .n{counter-increment:s;flex:0 0 30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;
+           font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .step .n::before{content:counter(s)}
+  .step h4{font-size:15.5px;margin-bottom:2px}
+  .step p{margin:0;font-size:14.5px;color:var(--muted)}
+  .callout{background:#fff8e6;border:1px solid #f0dca0;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:14.5px}
+  .win{background:#e9f7f1;border:1px solid #a9dcc9;border-radius:12px;padding:14px 16px;margin:14px 0}
+  .quote{border-left:4px solid var(--teal);background:#fafcfc;padding:8px 14px;margin:10px 0;color:#3a4a56;font-style:italic;font-size:14.5px}
+  code{background:#eef2f4;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:13px;
+       font-family:ui-monospace,Menlo,Consolas,monospace}
+  .ap{background:#fdecea;border:1px solid #f3b5ad;color:#8a2b20;font-weight:700;font-size:11px;
+      padding:2px 8px;border-radius:6px;display:inline-block}
+  .muted{color:var(--muted);font-size:13.5px}
+  @media print{nav{display:none}section{break-inside:avoid}header,.card,.stat,th,.tag,.step .n{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    h2{break-after:avoid}.page-break{break-before:page}}
+  footer{margin-top:26px;font-size:12.5px;color:#8493a0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hp">
+    <div class="eyebrow">AIOS · Projekt Matej Sager — računovodski servis · 14. 9. 2026</div>
+    <h1>Načrt avtomatizacije in prihrankov časa</h1>
+    <p>Na podlagi izpolnjenega vprašalnika: kje se izgublja čas, kaj lahko avtomatiziramo (predvsem prek Minimax API-ja), kako digitaliziramo celotno pot dokumenta do Minimaxa, katera infrastruktura, in kakšna naj bo cena. Cilj: enako (ali manj) dela → bistveno več strank.</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#povzetek">Povzetek</a>
+  <a href="#diagnoza">Diagnoza</a>
+  <a href="#priloznosti">Priložnosti</a>
+  <a href="#resitev1">Knjiženje računov</a>
+  <a href="#pot">Pot dokumenta</a>
+  <a href="#portal">Portal + opomniki</a>
+  <a href="#place">Plače</a>
+  <a href="#banka">Izpiski</a>
+  <a href="#api">Minimax API</a>
+  <a href="#infra">Infrastruktura</a>
+  <a href="#cene">Cene (research)</a>
+  <a href="#faze">Faze</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- 1. POVZETEK -->
+  <section id="povzetek">
+    <h2><span class="num">1</span> Povzetek za odločitev</h2>
+    <p class="lead">Matej dela skoraj vse ročno. <b>~75 % njegovega časa</b> gre v knjiženje prejetih računov, DDV in plače, +5 % v bančne izpiske. Ročno prepisuje podatke z računov v Minimax. Prav zato <b>ne more sprejeti novih strank</b> — čeprav bi jih rad.</p>
+
+    <div class="kpi">
+      <div class="stat"><div class="big">~40</div><div class="lbl">strank (10 d.o.o. + ~30 s.p.)</div></div>
+      <div class="stat"><div class="big">~1.200</div><div class="lbl">prejetih računov / mesec</div></div>
+      <div class="stat"><div class="big">~750</div><div class="lbl">izdanih računov / mesec</div></div>
+      <div class="stat"><div class="big">~0 %</div><div class="lbl">e-računov (vse ročno)</div></div>
+    </div>
+
+    <div class="win">
+      <b>Glavni vzvod (ena stvar, ki spremeni vse):</b> avtomatizirati <b>knjiženje prejetih računov</b> — z branjem računov (OCR/AI) in samodejnim vpisom v Minimax prek API-ja. Minimax API to <b>omogoča</b> (metoda <code>AddReceivedInvoice</code> + pripenjanje PDF <code>AddAttachment</code>). To je edini korak, ki napade 75 % njegovega časa.
+    </div>
+
+    <p>Matejev cilj (iz vprašalnika): <span class="quote" style="display:inline-block;margin:0">"Če glavnino ročnega dela odstranimo, bi zagotovo lahko podvojil št. strank"</span> in <span class="quote" style="display:inline-block;margin:0">"20 do 40 novih strank z isto porabo časa."</span></p>
+
+    <h3>Kaj predlagamo v treh fazah</h3>
+    <ol>
+      <li><b>Faza 1 — dokazilo (PoC):</b> povezava na Minimax <b>DEMO</b>, branje računa (AI) → predlog knjižbe → potrditev → zapis v Minimax. Na 1-2 strankah.</li>
+      <li><b>Faza 2 — portal + opomniki:</b> stranke same nalagajo dokumente, sistem opominja za manjkajoče ob koncu meseca.</li>
+      <li><b>Faza 3 — širitev + cene:</b> na čim več strank; dvig cen podcenjenim strankam; plače in izpiski.</li>
+    </ol>
+  </section>
+
+  <!-- 2. DIAGNOZA -->
+  <section id="diagnoza" class="page-break">
+    <h2><span class="num">2</span> Diagnoza — kam gre čas</h2>
+    <p>Iz odgovorov (grobo, mesečno):</p>
+    <table>
+      <thead><tr><th>Opravilo</th><th>Kako poteka danes</th><th>Ocena časa</th></tr></thead>
+      <tbody>
+        <tr><td><b>Knjiženje prejetih računov</b></td><td>Ročni upload PDF + ročni prepis (znesek, dobavitelj, datum) v Minimax UI</td><td>največji del (del 75 %)</td></tr>
+        <tr><td>DDV in oddaje</td><td>Ročno, za vsako stranko posebej (REK, DDV-O klika ločeno)</td><td>del 75 %</td></tr>
+        <tr><td>Plače</td><td>Stranke pošljejo Excel; ročni vnos za ~50-60 ljudi</td><td>del 75 %</td></tr>
+        <tr><td>Bančni izpiski</td><td>XML uvoz kjer stranke pošljejo; ~10 strank pošlje sliko/PDF → ročno</td><td>~5 %</td></tr>
+        <tr><td>Priprava/zbiranje dokumentov</td><td>Pol strank papir, pol mail; urejanje pred knjiženjem</td><td>1,5-2 dni/mesec</td></tr>
+        <tr><td>Lovljenje manjkajočih dokumentov</td><td>Ročno opominjanje; ~1/3 strank je treba opomniti</td><td>~1 dan/mesec</td></tr>
+        <tr><td>E-pošta in klici</td><td>Ročno</td><td>4-5 dni/mesec</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Označeni action pointi (iz tvojega vprašalnika)</h3>
+    <ul>
+      <li><span class="ap">ACTION</span> <b>Cene (vpr. 34/35):</b> research malih servisov v SLO + predlog prave cene za Mateja → <a href="#cene">poglavje 10</a>.</li>
+      <li><span class="ap">ACTION</span> <b>Lastna domena (vpr. 38):</b> Matej si želi svojo domeno/e-pošto → naslovimo v Fazi 2 (del portala/znamke).</li>
+      <li><span class="ap">ACTION</span> <b>Avtomatizacija / Minimax API (vpr. 41):</b> ničesar še ni poskusil → celotno jedro tega načrta.</li>
+      <li><span class="ap">PRILOŽNOST</span> <b>Portal + opomniki (vpr. 24):</b> stranke same nalagajo; opomnik za manjkajoče ob koncu meseca → <a href="#portal">poglavje 6</a>.</li>
+      <li><span class="ap">VPRAŠANJE</span> <b>Plače prek API (vpr. 26):</b> en set podatkov namesto ročnega vnosa → <a href="#place">poglavje 7</a>.</li>
+    </ul>
+  </section>
+
+  <!-- 3. PRILOŽNOSTI -->
+  <section id="priloznosti" class="page-break">
+    <h2><span class="num">3</span> Priložnosti, rangirane</h2>
+    <p>Rangirano po <b>prihranku časa × izvedljivosti</b>. Zeleno = začnemo tu.</p>
+    <table>
+      <thead><tr><th>Priložnost</th><th>Prihranek časa</th><th>Izvedljivost</th><th>Prioriteta</th></tr></thead>
+      <tbody>
+        <tr><td><b>Knjiženje prejetih računov</b> (AI branje → Minimax API)</td><td>Zelo velik (napade ~75 %)</td><td>Srednja (AI + API + pregled)</td><td><span class="tag t-hi">1 — TAKOJ</span></td></tr>
+        <tr><td><b>Portal za stranke + opomniki</b> za manjkajoče dokumente</td><td>Velik (zbiranje + lovljenje, ~2-3 dni/mes)</td><td>Visoka (znan stack)</td><td><span class="tag t-hi">2</span></td></tr>
+        <tr><td><b>Izdani računi</b> strank v Minimax prek API (kjer obstajajo v drugem sistemu)</td><td>Srednji</td><td>Visoka (API obstaja)</td><td><span class="tag t-mid">3</span></td></tr>
+        <tr><td><b>Bančni izpiski</b> za ~10 strank brez XML (OCR → uvoz)</td><td>Srednji (~5 %)</td><td>Srednja</td><td><span class="tag t-mid">4</span></td></tr>
+        <tr><td><b>Plače</b>: Excel strank → strukturirano → Minimax</td><td>Srednji-velik</td><td>Nizka-srednja (preveriti API)</td><td><span class="tag t-mid">5</span></td></tr>
+        <tr><td><b>Cenovna prenova</b> (dvig podcenjenim, merjenje časa/stranko)</td><td>Ne prihrani časa, a dvigne dobiček</td><td>Visoka</td><td><span class="tag t-hi">vzporedno</span></td></tr>
+        <tr><td>Predloge odgovorov / FAQ, lastna domena</td><td>Majhen</td><td>Visoka</td><td><span class="tag t-lo">kasneje</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4. RESITEV 1 -->
+  <section id="resitev1" class="page-break">
+    <h2><span class="num">4</span> Rešitev #1 — avtomatsko knjiženje prejetih računov</h2>
+    <p class="lead">Namesto da Matej vsak račun ročno prepisuje v Minimax, ga <b>prebere umetna inteligenca</b>, Matej le <b>potrdi</b>, sistem pa ga <b>zapiše v Minimax prek API-ja</b> — skupaj s pripeto PDF sliko računa.</p>
+
+    <div class="win"><b>Zakaj prav to:</b> je hkrati največji požeralec časa (75 %), najbolj ponavljajoče se delo (Q14: "vse od tega je ponavljajoče, večinoma isti dobavitelji, isti tip stroškov") in tehnično izvedljivo, ker Minimax API zna sprejeti prejeti račun.</p></div>
+
+    <h3>Kako deluje (na kratko)</h3>
+    <div class="flow card">
+      <div class="step"><div class="n"></div><div><h4>Dokument pride v sistem</h4><p>Prek portala (stranka naloži) ali Matej naloži skenirano/mailano datoteko. En vhod za vse.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>AI prebere račun</h4><p>Iz PDF/slike izlušči dobavitelja, datum, znesek, DDV, postavke. Prepozna ponavljajoče dobavitelje in predlaga pravi konto (uči se iz preteklih knjižb).</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Matej potrdi (30 sekund)</h4><p>Vidi predlog ob sliki računa, popravi če treba, potrdi. Pregled namesto tipkanja — glavni pospešek.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Zapis v Minimax prek API</h4><p><code>AddReceivedInvoice</code> ustvari prejeti račun; <code>AddAttachment</code> pripne PDF. Vse brez ročnega klikanja po Minimaxu.</p></div></div>
+    </div>
+
+    <div class="callout"><b>Realen pristop k točnosti:</b> cilj ni "0 % človeka", ampak <b>pregled namesto prepisovanja</b>. Že to prihrani večino časa. Ponavljajoče dobavitelje sčasoma sistem knjiži skoraj samodejno; nove/nejasne pa Matej hitro potrdi.</div>
+
+    <p class="muted">Omejitev za preveriti: Minimax dokumentacija omenja limit ~1.000 <i>izdanih</i> računov/mesec prek API. Matejev obseg prejetih (~1.200) je večji — ob prvem kontaktu z Minimax preverimo limite za <i>prejete</i> račune in po potrebi ritem klicev. To je ključno tehnično vprašanje pred širitvijo.</p>
+  </section>
+
+  <!-- 5. POT DOKUMENTA -->
+  <section id="pot" class="page-break">
+    <h2><span class="num">5</span> Digitalizirana pot dokumenta — za čim več strank</h2>
+    <p>Danes: pol strank papir, pol mail, skoraj nič e-računov → vse konča v ročnem prepisu. Cilj: <b>en enoten tok</b> ne glede na to, kako dokument pride.</p>
+
+    <div class="grid3">
+      <div class="card"><h4>1. PREJEM</h4><p class="muted">Portal (stranka naloži foto/PDF) · e-pošta (poseben naslov, ki avtomatsko potegne priloge) · papir (Matej ali stranka fotografira/skenira).</p></div>
+      <div class="card"><h4>2. BRANJE</h4><p class="muted">AI izlušči podatke; prepozna dobavitelja in tip stroška; predlaga konto in DDV.</p></div>
+      <div class="card"><h4>3. ZAPIS</h4><p class="muted">Po potrditvi → Minimax API (prejeti/izdani račun + priloga). Najhitrejši možni prenos, brez tipkanja.</p></div>
+    </div>
+
+    <h3>Kako zajamemo "čim več strank"</h3>
+    <ul>
+      <li><b>Portal kot glavni vhod</b> — cilj je večino od 40 strank preseliti na portal (tudi papirne: stranka fotografira s telefonom).</li>
+      <li><b>E-poštni vhod</b> — za stranke, ki ne bodo uporabljale portala: poseben e-naslov, kamor posredujejo račune; sistem samodejno pobere priloge.</li>
+      <li><b>Spodbuda k e-računom</b> — kjer je mogoče, stranke usmerimo v e-račune (eSlog), ki gredo v knjiženje praktično brez branja.</li>
+      <li><b>Učenje po strankah</b> — ker so dobavitelji ponavljajoči, se točnost hitro dvigne; nove stranke stečejo hitreje.</li>
+    </ul>
+  </section>
+
+  <!-- 6. PORTAL -->
+  <section id="portal" class="page-break">
+    <h2><span class="num">6</span> Rešitev #2 — portal za stranke + opomniki</h2>
+    <p>Neposredno iz tvojega action pointa (vpr. 24): <i>"Narediti računovodski portal, kamor stranke same uploadajo dokumente, in sistem opomnikov ob koncu meseca, katere od rednih ponavljajočih računov stranka še ni naložila."</i></p>
+    <div class="grid">
+      <div class="card"><h3>Portal</h3><ul>
+        <li>Stranka se prijavi, naloži račune (foto/PDF) — kadarkoli, s telefona.</li>
+        <li>Vsaka stranka vidi svoj status: kaj je oddano, kaj manjka.</li>
+        <li>Dokumenti gredo naravnost v pipeline knjiženja (poglavje 4).</li>
+      </ul></div>
+      <div class="card"><h3>Opomniki</h3><ul>
+        <li>Sistem pozna redne, ponavljajoče račune vsake stranke.</li>
+        <li>Ob koncu meseca samodejno opomni, kaj še manjka (e-pošta/SMS).</li>
+        <li>Nadomesti ~1 dan/mesec ročnega lovljenja in del e-pošte (4-5 dni/mes).</li>
+      </ul></div>
+    </div>
+    <div class="win"><b>Dvojni učinek:</b> manj lovljenja dokumentov + dokumenti pridejo <b>prej in v digitalni obliki</b>, kar naredi knjiženje (poglavje 4) še hitrejše.</div>
+  </section>
+
+  <!-- 7. PLACE -->
+  <section id="place" class="page-break">
+    <h2><span class="num">7</span> Rešitev #4 — plače prek API (tvoje vprašanje, vpr. 26)</h2>
+    <p>Danes: stranke pošljejo Excel (ure, bolniške, dodatki), Matej ročno vnaša za ~50-60 ljudi. Vprašal si, ali gre to prek API-ja z "enim setom podatkov".</p>
+    <ul>
+      <li><b>Delno da, delno za preveriti.</b> Minimax API ima module <code>Employee</code> (delavci) in <code>PayrollSettings</code>. Ali omogoča tudi <b>oddajo celotnega obračuna plače</b> prek API, moramo <b>preveriti v DEMO okolju</b> — ta del ni potrjen v javni dokumentaciji.</li>
+      <li><b>Zanesljiv prvi korak (tudi če API plač ne podpre):</b> naredimo <b>enotno predlogo</b>, v katero stranke vpišejo podatke, sistem jih preveri in normalizira → Matej jih uvozi/vnese enkrat, strukturirano, brez ugibanja. Že to skrajša delo.</li>
+      <li>Če DEMO pokaže, da plače prek API gredo → polna avtomatizacija tega koraka v Fazi 3.</li>
+    </ul>
+  </section>
+
+  <!-- 8. BANKA -->
+  <section id="banka">
+    <h2><span class="num">8</span> Rešitev #3 — bančni izpiski za ~10 strank brez XML</h2>
+    <p>Kjer stranke pošljejo XML, Minimax izpisek uvozi in <b>sam zapre postavke po sklicu</b> — to že deluje in ga ne rušimo. Problem je ~10 strank, ki pošljejo <b>sliko/PDF</b> izpiska → Matej ročno kreira transakcije.</p>
+    <ul>
+      <li><b>Najlažje:</b> te stranke usmerimo, da iz spletne banke izvozijo <b>XML (SEPA)</b> — večina bank to omogoča. Takoj odpade ročno delo.</li>
+      <li><b>Kjer to ni mogoče:</b> OCR prebere PDF/sliko izpiska → pretvori v uvozljivo obliko za Minimax. Zapiranje po sklicu potem teče kot pri XML.</li>
+    </ul>
+    <p class="muted">Opomba: samo "zapiranje računov z bančnimi transakcijami" je v Minimaxu že avtomatizirano prek uvoza XML (po sklicu) — zato tu ni velike priložnosti za lasten razvoj, le za pretvorbo vhodov v XML.</p>
+  </section>
+
+  <!-- 9. API -->
+  <section id="api" class="page-break">
+    <h2><span class="num">9</span> Minimax API — kaj rabimo, dostop, testno okolje, kontakt</h2>
+    <h3>Kaj API zna (potrjeno iz dokumentacije)</h3>
+    <ul>
+      <li><b>Prejeti računi</b> — <code>ReceivedInvoice</code> (ustvarjanje + pripenjanje PDF). ✅ jedro rešitve #1.</li>
+      <li><b>Izdani računi</b> — <code>IssuedInvoice</code>, knjiženje <code>IssuedInvoicePosting</code>. ✅</li>
+      <li><b>Temeljnice</b> — <code>Journal</code> (knjižbe, sklic). ✅</li>
+      <li>Šifranti: <code>Account</code> (konti), <code>Customer</code>, <code>Item</code>, <code>BankAccount</code>, <code>Employee</code>, <code>PaymentMethod</code> …</li>
+      <li><b>Ni</b> modula za uvoz bančnih izpiskov ne za "zapiranje" kot samostojno funkcijo (to ostane v Minimax UI / prek temeljnic).</li>
+    </ul>
+
+    <h3>Kaj moramo zaprositi / urediti</h3>
+    <div class="flow card">
+      <div class="step"><div class="n"></div><div><h4>API dostop za organizacijo</h4><p>Minimax API je REST z avtentikacijo (OAuth2). Rabimo <b>API uporabnika/žeton</b> za posamezno stranko-organizacijo v Minimaxu ter ustrezna pooblastila. Točen postopek potrdimo z Minimax podporo.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Pooblastila strank</h4><p>Ker Matej vodi <b>tuje</b> organizacije, moramo urediti, da ima naša aplikacija dostop do vsake stranke, ki jo vključimo (najprej 1-2 za PoC).</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Testno (DEMO) okolje</h4><p>Minimax ima <b>DEMO okolje</b> za razvoj/testiranje. Vse gradimo in preverimo tam, preden se dotaknemo pravih podatkov.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Preveriti limite</h4><p>Dokumentirana omejitev ~1.000 izdanih računov/mesec prek API; za prejete račune in ritem klicev preverimo ob prijavi (Matejev obseg je večji).</p></div></div>
+    </div>
+
+    <div class="callout"><b>Kako vzpostavimo stik z Minimax (Seyfor):</b> telefon podpore <b>080 14 50</b>, kontaktni obrazec na <a href="https://www.minimax.si/sl-si/kontakt">minimax.si/kontakt</a>, razvijalska navodila na <a href="https://help.minimax.si/help/api-navodila-za-razvijalce">help.minimax.si (API za razvijalce)</a>. Znano: <b>testiranje poteka v DEMO</b>, Seyfor pa za API aplikacije uradno <b>ne nudi razvojne podpore</b> — zato računamo, da tehnične podrobnosti (OAuth koraki, limiti prejetih) potrdimo sami v DEMO + z enim klicem podpore.</div>
+  </section>
+
+  <!-- 10. INFRA -->
+  <section id="infra" class="page-break">
+    <h2><span class="num">10</span> Infrastruktura — preprosto (za Mateja in Tonija)</h2>
+    <p>Ne gradimo iz nič — uporabimo isti, že preverjeni "sestav", kot ga vrtiva pri F45 in pri Nini (Pravo v praksi). Predstavljaj si tri gradnike:</p>
+    <div class="grid3">
+      <div class="card"><h3>🖥️ Render</h3><p class="muted"><b>Računalnik v oblaku, ki dela 24/7.</b> Tu teče program, ki bere račune in jih pošilja v Minimax, ter poganja opomnike. Ni nam treba imeti svojega strežnika.</p></div>
+      <div class="card"><h3>🗄️ Neon</h3><p class="muted"><b>Baza — urejen predal za podatke.</b> Shrani stranke, dokumente, statuse (kaj je oddano/manjka), naučene dobavitelje in konte. Varno na enem mestu.</p></div>
+      <div class="card"><h3>🌐 Vercel</h3><p class="muted"><b>Izložba — kar vidijo stranke.</b> Hitro gostuje portal, kamor stranke nalagajo dokumente in vidijo svoj status.</p></div>
+    </div>
+    <p>Poleg tega dva "možgana":</p>
+    <ul>
+      <li><b>AI za branje računov</b> (Claude API) — prebere PDF/sliko in izlušči podatke.</li>
+      <li><b>Minimax API</b> — kamor na koncu zapišemo podatke.</li>
+    </ul>
+    <div class="win"><b>Zakaj to pomeni majhen strošek in nizko tveganje:</b> vsi trije gradniki imajo zastonj/poceni začetne pakete, plačamo šele ob rasti; sestav že poznamo in ga znamo postaviti hitro; podatki so na enem mestu in pod nadzorom. <b>Enostavna razlaga:</b> Render dela, Neon pomni, Vercel pokaže — AI bere, Minimax zapiše.</div>
+  </section>
+
+  <!-- 11. CENE -->
+  <section id="cene" class="page-break">
+    <h2><span class="num">11</span> Cene — tržna raziskava in predlog za Mateja</h2>
+    <p class="muted">Ločen research (action point vpr. 34/35). Cene so povprečja slovenskega trga 2026; služijo kot primerjava, ne kot dogma.</p>
+
+    <h3>Kako mali servisi določajo ceno</h3>
+    <p>Trije prevladujoči modeli, običajno kombinirani:</p>
+    <ul>
+      <li><b>Fiksni mesečni pavšal</b> po tipu subjekta in obsegu (najpogostejši; tako dela tudi Matej).</li>
+      <li><b>Na dokument / knjižbo</b> (doplačilo nad vključeno kvoto).</li>
+      <li><b>Na zaposlenega</b> za plače + ločeno letna bilanca + svetovanje po uri.</li>
+    </ul>
+
+    <h3>Trg 2026 — mesečni pavšali</h3>
+    <table>
+      <thead><tr><th>Tip stranke</th><th>Tržni razpon / mesec</th></tr></thead>
+      <tbody>
+        <tr><td>Normirani s.p.</td><td>25 – 50 €</td></tr>
+        <tr><td>s.p./društvo, do ~15 dogodkov, brez zaposlenih</td><td>56 – 81 €</td></tr>
+        <tr><td>s.p./d.o.o., do ~30 dogodkov, 1-2 zaposlena</td><td>94 – 130 €</td></tr>
+        <tr><td>malo podjetje, 3-7 zaposlenih</td><td>150 – 440 €</td></tr>
+        <tr><td>večje, 8+ zaposlenih</td><td>440 – 630 €</td></tr>
+        <tr><td>d.o.o. — povprečje trga</td><td>~237 € (razpon ~99 – 577)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Urne tarife (za primerjavo / dodatno delo)</h3>
+    <table>
+      <thead><tr><th>Storitev</th><th>€/uro</th></tr></thead>
+      <tbody>
+        <tr><td>Knjiženje brez DDV</td><td>50 – 63 €</td></tr>
+        <tr><td>Knjiženje z DDV</td><td>63 – 75 €</td></tr>
+        <tr><td>Zahtevno knjiženje</td><td>75 – 88 €</td></tr>
+        <tr><td>Svetovanje</td><td>81 – 190 €</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Predlog za Mateja</h3>
+    <div class="win">
+      <p><b>Ugotovitev:</b> Matej sam pravi, da ima <b>prenizke cene</b> in da bi vsaj <b>10 strankam</b> moral nujno dvigniti ceno. Ne meri časa na stranko, zato ne ve, katere so nedobičkonosne.</p>
+    </div>
+    <ol>
+      <li><b>Najprej izmeri (2-4 tedne):</b> preprosto beleženje časa na stranko. Skoraj zagotovo bo pokazalo, da manjšina strank poje večino časa.</li>
+      <li><b>Preidi na transparenten model:</b> osnovni pavšal po tipu + vključena kvota dokumentov, nad njo <b>na dokument</b>; plače <b>na zaposlenega</b>; bilanca ločeno (že dela); svetovanje po uri.</li>
+      <li><b>Ciljni pavšali</b> (uskladi vsaj na spodnji rob trga, podcenjene proti sredini):
+        <ul>
+          <li>normiranci ~40-60 € · navadni s.p. brez DDV ~70-100 € · s.p. z DDV ~120-170 €</li>
+          <li>manjši d.o.o. z zaposlenimi ~200-350 € · večji d.o.o. ~350-600 €</li>
+          <li>plače ~ doplačilo na zaposlenega/mesec (uskladimo s trgom ob merjenju)</li>
+        </ul>
+      </li>
+      <li><b>Ob dvigu ponudi vrednost:</b> portal, hitrejše knjiženje, opomniki, boljša odzivnost — dvig cene je lažji, ker stranka dobi boljšo storitev.</li>
+      <li><b>Ključna prednost avtomatizacije:</b> ko pade Matejev strošek časa na stranko, je lahko <b>hkrati konkurenčen in bolj dobičkonosen</b> — in lahko sprejme 20-40 novih strank (njegov cilj) brez najema.</li>
+    </ol>
+    <p class="muted">Natančne cene po posamezni stranki postavimo, ko izmerimo čas in pogledamo obseg dokumentov/zaposlenih vsake — takrat naredim tabelo "trenutna → predlagana cena" za vseh ~40.</p>
+  </section>
+
+  <!-- 12. FAZE -->
+  <section id="faze" class="page-break">
+    <h2><span class="num">12</span> Načrt po fazah in naslednji koraki</h2>
+    <table>
+      <thead><tr><th>Faza</th><th>Kaj naredimo</th><th>Rezultat</th></tr></thead>
+      <tbody>
+        <tr><td><b>0 — priprava</b></td><td>Kontakt z Minimax (API dostop, DEMO), potrditev limitov; postavimo osnovno infrastrukturo</td><td>DEMO povezava dela</td></tr>
+        <tr><td><b>1 — PoC knjiženje</b></td><td>1-2 stranki: AI bere račun → predlog → potrditev → zapis v Minimax (DEMO)</td><td>Dokaz, da prihrani čas</td></tr>
+        <tr><td><b>2 — portal + opomniki</b></td><td>Stranke nalagajo dokumente; opomniki za manjkajoče; lastna domena/znamka</td><td>Manj lovljenja, digitalni vhod</td></tr>
+        <tr><td><b>3 — širitev + cene + plače</b></td><td>Na čim več strank; cenovna prenova; plače/izpiski po zmožnostih API</td><td>Podvojena kapaciteta</td></tr>
+      </tbody>
+    </table>
+
+    <div class="win">
+      <b>Naslednji korak (takoj):</b> začnemo graditi v Claude Code — najprej <b>Faza 0/1</b>: povezava na Minimax <b>DEMO</b> in prototip "AI prebere račun → predlog knjižbe → zapis prek API". Vzporedno se dogovorimo za Minimax API dostop (klic na 080 14 50 / kontaktni obrazec).
+    </div>
+
+    <footer>
+      <p><b>Viri (cene):</b> omisli.si/racunovodstvo/cene, primerjam.si (cene računovodskih storitev), racun123.si, m3-pro.si · <b>Minimax:</b> moj.minimax.si/si/api (moduli, ReceivedInvoice, Journal), help.minimax.si (API za razvijalce, bančni izpiski), kontakt 080 14 50. Pregled september 2026.</p>
+      <p>Pripravljeno na podlagi izpolnjenega vprašalnika (Matej Sager), 14. 9. 2026. Ocene časa in cen so izhodišče za pogovor, ne dokončne številke.</p>
+    </footer>
+  </section>
+
+</div>
+</body>
+</html>
