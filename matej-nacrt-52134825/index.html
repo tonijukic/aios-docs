@@ -93,6 +93,12 @@
   <a href="#infra">Infrastruktura</a>
   <a href="#cene">Cene (research)</a>
   <a href="#faze">Faze</a>
+  <span style="color:#c0392b;font-weight:800;margin-right:12px">· DODATEK ·</span>
+  <a href="#pozabili">Kaj sva pozabila</a>
+  <a href="#prakse">Dobre prakse</a>
+  <a href="#adopcija">Portal: adoption</a>
+  <a href="#lhf">Low-hanging fruit</a>
+  <a href="#pamet">Kje NE pretiravati</a>
 </nav>
 
 <div class="wrap">
@@ -366,6 +372,134 @@
     <footer>
       <p><b>Viri (cene):</b> omisli.si/racunovodstvo/cene, primerjam.si (cene računovodskih storitev), racun123.si, m3-pro.si · <b>Minimax:</b> moj.minimax.si/si/api (moduli, ReceivedInvoice, Journal), help.minimax.si (API za razvijalce, bančni izpiski), kontakt 080 14 50. Pregled september 2026.</p>
       <p>Pripravljeno na podlagi izpolnjenega vprašalnika (Matej Sager), 14. 9. 2026. Ocene časa in cen so izhodišče za pogovor, ne dokončne številke.</p>
+    </footer>
+  </section>
+
+
+  <section style="border-bottom:none;padding-top:40px">
+    <div style="background:linear-gradient(135deg,#0b5a55,#0f7b74);color:#fff;border-radius:16px;padding:22px 22px 20px">
+      <div class="eyebrow" style="opacity:.85">II. DEL</div>
+      <h2 style="color:#fff;margin:6px 0 4px"><span class="num" style="background:rgba(255,255,255,.2)">+</span> Sveže oči: kaj sva pozabila, dobre prakse, low-hanging fruit</h2>
+      <p style="opacity:.94;margin:0">Ponoven pregled z zunanjim pogledom - racionalni, poceni in hitri ukrepi za dva človeka. Najprej izkoristiti obstoječe, šele nato graditi.</p>
+    </div>
+  </section>
+
+<!-- 1 -->
+  <section id="pozabili">
+    <h2><span class="num">13</span> Kaj sva (oba) pozabila</h2>
+
+    <div class="warn">
+      <h3 style="margin-top:0">A) Obvezni e-računi B2B od 1. 1. 2028 (zakon ZIERDED)</h3>
+      <p>Državni zbor je oktobra 2025 sprejel zakon: od <b>1. 1. 2028</b> je izmenjava strukturiranih e-računov (eSlog / EN 16931) med podjetji <b>obvezna</b>. Po 31. 12. 2027 <b>PDF po e-pošti med podjetji ne bo več veljal</b>; izmenjava le prek ponudnikov e-poti, Peppol ali direktne povezave.</p>
+      <p><b>Zakaj je to ključno za Mateja:</b> njegov največji problem — ročno prepisovanje PDF/papirnih računov — se bo do 2028 <b>strukturno zmanjšal sam</b>, ker bodo prihodni računi vse bolj e-računi, ki v Minimax pridejo skoraj brez branja. To pomeni dvoje:</p>
+      <ul>
+        <li><b>Ne pretiravajva z OCR/AI gradnjo</b> — naj bo to <b>most za 2026-2027</b> (in za trajni rep: papir, B2C, tujina, blagajniški računi), ne velik trajni sistem.</li>
+        <li><b>Priložnost/prihodek:</b> Matej lahko stranke <b>pripravi na prehod</b> na e-račune (nastavitve, ponudnik e-poti). To je storitev, ki veže stranke nase in prinaša prihodek — namesto da ga prehod ujame nepripravljenega.</li>
+      </ul>
+    </div>
+
+    <div class="win">
+      <h3 style="margin-top:0">B) Borrow before build — Minimax že marsikaj ponuja</h3>
+      <p>Preden karkoli gradiva po meri, izkoristiva, kar je <b>že plačano</b> v Minimaxu:</p>
+      <ul>
+        <li><b>Brezplačno orodje za izmenjavo dokumentov med podjetnikom in računovodjo (tudi mobilna aplikacija)</b> — stranke lahko dokumente pošljejo naravnost v Minimax. To je lahko "portal" brez razvoja. <span class="muted">(natančen obseg preveriva)</span></li>
+        <li><b>Samodejni uvoz bančnih izpiskov</b> iz vseh slovenskih bank (tudi samodejni prihod izpiska) — naslavlja onih ~10 strank s papirjem/PDF, če jih usmeriva na pravi izvoz.</li>
+        <li><b>Prepoznava e-računov v predalu (Inbox)</b> — ko dobavitelj pošlje e-račun, Minimax datoteko prepozna.</li>
+      </ul>
+      <p><b>Sklep:</b> najprej testirava Minimaxove vgrajene funkcije. Lasten razvoj (AI branje) upravičimo <b>samo za tisto, česar Minimax ne reši dobro</b> — predvsem branje PDF/papirja v vmesnem obdobju.</p>
+    </div>
+
+    <h3>C) Manjše, a pomembne stvari, ki manjkajo</h3>
+    <div class="grid">
+      <div class="card"><b>Merjenje časa na stranko</b><p class="muted">Matej ne meri (vpr. 34). Brez tega ne ve, katere stranke so nedobičkonosne — to je predpogoj za pošten dvig cen. Najcenejši možni ukrep.</p></div>
+      <div class="card"><b>Cenovna mehanika</b><p class="muted">V pogodbe: <b>letna indeksacija</b> (samodejni dvig z inflacijo), jasen <b>obseg</b> (kaj je v pavšalu, kaj doplačilo), meja vključenih dokumentov. Prepreči neplačano "brezplačno svetovanje".</p></div>
+      <div class="card"><b>Kontinuiteta (bus factor)</b><p class="muted">Dela skoraj vse sam, brez zapisanih postopkov (vpr. 32). Če zboli, stranke stojijo. Nekaj osnovnih SOP-jev + Nika naj pozna ključne korake.</p></div>
+      <div class="card"><b>Varnost / GDPR</b><p class="muted">Podatki 40 strank v oblaku/portalu → potrebni pogodba o obdelavi, nadzor dostopa, varnostne kopije. Minimalno, a nujno.</p></div>
+      <div class="card"><b>Rok za oddajo dokumentov</b><p class="muted">Postavi mesečni rok (npr. do 10. v mesecu) + samodejni opomniki. Konča ~1 dan/mesec lovljenja in disciplinira stranke.</p></div>
+      <div class="card"><b>Zaporedje rasti</b><p class="muted">Priporočila (referrals) so najcenejši vir strank — a šele <b>po</b> avtomatizaciji, ko bo imel kapaciteto. Najprej sprosti čas, nato rasti.</p></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="prakse">
+    <h2><span class="num">14</span> Dobre prakse malih računovodskih servisov</h2>
+    <p class="muted">Iz pregleda panoge (viri spodaj) — filtrirano na to, kar je smiselno za <b>1-2 osebi</b>, ne za velike pisarne.</p>
+    <ul>
+      <li><b>Poceni avtomatizacija, mobilnost, enostavnost</b> — mala pisarna potrebuje ravno to, <b>ne</b> dragih "enterprise" orodij, ki dodajo zapletenost.</li>
+      <li><b>Konsolidiraj orodja</b> — ne razpršenost (e-pošta + Dropbox + Excel + program). Manj mest = manj napak. Za Mateja: čim več skozi Minimax + eno dodatno plast.</li>
+      <li><b>Ponovljivi postopki in predloge</b> — kanned odgovori, checklista za onboarding, standardno "kako nam pošljete dokumente".</li>
+      <li><b>Selektivna baza strank</b> — raje manj, a dobičkonosnih; odpusti/podraži tiste, ki jedo čas (Matej sam pravi ≥10).</li>
+      <li><b>Vrednostno določanje cen</b> (pavšal + jasen obseg), ne le "po občutku"; redni letni pregled cen.</li>
+      <li><b>Proaktivna, a avtomatizirana komunikacija</b> — opomniki namesto ročnega lovljenja; sistem "lovi" namesto človeka.</li>
+    </ul>
+    <div class="callout"><b>Realno za Mateja:</b> obstajajo cele "practice management" platforme (TaxDome, Financial Cents ipd.), a so tuje, plačljive in za 2 osebi <b>pretežke</b>. Zanju je bolje: <b>Minimax + minimalna dodatna plast</b> + urejeni procesi. To je racionalna izbira.</div>
+  </section>
+
+  <!-- 3 -->
+  <section id="adopcija">
+    <h2><span class="num">15</span> Kako pripraviti stranke, da bodo uporabile portal</h2>
+    <p>Glavno pravilo: <b>portal mora biti lažji od tega, kar delajo zdaj.</b> Če je težji, se vrnejo na papir/e-pošto.</p>
+    <div class="grid">
+      <div class="card"><h3>Kaj ima stranka od tega (WIIFM)</h3><ul>
+        <li><b>Opomniki, da se izognejo kazni/stresu</b> — največja korist zanje.</li>
+        <li>Fotografiraš s telefonom in končal — brez tipkanja, brez pošte.</li>
+        <li>24/7 vidijo, kaj so oddali in kaj manjka.</li>
+        <li>Hitrejši odgovori računovodje.</li>
+      </ul></div>
+      <div class="card"><h3>Kako odstraniti trenje</h3><ul>
+        <li><b>Brez gesel</b> — prijava prek povezave (magic link) / kode.</li>
+        <li>Fotografija s telefona, brez namestitve aplikacije.</li>
+        <li>Kratek video (pod 2 min) + ena kartica navodil.</li>
+        <li><b>E-poštni vhod, ki hrani isti tok</b> — kdor noče portala, pošlje na poseben e-naslov, dokument gre v isti sistem (Mateju ni več dela).</li>
+      </ul></div>
+    </div>
+    <h3>Motivacija (šibki "carrot & stick")</h3>
+    <ul>
+      <li><b>Cenovna spodbuda:</b> majhno doplačilo za "ročno/papirno obdelavo" ali popust za digitalne — najmočnejši racionalni motivator.</li>
+      <li><b>Rok + opomnik:</b> jasen mesečni rok; kdor zamuja, dobi opomnik samodejno.</li>
+      <li><b>Ne siliti vseh:</b> ~8-12 % strank bo vedno raje po e-pošti — pusti jim to (prek e-vhoda), ne izgubljaj energije.</li>
+    </ul>
+    <div class="win"><b>Vrstni red uvajanja:</b> najprej <b>stranke z največ dokumenti</b> (tam je največ prihranka) in tiste, ki so voljne. Ostali se pridružijo, ko vidijo, da "tako pač gre". Realno: iz ~35-50 % uporabe v prvih mesecih na ~70-80 % z rednimi opomniki.</div>
+    <p class="muted">Namig: ker Matej si želi <b>lastno domeno</b> (action point vpr. 38), naj portal/e-vhod teče pod njegovo znamko — to dvigne zaupanje in uporabo.</p>
+  </section>
+
+  <!-- 4 -->
+  <section id="lhf">
+    <h2><span class="num">16</span> Low-hanging fruit — rangirano</h2>
+    <p>Poceni, hitro, velik učinek. Prve tri <b>ne potrebujejo nobene kode</b>.</p>
+    <table>
+      <thead><tr><th>Ukrep</th><th>Strošek/trud</th><th>Učinek</th><th>Kdaj</th></tr></thead>
+      <tbody>
+        <tr><td><b>Merjenje časa na stranko</b> (preprosta tabela, 2-4 tedne)</td><td>€0</td><td>Razkrije nedobičkonosne stranke → podlaga za cene</td><td><span class="tag t-hi">takoj</span></td></tr>
+        <tr><td><b>Cene: dvig ≥10 podcenjenim + indeksacija + jasen obseg</b></td><td>€0 (le pogodbe)</td><td>Neposreden dobiček, brez tehnologije</td><td><span class="tag t-hi">takoj</span></td></tr>
+        <tr><td><b>Vklop Minimax brezplačne aplikacije za dokumente</b> + samodejni uvoz izpiskov</td><td>Nizek</td><td>"Portal" brez razvoja; manj ročnega dela</td><td><span class="tag t-hi">1-2 tedna</span></td></tr>
+        <tr><td><b>"Kako nam pošljete dokumente" (1 stran) + poseben e-predal</b></td><td>Nizek</td><td>Manj lovljenja, urejen vhod</td><td><span class="tag t-hi">1 teden</span></td></tr>
+        <tr><td><b>Tabela dobavitelj → konto</b> (ponavljajoči se)</td><td>Nizek</td><td>Pospeši knjiženje že danes; podlaga za AI</td><td><span class="tag t-mid">kmalu</span></td></tr>
+        <tr><td><b>Mesečni opomnik za manjkajoče redne račune</b></td><td>Nizek-srednji</td><td>Konča ~1 dan/mesec lovljenja</td><td><span class="tag t-mid">kmalu</span></td></tr>
+        <tr><td><b>Kanned e-odgovori / FAQ</b> (nima jih, vpr. 32)</td><td>€0-nizek</td><td>Manj časa za e-pošto</td><td><span class="tag t-mid">kmalu</span></td></tr>
+        <tr><td><b>Usmeritev strank na bančni XML / e-račune</b></td><td>Nizek</td><td>Manj ročnih izpiskov; priprava na 2028</td><td><span class="tag t-mid">kmalu</span></td></tr>
+        <tr><td><b>Lastna domena/e-pošta</b> (action point)</td><td>Nizek</td><td>Znamka, zaupanje, temelj portala</td><td><span class="tag t-lo">enkrat</span></td></tr>
+        <tr><td><b>AI branje računov — PoC na 1 stranki z največ dokumenti</b></td><td>Srednji</td><td>Napade 75 % časa; a validiraj najprej</td><td><span class="tag t-mid">po zgornjih</span></td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><b>Pomembno zaporedje:</b> najprej <b>brezplačni/procesni</b> ukrepi (cene, merjenje, Minimax vgrajeno, procesi) — ti prinesejo velik del učinka takoj in skoraj brez tveganja. AI/razvoj šele, ko vidimo, kaj po tem še ostane ročnega.</div>
+  </section>
+
+  <!-- 5 -->
+  <section id="pamet">
+    <h2><span class="num">17</span> Kje NE pretiravati (racionalna meja)</h2>
+    <ul>
+      <li><b>Ne gradi custom portala</b>, če Minimaxova brezplačna aplikacija za dokumente opravi delo. Preveri najprej.</li>
+      <li><b>Ne vlagaj veliko v OCR/AI</b>, ki ga bo obvezni e-račun (2028) delno izničil — naj bo lahka plast za vmesno obdobje in za papirni rep.</li>
+      <li><b>Ne uvajaj težkih tujih platform</b> (TaxDome ipd.) — za 2 osebi predrago in prezapleteno.</li>
+      <li><b>Ne sili vseh strank</b> v portal — pusti e-poštni vhod za ~10 % nepremakljivih.</li>
+      <li><b>Ne avtomatiziraj vsega naenkrat</b> — najprej ena stranka, en proces (knjiženje prejetih), dokaži prihranek, šele nato širi.</li>
+    </ul>
+    <div class="win"><b>Bistvo:</b> največ vrednosti za dva človeka prinese kombinacija <b>pravih cen + obstoječih Minimax funkcij + urejenih procesov</b> — poceni in takoj. Lasten razvoj (AI branje) je <b>ena ciljana bitka</b>, ne velik sistem, in ga hedgeamo proti 2028.</div>
+
+    <footer>
+      <p><b>Viri:</b> ZIERDED / obvezni e-računi 2028 — epos.si, mladipodjetnik.si, moj-racun.si · Minimax funkcije (izmenjava dokumentov, uvoz izpiskov, e-računi) — minimax.si, help.minimax.si · dobre prakse malih pisarn — taxdome.com, relayfi.com, finlens.app · sprejem portala — ustechautomations.com, liscio.me. Pregled september 2026.</p>
+      <p>Dodatek k načrtu "Načrt avtomatizacije" (Matej Sager, 14. 9. 2026). Predlogi so izhodišče za pogovor; naslednji korak je uskladiti prioritete in izvesti brezplačne/procesne ukrepe takoj.</p>
     </footer>
   </section>
 
