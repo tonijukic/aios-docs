@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pravo v praksi - Nina Volgemut | pravno svetovanje</title>
+<meta name="description" content="Pravo v praksi - praktično pravno svetovanje za javni in zasebni sektor: javna naročila, varstvo osebnih podatkov, delovno pravo in skladnost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Palette: Nina green-gold. Swiss rule -> accent (gold) used for CTA/highlights only. */
+  :root{
+    --green:#1f6b4a;--green-dark:#0d332b;--green-700:#17543a;
+    --gold:#c9a34a;--gold-dark:#a9842f;--gold-soft:#f4ecd6;
+    --cream:#faf8f3;--card:#ffffff;--ink:#23261f;--muted:#6a6f64;--line:#e7e3d8;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-height:1.14;letter-spacing:-.01em}
+  a{color:var(--green-700);text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark)}
+  /* accessible focus (pro-rule) */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+  /* ---- buttons: accent reserved for primary CTA ---- */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 24px;border-radius:9px;border:1px solid transparent;cursor:pointer;min-height:48px}
+  .btn-primary{background:var(--gold);color:#3a2a05;border-color:var(--gold)}
+  .btn-primary:hover{background:var(--gold-dark);color:#fff}
+  .btn-ghost{background:transparent;color:var(--green-dark);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+  /* ---- header ---- */
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(250,248,243,.88);backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;gap:24px;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"Playfair Display",serif;font-size:20px;color:var(--green-dark);font-weight:600}
+  .mono{width:38px;height:38px;border-radius:50%;background:var(--green-dark);color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;flex-shrink:0}
+  .navlinks{display:flex;gap:26px;margin-left:auto;font-size:15px;font-weight:500}
+  .navlinks a{color:var(--ink)}
+  .navlinks a:hover{color:var(--green)}
+  .nav .btn{margin-left:8px;padding:10px 18px;min-height:0}
+  @media(max-width:860px){.navlinks{display:none}}
+  /* ---- hero: asymmetric editorial grid ---- */
+  .hero{padding:72px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px}.hero{padding:48px 0 44px}}
+  .hero h1{font-size:clamp(34px,5vw,56px);color:var(--green-dark);margin:16px 0 18px}
+  .hero h1 em{font-style:italic;color:var(--gold-dark)}
+  .hero p.sub{font-size:19px;color:var(--muted);max-width:33ch;margin:0 0 28px}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .hero .reassure{margin-top:18px;font-size:13.5px;color:var(--muted)}
+  /* hero emblem card (no stock photo needed) */
+  .emblem{position:relative;background:linear-gradient(160deg,var(--green-dark),var(--green-700));border-radius:20px;padding:40px 34px;color:#eef3ee;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:space-between}
+  .emblem::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(120px 120px at 85% 15%,rgba(201,163,74,.26),transparent 70%),
+    radial-gradient(160px 160px at 10% 90%,rgba(201,163,74,.14),transparent 70%)}
+  .emblem .big{font-family:"Playfair Display",serif;font-size:76px;line-height:1;color:var(--gold-soft);opacity:.9;position:relative}
+  .emblem .q{position:relative;font-family:"Playfair Display",serif;font-style:italic;font-size:21px;line-height:1.4}
+  .emblem .by{position:relative;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  /* ---- trust bar ---- */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+  .trust .wrap{display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;justify-content:center;padding:18px 24px;font-size:13.5px;color:var(--muted);font-weight:500}
+  .trust b{color:var(--green-dark);font-weight:700}
+  .trust .dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  /* ---- sections ---- */
+  section.block{padding:76px 0}
+  .shead{max-width:640px;margin:0 auto 42px;text-align:center}
+  .shead h2{font-size:clamp(26px,3.4vw,38px);color:var(--green-dark);margin:10px 0 10px}
+  .shead p{color:var(--muted);font-size:17px;margin:0}
+  /* practice areas grid */
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.areas{grid-template-columns:1fr}}
+  .area{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;transition:transform .18s ease,border-color .18s ease}
+  .area:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .area .ic{width:44px;height:44px;border-radius:11px;background:var(--gold-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .area h3{font-size:19px;color:var(--green-dark);margin:0 0 7px}
+  .area p{margin:0;font-size:14.5px;color:var(--muted)}
+  /* editorial approach strip (drop cap + pull quote) */
+  .approach{background:var(--green-dark);color:#e9efe9}
+  .approach .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:72px 24px}
+  @media(max-width:860px){.approach .wrap{grid-template-columns:1fr;gap:30px;padding:52px 24px}}
+  .approach h2{color:#fff;font-size:clamp(26px,3.4vw,36px);margin:10px 0 16px}
+  .approach p{color:#cdd8cf;font-size:16.5px}
+  .approach .dropcap::first-letter{font-family:"Playfair Display",serif;float:left;font-size:62px;line-height:.82;padding:6px 12px 0 0;color:var(--gold)}
+  .pullquote{border-left:3px solid var(--gold);padding:6px 0 6px 24px;font-family:"Playfair Display",serif;font-style:italic;font-size:23px;line-height:1.4;color:#fff}
+  .pullquote .by{display:block;margin-top:14px;font-family:"Inter";font-style:normal;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.quotes{grid-template-columns:1fr}}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px}
+  .quote .stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+  .quote p{font-size:15.5px;color:var(--ink);margin:12px 0 16px}
+  .quote .who{display:flex;align-items:center;gap:11px}
+  .quote .av{width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+  .quote .who b{display:block;font-size:14px;color:var(--green-dark)}
+  .quote .who span{font-size:12.5px;color:var(--muted)}
+  /* CTA + form */
+  .contact{background:var(--gold-soft)}
+  .contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;padding:72px 24px}
+  @media(max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:30px;padding:52px 24px}}
+  .contact h2{font-size:clamp(26px,3.4vw,36px);color:var(--green-dark);margin:10px 0 14px}
+  .contact p{color:#5c5338;font-size:16.5px}
+  .contact ul{margin:18px 0 0;padding:0;list-style:none;font-size:15px;color:var(--green-dark)}
+  .contact li{display:flex;gap:10px;margin:10px 0}
+  .contact li span{color:var(--gold-dark);font-weight:700}
+  form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--green-dark);margin-bottom:6px}
+  input,textarea,select{width:100%;font:inherit;font-size:15px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-height:46px}
+  textarea{min-height:110px;resize:vertical}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.row2{grid-template-columns:1fr}}
+  .consent{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin:4px 0 16px}
+  .consent input{width:auto;min-height:0;margin-top:3px}
+  .formmsg{display:none;margin-top:14px;padding:12px 14px;border-radius:9px;font-size:14px;background:#e9f6ee;border:1px solid #bfe3cc;color:#166534}
+  /* footer */
+  footer.site{background:var(--green-dark);color:#b9c7bb;padding:46px 24px 30px}
+  footer.site .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+  footer.site .brand{color:#fff}
+  footer.site a{color:var(--gold-soft)}
+  footer .fine{width:100%;border-top:1px solid rgba(255,255,255,.12);margin-top:26px;padding-top:16px;font-size:12px;color:#8ea291;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+  .demoflag{background:var(--green);color:#eafff2;font-size:11.5px;text-align:center;padding:7px 12px;font-weight:600;letter-spacing:.02em}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+  <div class="demoflag">Predogled prenove (demo) &middot; vsebina in mnenja so vzorčni &middot; obrazec še ni povezan</div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="mono" aria-hidden="true">PP</span> Pravo v praksi</a>
+      <nav class="navlinks" aria-label="Glavna navigacija">
+        <a href="#podrocja">Področja</a>
+        <a href="#pristop">Pristop</a>
+        <a href="#mnenja">Mnenja</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn btn-primary" href="#kontakt">Povpraševanje</a>
+    </div>
+  </header>
+
+  <!-- HERO (mission / credibility) -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Pravno svetovanje za javni in zasebni sektor</span>
+        <h1>Pravo, ki deluje <em>v praksi</em> - ne le na papirju.</h1>
+        <p class="sub">Jasni nasveti, uporabne rešitve in dokumenti, ki jih razumete. Od javnih naročil do varstva osebnih podatkov.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#kontakt">Naročite posvet</a>
+          <a class="btn btn-ghost" href="#podrocja">Področja dela</a>
+        </div>
+        <div class="reassure">Odziv v 24 urah &middot; prvi pogovor brez obveznosti &middot; delo z organizacijami in posamezniki</div>
+      </div>
+      <aside class="emblem" aria-label="Vodilo">
+        <div class="big" aria-hidden="true">&ldquo;</div>
+        <div class="q">Dobro pravno svetovanje ne zaplete - poenostavi in zaščiti.</div>
+        <div class="by">Nina Volgemut &middot; Pravo v praksi</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TRUST BAR (proof) -->
+  <div class="trust">
+    <div class="wrap">
+      <span><b>15+</b> let pravne prakse</span><span class="dot" aria-hidden="true"></span>
+      <span>Javni sektor &middot; zbornice &middot; podjetja</span><span class="dot" aria-hidden="true"></span>
+      <span>Zunanji <b>DPO</b> (pooblaščena oseba za VOP)</span><span class="dot" aria-hidden="true"></span>
+      <span>Svetovanje v slovenščini in angleščini</span>
+    </div>
+  </div>
+
+  <!-- PRACTICE AREAS (solution overview) -->
+  <section class="block" id="podrocja">
+    <div class="wrap">
+      <div class="shead">
+        <span class="eyebrow">Področja</span>
+        <h2>S čim vam lahko pomagam</h2>
+        <p>Pokrivam področja, kjer organizacije najpogosteje potrebujejo zanesljivo in praktično pravno podporo.</p>
+      </div>
+      <div class="areas">
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#9878;</div>
+          <h3>Javna naročila</h3>
+          <p>Priprava in pregled razpisne dokumentacije, svetovanje naročnikom in ponudnikom, pravna sredstva.</p>
+        </article>
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#128274;</div>
+          <h3>Varstvo osebnih podatkov</h3>
+          <p>GDPR skladnost, pravilniki in evidence, DPIA, vloga zunanjega pooblaščenca za varstvo podatkov.</p>
+        </article>
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#128188;</div>
+          <h3>Delovno in kadrovsko pravo</h3>
+          <p>Pogodbe, interni akti, postopki, svetovanje delodajalcem pri vsakdanjih kadrovskih vprašanjih.</p>
+        </article>
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#127963;</div>
+          <h3>Javnouslužbenski sistem</h3>
+          <p>Napredovanja, plačni razredi, sistemizacija - razlaga in uporaba predpisov v praksi.</p>
+        </article>
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#128220;</div>
+          <h3>Interni akti in skladnost</h3>
+          <p>Priprava pravilnikov, politik in postopkov, ki jih zaposleni razumejo in dejansko uporabljajo.</p>
+        </article>
+        <article class="area">
+          <div class="ic" aria-hidden="true">&#128106;</div>
+          <h3>Civilno pravo</h3>
+          <p>Pogodbe, nepremičnine, dedovanje in družinska vprašanja - jasno pojasnjeno in izpeljano.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH (editorial: drop cap + pull quote) -->
+  <section class="approach" id="pristop">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" style="color:var(--gold)">Pristop</span>
+        <h2>Manj pravniškega jezika, več uporabnih rešitev.</h2>
+        <p class="dropcap">Pravo je uporabno šele, ko ga razumete. Zato vsako vprašanje prevedem v jasne možnosti, vsak dokument napišem tako, da ga lahko uporabite, in vsak nasvet opremim s konkretnim naslednjim korakom. Delam tesno z vami - ne nad vami - in ostajam dosegljiva skozi ves postopek.</p>
+      </div>
+      <blockquote class="pullquote">
+        &ldquo;Stranke ne iščejo pravnih razprav. Iščejo mirnost, da je urejeno prav.&rdquo;
+        <span class="by">Nina Volgemut</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (trust) -->
+  <section class="block" id="mnenja">
+    <div class="wrap">
+      <div class="shead">
+        <span class="eyebrow">Mnenja</span>
+        <h2>Kaj pravijo stranke</h2>
+        <p>Vzorčna mnenja za predogled - prava mnenja dodamo iz vprašalnika "Vaše mnenje šteje".</p>
+      </div>
+      <div class="quotes">
+        <figure class="quote">
+          <div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;Zapleten razpis je razložila v enem pogovoru in pripravila dokumentacijo brez napak. Hitro in razumljivo.&rdquo;</p>
+          <figcaption class="who"><span class="av" aria-hidden="true">MK</span><span><b>Maja K.</b><span>vodja nabave, javni zavod</span></span></figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;Uredila nam je celoten GDPR paket in prevzela vlogo DPO. Končno imamo mir in jasne postopke.&rdquo;</p>
+          <figcaption class="who"><span class="av" aria-hidden="true">BT</span><span><b>Boštjan T.</b><span>direktor, d.o.o.</span></span></figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&ldquo;Praktična, odzivna in brez nepotrebnega zapletanja. Priporočam vsaki organizaciji.&rdquo;</p>
+          <figcaption class="who"><span class="av" aria-hidden="true">AP</span><span><b>Ana P.</b><span>kadrovska služba</span></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (clear CTA path) -->
+  <section class="contact" id="kontakt">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Kontakt</span>
+        <h2>Imate pravno vprašanje?</h2>
+        <p>Opišite svoj primer - odgovorim v 24 urah s predlogom naslednjih korakov. Prvi pogovor je brez obveznosti.</p>
+        <ul>
+          <li><span aria-hidden="true">&#9993;</span> nina@pravovpraksi.si</li>
+          <li><span aria-hidden="true">&#9742;</span> po dogovoru prek obrazca</li>
+          <li><span aria-hidden="true">&#9201;</span> odziv v 24 urah (delovni dnevi)</li>
+        </ul>
+      </div>
+
+      <form id="poll" novalidate>
+        <div class="row2">
+          <div class="field">
+            <label for="ime">Ime in priimek</label>
+            <input id="ime" name="ime" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">E-naslov</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="podrocje">Področje</label>
+          <select id="podrocje" name="podrocje">
+            <option>Javna naročila</option>
+            <option>Varstvo osebnih podatkov (GDPR)</option>
+            <option>Delovno in kadrovsko pravo</option>
+            <option>Javnouslužbenski sistem</option>
+            <option>Interni akti in skladnost</option>
+            <option>Civilno pravo</option>
+            <option>Drugo</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sporocilo">Na kratko opišite vprašanje</label>
+          <textarea id="sporocilo" name="sporocilo" required></textarea>
+        </div>
+        <label class="consent"><input type="checkbox" id="soglasje" required> Strinjam se, da me kontaktirate glede mojega povpraševanja. Podatke obdelujemo skladno z GDPR.</label>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Pošljite povpraševanje</button>
+        <div class="formmsg" id="formmsg" role="status" aria-live="polite">Hvala - sporočilo je pripravljeno. (Demo: obrazec še ni povezan z e-pošto.)</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site">
+    <div class="wrap">
+      <div>
+        <div class="brand"><span class="mono" aria-hidden="true">PP</span> Pravo v praksi</div>
+        <p style="max-width:34ch;margin:12px 0 0;font-size:14px">Praktično pravno svetovanje za organizacije in posameznike. Jasno, odzivno, uporabno.</p>
+      </div>
+      <nav aria-label="Noga">
+        <div style="font-size:13px;line-height:2.1">
+          <a href="#podrocja">Področja</a><br>
+          <a href="#pristop">Pristop</a><br>
+          <a href="#mnenja">Mnenja</a><br>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </nav>
+      <div style="font-size:14px">
+        <div style="color:#fff;font-weight:600;margin-bottom:8px">Kontakt</div>
+        nina@pravovpraksi.si<br>Ljubljana, Slovenija
+      </div>
+      <div class="fine">
+        <span>&copy; 2026 Pravo v praksi - Nina Volgemut</span>
+        <span>Predogled prenove (demo) &middot; zeleno-zlata identiteta</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo only: no backend. Show a confirmation instead of submitting.
+    document.getElementById('poll').addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!this.checkValidity()){ this.reportValidity(); return; }
+      document.getElementById('formmsg').style.display='block';
+      this.querySelector('button[type=submit]').textContent='Poslano (demo)';
+    });
+  </script>
+</body>
+</html>

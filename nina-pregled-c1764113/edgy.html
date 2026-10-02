@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pravo v praksi - Nina Volgemut | V3 edgy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Neo-brutalist / dark OLED + single electric accent. Sharp corners, hard shadows, grid lines, oversized caps. */
+  :root{--bg:#0a0b0d;--panel:#121419;--panel-2:#16181f;--ink:#edeef2;--mut:#9a9ead;--lime:#c6f531;--lime-d:#aadd16;--mag:#ff2e88;--line:#272a33}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,Arial,sans-serif;line-height:1.6;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;background-position:center;background-attachment:fixed}
+  body::before{content:"";position:fixed;inset:0;background:var(--bg);opacity:.86;z-index:-1}
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:700;line-height:1.0;letter-spacing:-.02em;text-transform:uppercase}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:var(--lime);text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 26px}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Space Grotesk";font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.02em;padding:14px 26px;border:2px solid var(--ink);cursor:pointer;min-height:50px;border-radius:0;background:transparent;color:var(--ink)}
+  .btn-primary{background:var(--lime);color:#0a0b0d;border-color:var(--lime);box-shadow:5px 5px 0 #000}
+  .btn-primary:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 #000}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .demoflag{background:var(--lime);color:#0a0b0d;font-family:"Space Mono",monospace;font-size:11.5px;text-align:center;padding:7px;font-weight:700;letter-spacing:.04em}
+  /* header */
+  .nav{border-bottom:2px solid var(--line);background:rgba(10,11,13,.8);backdrop-filter:blur(6px);position:sticky;top:0;z-index:40}
+  .nav .wrap{display:flex;align-items:center;gap:22px;height:76px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:-.01em}
+  .brand .sq{width:34px;height:34px;background:var(--lime);color:#0a0b0d;display:flex;align-items:center;justify-content:center;font-family:"Space Mono";font-weight:700;font-size:14px}
+  .navlinks{margin-left:auto;display:flex;gap:26px;font-family:"Space Mono";font-size:13px;text-transform:uppercase}.navlinks a{color:var(--mut)}.navlinks a:hover{color:var(--lime)}
+  @media(max-width:860px){.navlinks{display:none}}
+  /* hero */
+  .hero{padding:70px 0 60px;position:relative}
+  .tagstrip{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .tag{font-family:"Space Mono";font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);padding:5px 10px;color:var(--mut)}
+  .hero h1{font-size:clamp(44px,10vw,118px);color:var(--ink);margin:0}
+  .hero h1 .hl{color:var(--lime)}
+  .hero h1 .ol{color:transparent;-webkit-text-stroke:2px var(--ink)}
+  .hero .row{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end;justify-content:space-between;margin-top:34px;border-top:2px solid var(--line);padding-top:26px}
+  .hero p.sub{font-size:19px;color:var(--mut);max-width:42ch;margin:0}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  /* ticker */
+  .trust{border-top:2px solid var(--line);border-bottom:2px solid var(--line);background:var(--lime);color:#0a0b0d;overflow:hidden}
+  .trust .wrap{display:flex;flex-wrap:wrap;gap:10px 34px;justify-content:center;padding:14px 26px;font-family:"Space Mono";font-size:13px;font-weight:700;text-transform:uppercase}
+  /* sections */
+  section.block{padding:88px 0}
+  .shead{margin-bottom:44px}
+  .shead h2{font-size:clamp(32px,6vw,64px);color:var(--ink);margin:12px 0 10px}
+  .shead h2 .hl{color:var(--lime)}
+  .shead p{color:var(--mut);font-size:16.5px;margin:0;max-width:48ch;font-family:"Space Mono";font-size:14px}
+  /* areas: brutalist cards */
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:860px){.areas{grid-template-columns:1fr}}
+  .area{background:var(--panel);border:2px solid var(--line);padding:24px;position:relative;transition:transform .14s}
+  .area:hover{transform:translate(-3px,-3px);border-color:var(--lime);box-shadow:6px 6px 0 var(--lime)}
+  .area .no{font-family:"Space Mono";font-size:13px;color:var(--lime)}
+  .area h3{font-size:21px;color:var(--ink);margin:10px 0 8px}
+  .area p{margin:0;color:var(--mut);font-size:14.5px}
+  /* approach */
+  .approach{border-top:2px solid var(--line);border-bottom:2px solid var(--line);background:var(--panel-2)}
+  .approach .wrap{padding:90px 26px}
+  .approach blockquote{font-size:clamp(30px,7vw,84px);line-height:.98;text-transform:uppercase;font-weight:700;margin:0;max-width:16ch;color:var(--ink)}
+  .approach blockquote .hl{color:var(--lime)}
+  .approach blockquote .ol{color:transparent;-webkit-text-stroke:2px var(--mut)}
+  .approach .by{display:block;margin-top:28px;font-family:"Space Mono";font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:860px){.quotes{grid-template-columns:1fr}}
+  .quote{background:var(--panel);border:2px solid var(--line);padding:24px}
+  .quote .st{color:var(--lime);font-family:"Space Mono";font-size:13px}
+  .quote p{font-size:16px;color:var(--ink);margin:12px 0 16px}
+  .quote .who b{color:var(--lime)}.quote .who span{display:block;font-family:"Space Mono";font-size:11.5px;color:var(--mut)}
+  /* contact */
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;padding:0}@media(max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:30px}}
+  .contact{padding:88px 0}
+  .contact h2{font-size:clamp(32px,6vw,58px);color:var(--ink);margin:12px 0 16px}
+  .contact h2 .hl{color:var(--lime)}
+  .contact p{color:var(--mut);font-size:16.5px;max-width:40ch}
+  .contact .big{font-family:"Space Mono";font-size:18px;color:var(--lime);margin-top:22px;word-break:break-all}
+  form{background:var(--panel);border:2px solid var(--line);padding:28px}
+  .field{margin-bottom:16px}label{display:block;font-family:"Space Mono";font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:7px}
+  input,textarea,select{width:100%;font:inherit;font-size:15px;padding:13px;border:2px solid var(--line);background:#0c0e13;color:var(--ink);min-height:48px;border-radius:0}
+  input:focus,textarea:focus,select:focus{border-color:var(--lime)}
+  textarea{min-height:120px;resize:vertical}.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:560px){.row2{grid-template-columns:1fr}}
+  .consent{display:flex;gap:9px;font-family:"Space Mono";font-size:11.5px;color:var(--mut);margin:4px 0 18px}.consent input{width:auto;min-height:0;margin-top:3px;accent-color:var(--lime)}
+  .formmsg{display:none;margin-top:14px;padding:13px;border:2px solid var(--lime);background:rgba(198,245,49,.08);color:var(--lime);font-family:"Space Mono";font-size:13px}
+  footer.site{border-top:2px solid var(--line);background:var(--bg);padding:50px 26px 28px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer .brand{color:var(--ink)}footer a{color:var(--lime)}
+  .fine{width:100%;border-top:1px solid var(--line);margin-top:28px;padding-top:16px;font-family:"Space Mono";font-size:11.5px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body>
+  <div class="demoflag">PREDOGLED PRENOVE - V3 EDGY (DEMO) &middot; VSEBINA IN MNENJA SO VZORČNI</div>
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="#top"><span class="sq" aria-hidden="true">PP</span> Pravo v praksi</a>
+    <nav class="navlinks" aria-label="Glavna navigacija"><a href="#podrocja">Področja</a><a href="#pristop">Pristop</a><a href="#mnenja">Mnenja</a><a href="#kontakt">Kontakt</a></nav>
+    <a class="btn btn-primary" href="#kontakt" style="padding:10px 18px;min-height:0">Povpraševanje</a>
+  </div></header>
+
+  <section class="hero" id="top"><div class="wrap">
+    <div class="tagstrip"><span class="tag">javna naročila</span><span class="tag">GDPR / DPO</span><span class="tag">delovno pravo</span><span class="tag">skladnost</span></div>
+    <h1>Pravo<br><span class="ol">brez</span> <span class="hl">ovinkov.</span></h1>
+    <div class="row">
+      <p class="sub">Jasno, hitro, brez pravniškega balasta. Za podjetja in javni sektor, ki hočejo rezultat - ne razprave.</p>
+      <div class="cta-row"><a class="btn btn-primary" href="#kontakt">Naročite posvet &rarr;</a><a class="btn btn-ghost" href="#podrocja">Področja</a></div>
+    </div>
+  </div></section>
+
+  <div class="trust"><div class="wrap">
+    <span>15+ LET PRAKSE</span><span>&bull;</span><span>JAVNI SEKTOR &amp; PODJETJA</span><span>&bull;</span><span>ZUNANJI DPO</span><span>&bull;</span><span>ODZIV V 24H</span>
+  </div></div>
+
+  <section class="block" id="podrocja"><div class="wrap">
+    <div class="shead"><span class="eyebrow">// področja</span><h2>Kaj <span class="hl">rešim</span></h2><p>Pravna podpora tam, kjer najbolj tišči.</p></div>
+    <div class="areas">
+      <article class="area"><div class="no">01 //</div><h3>Javna naročila</h3><p>Razpisna dokumentacija, svetovanje naročnikom in ponudnikom, pravna sredstva.</p></article>
+      <article class="area"><div class="no">02 //</div><h3>Varstvo podatkov</h3><p>GDPR skladnost, pravilniki, DPIA in vloga zunanjega pooblaščenca (DPO).</p></article>
+      <article class="area"><div class="no">03 //</div><h3>Delovno pravo</h3><p>Pogodbe, interni akti, postopki in vsakdanja kadrovska vprašanja.</p></article>
+      <article class="area"><div class="no">04 //</div><h3>Javni uslužbenci</h3><p>Napredovanja, plačni razredi in sistemizacija - uporaba predpisov v praksi.</p></article>
+      <article class="area"><div class="no">05 //</div><h3>Skladnost</h3><p>Interni akti, pravilniki in politike, ki jih zaposleni dejansko uporabljajo.</p></article>
+      <article class="area"><div class="no">06 //</div><h3>Civilno pravo</h3><p>Pogodbe, nepremičnine, dedovanje in družinska vprašanja.</p></article>
+    </div>
+  </div></section>
+
+  <section class="approach" id="pristop"><div class="wrap">
+    <span class="eyebrow">// pristop</span>
+    <blockquote style="margin-top:16px">Manj <span class="ol">jezika.</span><br>Več <span class="hl">rešitev.</span><span class="by">Nina Volgemut</span></blockquote>
+  </div></section>
+
+  <section class="block" id="mnenja"><div class="wrap">
+    <div class="shead"><span class="eyebrow">// mnenja</span><h2>Kaj <span class="hl">pravijo</span></h2><p>Vzorčna mnenja za predogled - prava dodamo iz vprašalnika.</p></div>
+    <div class="quotes">
+      <figure class="quote"><div class="st">[ 5/5 ]</div><p>&ldquo;Zapleten razpis razložen v enem pogovoru. Hitro in brez napak.&rdquo;</p><figcaption class="who"><b>Maja K.</b><span>vodja nabave, javni zavod</span></figcaption></figure>
+      <figure class="quote"><div class="st">[ 5/5 ]</div><p>&ldquo;Celoten GDPR paket + vloga DPO. Mir in jasni postopki.&rdquo;</p><figcaption class="who"><b>Boštjan T.</b><span>direktor, d.o.o.</span></figcaption></figure>
+      <figure class="quote"><div class="st">[ 5/5 ]</div><p>&ldquo;Praktična, odzivna, brez zapletanja. Priporočam.&rdquo;</p><figcaption class="who"><b>Ana P.</b><span>kadrovska služba</span></figcaption></figure>
+    </div>
+  </div></section>
+
+  <section class="contact" id="kontakt"><div class="wrap">
+    <div><span class="eyebrow">// kontakt</span><h2>Imate <span class="hl">primer?</span></h2><p>Opišite ga - odgovorim v 24 urah s predlogom korakov. Prvi pogovor brez obveznosti.</p><div class="big">nina@pravovpraksi.si</div></div>
+    <form id="poll" novalidate>
+      <div class="row2"><div class="field"><label for="ime">Ime in priimek</label><input id="ime" type="text" autocomplete="name" required></div><div class="field"><label for="email">E-naslov</label><input id="email" type="email" autocomplete="email" required></div></div>
+      <div class="field"><label for="podrocje">Področje</label><select id="podrocje"><option>Javna naročila</option><option>Varstvo osebnih podatkov (GDPR)</option><option>Delovno in kadrovsko pravo</option><option>Javni uslužbenci</option><option>Skladnost / interni akti</option><option>Civilno pravo</option><option>Drugo</option></select></div>
+      <div class="field"><label for="sporocilo">Na kratko opišite vprašanje</label><textarea id="sporocilo" required></textarea></div>
+      <label class="consent"><input type="checkbox" required> Strinjam se, da me kontaktirate glede povpraševanja (GDPR).</label>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Pošljite &rarr;</button>
+      <div class="formmsg" id="formmsg" role="status" aria-live="polite">OK - sporočilo je pripravljeno. (Demo: obrazec še ni povezan.)</div>
+    </form>
+  </div></section>
+
+  <footer class="site"><div class="wrap">
+    <div><div class="brand" style="font-weight:700;font-size:20px;text-transform:uppercase">Pravo v praksi</div><p style="max-width:34ch;font-size:14px;color:var(--mut);margin:12px 0 0">Pravo brez ovinkov - za podjetja in javni sektor.</p></div>
+    <div style="font-family:'Space Mono';font-size:13px;line-height:2"><a href="#podrocja">področja</a><br><a href="#pristop">pristop</a><br><a href="#mnenja">mnenja</a><br><a href="#kontakt">kontakt</a></div>
+    <div style="font-size:14px;color:var(--mut)"><div style="color:var(--ink);margin-bottom:8px">kontakt</div>nina@pravovpraksi.si<br>Ljubljana, SI</div>
+    <div class="fine"><span>&copy; 2026 PRAVO V PRAKSI - NINA VOLGEMUT</span><span>V3 EDGY &middot; OLED + ELEKTRIČNA LIMETA</span></div>
+  </div></footer>
+  <script>document.getElementById('poll').addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById('formmsg').style.display='block';this.querySelector('button[type=submit]').textContent='Poslano (demo)';});</script>
+</body></html>
