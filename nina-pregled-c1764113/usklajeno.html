@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Pravo v praksi - Nina Volgemut | pravno svetovanje</title>
+<meta name="description" content="Pravo v praksi - praktično pravno svetovanje za javni in zasebni sektor: javna naročila, varstvo osebnih podatkov, delovno pravo in skladnost.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  /* Paleta: zeleno-zlata (Ninina standardna identiteta). Postavitev in slog po V1 (konzervativna). */
+  :root{
+    --green:#1f6b4a;--green-dark:#0d332b;--green-700:#17543a;
+    --gold:#c9a34a;--gold-dark:#a9842f;--gold-soft:#f4ecd6;
+    --cream:#f7f3ea;--paper:#fffdf8;--ink:#23261f;--muted:#5f6760;--line:#e4ddcb;
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Lato",system-ui,Arial,sans-serif;line-height:1.7}
+  h1,h2,h3,.serif{font-family:"EB Garamond",Georgia,serif;font-weight:600;line-height:1.18}
+  a{color:var(--green-700);text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);font-weight:700}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:13px 26px;border:1px solid transparent;cursor:pointer;min-height:48px;font-family:"Lato"}
+  .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
+  .btn-primary:hover{background:var(--green-dark)}
+  .btn-ghost{background:transparent;color:var(--green-dark);border-color:var(--green-dark);opacity:.85}
+  .btn-ghost:hover{background:var(--green-dark);color:#fff;opacity:1}
+  .demoflag{background:var(--green);color:#eafff2;font-size:11.5px;text-align:center;padding:7px;font-weight:700;letter-spacing:.03em}
+  /* header */
+  .nav{background:var(--green-dark);color:#eef4ef;border-bottom:3px solid var(--gold)}
+  .nav .wrap{display:flex;align-items:center;gap:22px;height:78px}
+  .brand{display:flex;align-items:center;gap:13px;font-family:"EB Garamond",serif;font-size:23px;color:#fff;font-weight:600}
+  .crest{width:44px;height:44px;border:1.5px solid var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:17px;letter-spacing:.04em}
+  .navlinks{margin-left:auto;display:flex;gap:28px;font-size:14px;letter-spacing:.04em}
+  .navlinks a{color:#d7e3da}.navlinks a:hover{color:var(--gold)}
+  @media(max-width:860px){.navlinks{display:none}}
+  /* hero (V1 centriran slog + Ninina fotografija) */
+  .hero{background:linear-gradient(0deg,rgba(13,51,43,.03),rgba(13,51,43,.03)),var(--cream);border-bottom:1px solid var(--line);text-align:center;padding:72px 0 66px}
+  .portrait{width:168px;height:168px;margin:0 auto 24px;position:relative;border:2px solid var(--gold);padding:7px;background:var(--paper)}
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait figcaption{position:absolute;left:0;right:0;bottom:-26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .portrait.ph{display:flex;align-items:center;justify-content:center}
+  .portrait.ph::before{content:"NV";font-family:"EB Garamond",serif;font-size:52px;color:var(--gold);background:var(--green-dark);width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+  .portrait.ph::after{content:"fotografija (vzorčna)";position:absolute;left:0;right:0;bottom:-26px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .hero .rule{width:60px;height:2px;background:var(--gold);margin:14px auto 22px}
+  .hero h1{font-size:clamp(34px,5.2vw,58px);color:var(--green-dark);margin:12px auto 20px;max-width:17ch}
+  .hero h1 em{font-style:italic;color:var(--gold-dark)}
+  .hero p.sub{font-size:19px;color:var(--muted);max-width:58ch;margin:0 auto 28px}
+  .hero .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .reassure{margin-top:20px;font-size:13px;letter-spacing:.03em;color:var(--muted)}
+  /* trust */
+  .trust{background:var(--green-dark);color:#cfdcd2}
+  .trust .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:center;padding:20px 26px;font-size:14px}
+  .trust b{color:#fff}.trust .s{color:var(--gold)}
+  /* sections */
+  section.block{padding:78px 0}
+  .shead{text-align:center;max-width:660px;margin:0 auto 46px}
+  .shead h2{font-size:clamp(28px,3.6vw,40px);color:var(--green-dark);margin:12px 0 10px}
+  .shead p{color:var(--muted);font-size:17px;margin:0}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--paper)}
+  .areas .area{padding:30px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .areas .area:nth-child(3n){border-right:0}
+  @media(max-width:860px){.areas{grid-template-columns:1fr}.areas .area{border-right:0}}
+  .area .no{font-family:"EB Garamond",serif;font-size:15px;color:var(--gold-dark);letter-spacing:.1em}
+  .area h3{font-size:22px;color:var(--green-dark);margin:8px 0 8px}
+  .area p{margin:0;color:var(--muted);font-size:15px}
+  /* approach */
+  .approach{background:var(--green-dark);color:#dfe8e0}
+  .approach .wrap{max-width:860px;text-align:center;padding:76px 26px}
+  .approach h2{color:#fff;font-size:clamp(26px,3.4vw,36px);margin:12px 0 22px}
+  .approach blockquote{font-family:"EB Garamond",serif;font-style:italic;font-size:clamp(23px,3.2vw,31px);line-height:1.4;color:#fff;margin:0;padding:0}
+  .approach .by{display:block;margin-top:22px;font-family:"Lato";font-style:normal;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .approach p{color:#bacbbf;font-size:16.5px;max-width:62ch;margin:26px auto 0}
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:860px){.quotes{grid-template-columns:1fr}}
+  .quote{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);padding:28px 26px}
+  .quote .stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+  .quote p{font-family:"EB Garamond",serif;font-size:18px;font-style:italic;color:var(--ink);margin:12px 0 18px}
+  .quote .who b{color:var(--green-dark)}.quote .who span{display:block;font-size:12.5px;color:var(--muted);letter-spacing:.03em}
+  /* feedback (obrazec za podajo mnenja) */
+  .feedback{background:var(--gold-soft)}
+  .feedback .wrap{max-width:720px;padding:72px 26px}
+  .feedback .shead{margin-bottom:30px}
+  .feedback form{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);padding:28px}
+  .stars-input{display:flex;gap:6px;flex-direction:row-reverse;justify-content:flex-end}
+  .stars-input input{position:absolute;opacity:0;width:0;height:0}
+  .stars-input label{cursor:pointer;font-size:30px;color:#d8d2c0;line-height:1;margin:0;padding:0 2px;text-transform:none;letter-spacing:0}
+  .stars-input input:checked ~ label,.stars-input label:hover,.stars-input label:hover ~ label{color:var(--gold)}
+  .stars-input input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+  /* contact */
+  .contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;padding:0}
+  @media(max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:30px}}
+  .contact{padding:78px 0}
+  .contact h2{font-size:clamp(28px,3.6vw,38px);color:var(--green-dark);margin:12px 0 14px}
+  .contact p{color:var(--muted);font-size:16.5px}
+  .contact ul{list-style:none;padding:0;margin:20px 0 0;font-size:15px;color:var(--green-dark)}
+  .contact li{margin:9px 0}.contact li b{color:var(--gold-dark)}
+  form{background:var(--paper);border:1px solid var(--line);padding:28px}
+  .field{margin-bottom:16px}label{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-dark);font-weight:700;margin-bottom:6px}
+  input,textarea,select{width:100%;font:inherit;font-size:15px;padding:12px 13px;border:1px solid var(--line);background:#fff;color:var(--ink);min-height:46px;border-radius:0}
+  textarea{min-height:110px;resize:vertical}.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:560px){.row2{grid-template-columns:1fr}}
+  .consent{display:flex;gap:9px;font-size:12.5px;color:var(--muted);margin:4px 0 16px;text-transform:none;letter-spacing:0;font-weight:400}.consent input{width:auto;min-height:0;margin-top:3px}
+  .formmsg{display:none;margin-top:14px;padding:12px;border:1px solid var(--gold);background:#fbf6ea;color:var(--green-700);font-size:14px}
+  /* splošni pogoji */
+  .terms{background:var(--paper);border-top:1px solid var(--line)}
+  .terms .wrap{max-width:860px;padding:64px 26px}
+  .terms h2{font-size:clamp(24px,3vw,32px);color:var(--green-dark);margin:12px 0 14px}
+  .terms p{color:var(--muted);font-size:15.5px}
+  .terms ul{color:var(--muted);font-size:15px;margin:14px 0 0;padding-left:20px}
+  .terms li{margin:6px 0}
+  .terms .pl{margin-top:16px;font-size:13px;color:var(--gold-dark);font-style:italic}
+  /* footer */
+  footer.site{background:var(--green-dark);color:#aec0b4;padding:48px 26px 28px;border-top:3px solid var(--gold)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer .brand{color:#fff}footer a{color:var(--gold-soft)}
+  .fine{width:100%;border-top:1px solid rgba(255,255,255,.14);margin-top:26px;padding-top:16px;font-size:12px;color:#86998c;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body>
+  <div class="demoflag">Predogled prenove - usklajeno po tvojih pripombah (demo) &middot; vsebina in mnenja so vzorčni &middot; obrazca še nista povezana</div>
+
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="#top"><span class="crest" aria-hidden="true">PP</span> Pravo v praksi</a>
+    <nav class="navlinks" aria-label="Glavna navigacija"><a href="#podrocja">Področja</a><a href="#pristop">Pristop</a><a href="#mnenja">Mnenja</a><a href="#oddaj-mnenje">Vaše mnenje</a><a href="#kontakt">Kontakt</a></nav>
+    <a class="btn btn-primary" href="#kontakt" style="padding:10px 20px;min-height:0">Povpraševanje</a>
+  </div></header>
+
+  <section class="hero" id="top"><div class="wrap">
+    <!-- Ninina fotografija: ko bo datoteka pripravljena, naloži jo kot nina-foto.jpg v to mapo (placeholder se samodejno skrije). -->
+    <figure class="portrait">
+      <img src="nina-foto.jpg" alt="Nina Volgemut, Pravo v praksi" onerror="this.closest('.portrait').classList.add('ph');this.remove();">
+      <figcaption>Nina Volgemut</figcaption>
+    </figure>
+    <div class="rule"></div>
+    <span class="eyebrow">Pravno svetovanje za javni in zasebni sektor</span>
+    <h1>Pravo, ki deluje <em>v praksi</em> - ne le na papirju.</h1>
+    <p class="sub">Jasni nasveti, uporabne rešitve in dokumenti, ki jih razumete. Od javnih naročil do varstva osebnih podatkov - za organizacije in posameznike.</p>
+    <div class="cta-row"><a class="btn btn-primary" href="#kontakt">Naročite posvet</a><a class="btn btn-ghost" href="#podrocja">Področja dela</a></div>
+    <div class="reassure">Odziv v 24 urah &middot; prvi pogovor brez obveznosti</div>
+  </div></section>
+
+  <div class="trust"><div class="wrap">
+    <span><b>15+</b> let pravne prakse</span><span class="s" aria-hidden="true">&#10022;</span>
+    <span>Javni sektor &middot; zbornice &middot; podjetja</span><span class="s" aria-hidden="true">&#10022;</span>
+    <span>Zunanji <b>DPO</b> za varstvo podatkov</span><span class="s" aria-hidden="true">&#10022;</span>
+    <span>Slovenščina in angleščina</span>
+  </div></div>
+
+  <section class="block" id="podrocja"><div class="wrap">
+    <div class="shead"><span class="eyebrow">Področja</span><h2>S čim vam lahko pomagam</h2><p>Pokrivam področja, kjer organizacije najpogosteje potrebujejo zanesljivo in praktično pravno podporo. (Področja uskladiva - končna vsebina sledi.)</p></div>
+    <div class="areas">
+      <article class="area"><div class="no">I</div><h3>Javna naročila</h3><p>Priprava in pregled razpisne dokumentacije, svetovanje naročnikom in ponudnikom, pravna sredstva.</p></article>
+      <article class="area"><div class="no">II</div><h3>Varstvo osebnih podatkov</h3><p>GDPR skladnost, pravilniki in evidence, DPIA ter vloga zunanjega pooblaščenca (DPO).</p></article>
+      <article class="area"><div class="no">III</div><h3>Delovno in kadrovsko pravo</h3><p>Pogodbe, interni akti, postopki in vsakdanja kadrovska vprašanja - jasno in uporabno.</p></article>
+      <article class="area"><div class="no">IV</div><h3>Javnouslužbenski sistem</h3><p>Napredovanja, plačni razredi in sistemizacija - razlaga in uporaba predpisov v praksi.</p></article>
+      <article class="area"><div class="no">V</div><h3>Interni akti in skladnost</h3><p>Pravilniki, politike in postopki, ki jih zaposleni razumejo in dejansko uporabljajo.</p></article>
+      <article class="area"><div class="no">VI</div><h3>Civilno pravo</h3><p>Pogodbe, nepremičnine, dedovanje in družinska vprašanja - jasno pojasnjeno in izpeljano.</p></article>
+    </div>
+  </div></section>
+
+  <section class="approach" id="pristop"><div class="wrap">
+    <span class="eyebrow" style="color:var(--gold)">Pristop</span>
+    <h2>Manj pravniškega jezika, več uporabnih rešitev.</h2>
+    <blockquote>&ldquo;Stranke ne iščejo pravnih razprav. Iščejo mirnost, da je urejeno prav.&rdquo;<span class="by">Nina Volgemut</span></blockquote>
+    <p>Vsako vprašanje prevedem v jasne možnosti, vsak dokument napišem tako, da ga lahko uporabite, in vsak nasvet opremim s konkretnim naslednjim korakom. Delam tesno z vami - ne nad vami - in ostajam dosegljiva skozi ves postopek.</p>
+  </div></section>
+
+  <section class="block" id="mnenja"><div class="wrap">
+    <div class="shead"><span class="eyebrow">Mnenja</span><h2>Kaj pravijo stranke</h2><p>Vzorčna mnenja za predogled - prava dodamo iz obrazca &ldquo;Vaše mnenje&rdquo; spodaj.</p></div>
+    <div class="quotes">
+      <figure class="quote"><div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Zapleten razpis je razložila v enem pogovoru in pripravila dokumentacijo brez napak.&rdquo;</p><figcaption class="who"><b>Maja K.</b><span>vodja nabave, javni zavod</span></figcaption></figure>
+      <figure class="quote"><div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Uredila nam je celoten GDPR paket in prevzela vlogo DPO. Mir in jasni postopki.&rdquo;</p><figcaption class="who"><b>Boštjan T.</b><span>direktor, d.o.o.</span></figcaption></figure>
+      <figure class="quote"><div class="stars" aria-label="Ocena 5 od 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Praktična, diskretna in odzivna. Priporočam vsaki organizaciji.&rdquo;</p><figcaption class="who"><b>Ana P.</b><span>kadrovska služba</span></figcaption></figure>
+    </div>
+  </div></section>
+
+  <!-- NOVO: obrazec za podajo mnenja -->
+  <section class="feedback" id="oddaj-mnenje"><div class="wrap">
+    <div class="shead"><span class="eyebrow">Vaše mnenje šteje</span><h2>Oddajte mnenje</h2><p>Ste sodelovali z menoj? Vesela bom vaše ocene - z vašim dovoljenjem jo lahko objavim med mnenji.</p></div>
+    <form id="mnenjeForm" novalidate>
+      <div class="row2">
+        <div class="field"><label for="m-ime">Ime (ali začetnice)</label><input id="m-ime" name="ime" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="m-vloga">Vloga / organizacija</label><input id="m-vloga" name="vloga" type="text" placeholder="npr. kadrovska služba, d.o.o."></div>
+      </div>
+      <div class="field">
+        <label id="ocena-label">Ocena</label>
+        <div class="stars-input" role="radiogroup" aria-labelledby="ocena-label">
+          <input type="radio" id="o5" name="ocena" value="5" required><label for="o5" title="5 - odlično" aria-label="5 zvezdic">&#9733;</label>
+          <input type="radio" id="o4" name="ocena" value="4"><label for="o4" title="4" aria-label="4 zvezdice">&#9733;</label>
+          <input type="radio" id="o3" name="ocena" value="3"><label for="o3" title="3" aria-label="3 zvezdice">&#9733;</label>
+          <input type="radio" id="o2" name="ocena" value="2"><label for="o2" title="2" aria-label="2 zvezdici">&#9733;</label>
+          <input type="radio" id="o1" name="ocena" value="1"><label for="o1" title="1" aria-label="1 zvezdica">&#9733;</label>
+        </div>
+      </div>
+      <div class="field"><label for="m-besedilo">Vaše mnenje</label><textarea id="m-besedilo" name="besedilo" required></textarea></div>
+      <label class="consent"><input type="checkbox" required> Dovoljujem, da se moje mnenje (z imenom / začetnicami in vlogo) lahko objavi na spletni strani. Podatke obdelujemo skladno z GDPR.</label>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Pošljite mnenje</button>
+      <div class="formmsg" id="mnenjeMsg" role="status" aria-live="polite">Hvala za vaše mnenje! (Demo: obrazec še ni povezan.)</div>
+    </form>
+  </div></section>
+
+  <section class="contact" id="kontakt"><div class="wrap">
+    <div>
+      <span class="eyebrow">Kontakt</span><h2>Imate pravno vprašanje?</h2>
+      <p>Opišite svoj primer - odgovorim v 24 urah s predlogom naslednjih korakov. Prvi pogovor je brez obveznosti.</p>
+      <ul><li><b>E-pošta:</b> nina@pravovpraksi.si</li><li><b>Lokacija:</b> Ljubljana</li><li><b>Odziv:</b> v 24 urah (delovni dnevi)</li></ul>
+    </div>
+    <form id="poll" novalidate>
+      <div class="row2"><div class="field"><label for="ime">Ime in priimek</label><input id="ime" name="ime" type="text" autocomplete="name" required></div><div class="field"><label for="email">E-naslov</label><input id="email" name="email" type="email" autocomplete="email" required></div></div>
+      <div class="field"><label for="podrocje">Področje</label><select id="podrocje" name="podrocje"><option>Javna naročila</option><option>Varstvo osebnih podatkov (GDPR)</option><option>Delovno in kadrovsko pravo</option><option>Javnouslužbenski sistem</option><option>Interni akti in skladnost</option><option>Civilno pravo</option><option>Drugo</option></select></div>
+      <div class="field"><label for="sporocilo">Na kratko opišite vprašanje</label><textarea id="sporocilo" name="sporocilo" required></textarea></div>
+      <label class="consent"><input type="checkbox" required> Strinjam se, da me kontaktirate glede povpraševanja (obdelava skladno z GDPR).</label>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Pošljite povpraševanje</button>
+      <div class="formmsg" id="formmsg" role="status" aria-live="polite">Hvala - sporočilo je pripravljeno. (Demo: obrazec še ni povezan.)</div>
+    </form>
+  </div></section>
+
+  <!-- NOVO: splošni pogoji poslovanja (vsebina sledi) -->
+  <section class="terms" id="pogoji"><div class="wrap">
+    <span class="eyebrow">Pravno</span>
+    <h2>Splošni pogoji poslovanja</h2>
+    <p>Tukaj bodo objavljeni splošni pogoji poslovanja (način naročila storitev, obseg svetovanja, cene in plačilni pogoji, zaupnost, varstvo osebnih podatkov in odgovornost).</p>
+    <ul>
+      <li>Naročilo in potek sodelovanja</li>
+      <li>Cene, obračun in plačilni pogoji</li>
+      <li>Zaupnost in varovanje podatkov (GDPR)</li>
+      <li>Odgovornost in reševanje nesoglasij</li>
+    </ul>
+    <p class="pl">Vsebina pogojev se pripravi in doda naknadno.</p>
+  </div></section>
+
+  <footer class="site"><div class="wrap">
+    <div><div class="brand" style="font-family:'EB Garamond',serif;font-size:22px">Pravo v praksi</div><p style="max-width:34ch;font-size:14px;margin:12px 0 0">Praktično pravno svetovanje za organizacije in posameznike. Jasno, odzivno, uporabno.</p></div>
+    <div style="font-size:13px;line-height:2"><a href="#podrocja">Področja</a><br><a href="#pristop">Pristop</a><br><a href="#mnenja">Mnenja</a><br><a href="#oddaj-mnenje">Vaše mnenje</a><br><a href="#kontakt">Kontakt</a><br><a href="#pogoji">Splošni pogoji poslovanja</a></div>
+    <div style="font-size:14px"><div style="color:#fff;margin-bottom:8px">Kontakt</div>nina@pravovpraksi.si<br>Ljubljana, Slovenija</div>
+    <div class="fine"><span>&copy; 2026 Pravo v praksi - Nina Volgemut</span><span>usklajena različica &middot; zeleno-zlata + postavitev V1</span></div>
+  </div></footer>
+
+  <script>
+    function wireForm(formId,msgId){
+      var f=document.getElementById(formId);if(!f)return;
+      f.addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById(msgId).style.display='block';var b=this.querySelector('button[type=submit]');if(b)b.textContent='Poslano (demo)';});
+    }
+    wireForm('poll','formmsg');
+    wireForm('mnenjeForm','mnenjeMsg');
+  </script>
+</body></html>
