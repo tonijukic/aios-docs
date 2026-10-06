@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VMG Studio - analiza decka, pristopa in modela</title>
+<style>
+  :root{
+    --ink:#1a1f24;--muted:#5c6670;--line:#e4e7ea;--bg:#f5f6f4;--card:#fff;
+    --lime:#c8f24a;--lime-dk:#8aab1f;--char:#20262b;--char-2:#2e363d;
+    --good:#1f9d6b;--warn:#d98324;--risk:#c2493d;--soft:#eef2ec;--blue:#2b6fb3;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.62}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px 100px}
+  a{color:var(--blue)}
+  .cover{background:linear-gradient(135deg,var(--char) 0%,var(--char-2) 70%,#3a444c 130%);color:#eef2ec;margin:0 -24px;padding:50px 44px 42px;border-radius:0 0 20px 20px;position:relative;overflow:hidden}
+  .cover::after{content:"";position:absolute;right:40px;top:40px;width:70px;height:70px;border-top:3px solid var(--lime);border-right:3px solid var(--lime);transform:rotate(45deg);opacity:.5}
+  .brand{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);font-weight:800}
+  .cover h1{font-size:33px;line-height:1.16;margin:12px 0 10px;font-weight:800;max-width:82%}
+  .cover .sub{font-size:15.5px;color:#c4cdd3;max-width:80%}
+  .cover .meta{margin-top:20px;font-size:12.5px;color:#9aa6ae}
+  .mark{background:linear-gradient(transparent 62%,var(--lime) 62%,var(--lime) 92%,transparent 92%);padding:0 2px}
+  .toc{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 4px}
+  .toc a{font-size:12px;font-weight:600;text-decoration:none;color:var(--char);background:#fff;border:1px solid var(--line);padding:6px 11px;border-radius:30px}
+  .toc a:hover{border-color:var(--lime-dk);color:var(--lime-dk)}
+  h2{font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--lime-dk);margin:48px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;background:var(--char);color:var(--lime);border-radius:7px;font-size:12.5px;font-weight:800}
+  h3{margin:18px 0 6px;font-size:16.5px;color:var(--char)}
+  .lead{color:var(--muted);font-size:14px;margin:4px 0 14px}
+  p{margin:10px 0}
+  .grid{display:grid;gap:13px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:730px){.g2,.g3{grid-template-columns:1fr}.cover h1,.cover .sub{max-width:100%}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 18px;box-shadow:0 1px 2px rgba(10,20,10,.04)}
+  .card.l{border-left:4px solid var(--lime-dk)}
+  .card .k{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .card .big{font-size:23px;font-weight:800;color:var(--char);line-height:1.1;margin:3px 0 2px}
+  .card .small{font-size:12.5px;color:var(--muted)}
+  ul{margin:7px 0 0;padding-left:20px}li{margin:6px 0}
+  .muted{color:var(--muted)}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:20px;color:#fff;margin-right:5px;vertical-align:middle}
+  .t-good{background:var(--good)}.t-warn{background:var(--warn)}.t-risk{background:var(--risk)}.t-gray{background:#8a8f96}.t-blue{background:var(--blue)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th{background:var(--char-2);color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.03em;text-transform:uppercase}
+  td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#fafbf9}
+  .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--char);white-space:nowrap}
+  .tldr{background:#fff;border:2px solid var(--lime-dk);border-radius:14px;padding:18px 24px;margin:24px 0 8px}
+  .tldr h3{margin-top:0;color:var(--lime-dk)}
+  .tldr li{margin:8px 0;font-size:14px}
+  .verdict{display:inline-block;font-weight:800;font-size:13px;padding:4px 12px;border-radius:20px;letter-spacing:.02em}
+  .v-pos{background:#e7f6ef;color:#1f7a53}.v-mix{background:#fdf0dd;color:#9a6208}.v-neg{background:#fbe9e7;color:#a5372c}
+  .qbox{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--char);border-radius:10px;padding:11px 16px;margin:9px 0}
+  .qbox .q{font-weight:700;color:var(--char);font-size:14px}
+  .qbox .why{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .flag{background:#fbe9e7;border:1px solid #e6b6b0;border-radius:12px;padding:14px 18px;margin:12px 0;font-size:13.5px}
+  .flag b{color:#a5372c}
+  .ok{background:#e7f6ef;border:1px solid #b5ddc9;border-radius:12px;padding:14px 18px;margin:12px 0;font-size:13.5px}
+  .ok b{color:#1f7a53}
+  .note{background:var(--char);color:#dfe6dd;border-radius:12px;padding:16px 20px;margin:13px 0;font-size:13.5px}
+  .note b{color:var(--lime)}
+  .src{font-size:11px;color:#949b9f;margin-top:4px}
+  .scale{display:flex;gap:2px;margin:6px 0}
+  .scale span{height:9px;flex:1;background:#e4e7ea;border-radius:2px}
+  .scale span.on{background:var(--lime-dk)}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="brand">Interna analiza &middot; zate</div>
+    <h1>VMG Studio - analiza decka, pristopa in modela</h1>
+    <div class="sub">Jan Kobler zapušča mesto Managing Partnerja pri South Central Ventures in zaganja lastno pre-seed investicijsko platformo (launch Q1 2027). Deck je LP pitch. Spodaj: kaj dejansko ponuja, kaj od tega drži, kje so luknje in kaj vprašati - grounded v stanju VC trga oktobra 2026.</div>
+    <div class="meta">Pripravljeno 6. 10. 2026 iz 17-stranskega decka (sept. 2026) + ~70 javnih virov o VC trgu, strukturah skladov in SCV. Osebni kontekst, ni F45.</div>
+  </div>
+
+  <div class="toc">
+    <a href="#tldr">Sodba</a>
+    <a href="#kaj">Kaj je VMG</a>
+    <a href="#clovek">Človek in track record</a>
+    <a href="#teza">Teza</a>
+    <a href="#model">Model</a>
+    <a href="#pogoji">Pogoji</a>
+    <a href="#trg">Trg 2026</a>
+    <a href="#plus">Kaj je dobro</a>
+    <a href="#minus">Tveganja</a>
+    <a href="#vprasanja">Vprašanja zanj</a>
+    <a href="#lp">Če te vabi kot LP</a>
+    <a href="#deck">Deck kot izdelek</a>
+  </div>
+
+  <!-- SODBA -->
+  <div class="tldr" id="tldr">
+    <h3>Sodba v enem pogledu</h3>
+    <p style="margin-top:0"><span class="verdict v-mix">Resen človek, realna teza, agresivno predstavljen track record, drag in deloma napačno poimenovan model</span></p>
+    <ul>
+      <li><b>Človek je pravi.</b> Jan Kobler je potrjeno dolgoletni Managing Partner pri South Central Ventures (vodilni early-stage VC v JV Evropi, EIF-backed, skladi 40 M€ + 70 M€). V investiranju od 2008, fintech fokus. Odhod ni znak težav - SCV je pravkar zbral nov 70 M€ sklad; on hoče investirati <b>bolj zgodaj (pre-seed) z lastno ekonomijo</b>.</li>
+      <li><b>Teza drži</b> - in je ravno v edini vrzeli, ki jo veliki skladi zapuščajo. AI res znižuje strošek gradnje; pre-seed je edini segment, kamor teče ~90 % zavez za emerging managerje; "SEE founder ujet pred SF cenami" je resničen strukturni rob (dokaz: Molo, Orgnostic, SplxAI - vse prodano zahodnim strategom).</li>
+      <li><b>Toda cel donos stoji na enem paper marku.</b> 2,6x MOIC celotnega portfelja in 6,6x "strategy-fit" podmnožice <b>skoraj v celoti nosi eno samo podjetje</b> ("Work intelligence", 38,77x, ~32 M€ od ~63 M€). Brez njega cel portfelj pade na <b>~1,3x</b>. To je nerealizirana, samoporočana vrednost - ne denar nazaj. Njihova lastna opomba to prizna (1,4x "ex top performer").</li>
+      <li><b>Model je v resnici serijski vintage sklad, ne "evergreen studio".</b> Dve poimenovanji sta tvegani: "studio" (če dejansko ne co-buildajo) in "evergreen" (gre za 3-letne vintage, bolj disciplinirana rolling-fund varianta). "One track record, two chapters" diplomatsko pripne SCV (institucionalni, EIF-jev) k osebnemu vehiklu - mehak raztezaj.</li>
+      <li><b>Provizija je visoka.</b> 3 %/leto platform fee = <b>9 % zaveze na vintage</b>; trg median je ~1,7 %, celo pod-50 M€ skladi ~2 %. Carry 20 % je standard (dobro), GP commit 3 % je nadpovprečen (dobro, skin in the game), min 120 k€ je normalen. "Ciljni neto donos 30 %" je marketing, ne pogoj - v DPI-skeptičnem 2026 ga beri kot aspiracijo s težkimi opozorili.</li>
+    </ul>
+  </div>
+
+  <!-- KAJ JE VMG -->
+  <h2 id="kaj"><span class="n">1</span> Kaj je VMG Studio</h2>
+  <p class="lead">"Velocity Made Good" - jadralski izraz: šteje le hitrost napredka proti cilju, ne hitrost skozi vodo. Metafora za "zmagovalna pot je pogosto videti ovinkasta".</p>
+  <div class="grid g3">
+    <div class="card l"><div class="k">Stopnja</div><div class="big">Pre-seed</div><div class="small">AI-native ekipe; "do več z manj", globalna ambicija od dne 1</div></div>
+    <div class="card l"><div class="k">Geografija</div><div class="big">SEE/CEE &rarr; global</div><div class="small">regionalni izvor, zahodni kupci in kapital</div></div>
+    <div class="card l"><div class="k">Vodenje</div><div class="big">Solo GP</div><div class="small">en odgovoren odločevalec + "curated circle" venture partnerjev/operaterjev</div></div>
+    <div class="card l"><div class="k">Model</div><div class="big">Evergreen*</div><div class="small">vsako leto nov vintage, 3-letni članski cikel; *dejansko serijski vintage</div></div>
+    <div class="card l"><div class="k">Struktura</div><div class="big">Core + SPV</div><div class="small">pro-rata core alokacija deal-by-deal (opt-in) + dodatni SPV po želji</div></div>
+    <div class="card l"><div class="k">Launch</div><div class="big">Q1 2027</div><div class="small">10-12 naložb na vintage</div></div>
+  </div>
+  <p>Jedro pitcha v enem stavku: <i>"pridi zgodaj do odličnih SEE-pre-seed ekip, ki z AI-jem dosežejo prihodek in dobiček prej kot prejšnja generacija, vzemi smiselne deleže in jih compoundaj prek cashflowa namesto skozi naslednji krog."</i> To je t.i. "druga pot" poleg klasične multi-round VC igre.</p>
+
+  <!-- CLOVEK -->
+  <h2 id="clovek"><span class="n">2</span> Človek in track record</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Jan Kobler <span class="tag t-good">preverjeno</span></h3>
+      <ul style="font-size:13.5px;margin-top:4px">
+        <li>Managing Partner pri <b>South Central Ventures</b>; v investment managementu od 2008.</li>
+        <li>Prej: Venture Partner pri <b>RSG Capital</b>; pred tem CFO/MD vloge (operativno + finančno ozadje).</li>
+        <li>Ekonomija, UL + Univerza v Leipzigu. Fokus: <b>finančne storitve / fintech</b>. Reden na regijskem konferenčnem krogu (PODIM, Belgrade Venture Forum, Bloomberg Adria).</li>
+        <li>"10+ let, ~25 M€ deployed": <b>verodostojno</b> (konzervativno glede na staž), a "attributable" številka je samoporočana - javno nepotrjena.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">South Central Ventures <span class="tag t-good">preverjeno</span></h3>
+      <ul style="font-size:13.5px;margin-top:4px">
+        <li>"Najaktivnejši early-stage tech investor v SEE." Sedež Ljubljana; Zagreb, Beograd, Skopje.</li>
+        <li>ENIF (~<b>40 M€</b>, WB EDIF, LP-ji: Evropska komisija, EIF, EBRD, KfW) &rarr; <b>Fund III (70 M€</b>, EIF, EBRD, Triglav, BTC).</li>
+        <li>Potrjeni exiti k zahodnim strategom: <b>Molo &rarr; Storable (ZDA)</b>, <b>Orgnostic &rarr; Culture Amp</b>, <b>SplxAI &rarr; Zscaler</b>. To je "most do zahodnega kapitala" v praksi.</li>
+        <li>Javnih cash-on-cash multiplov <b>ni nikjer</b> - noben vir jih ne potrjuje.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Track record iz decka = Janove SCV naložbe, prepakirane</h3>
+  <p>4 od 5 opisov se čisto ujamejo s konkretnimi SCV podjetji: "Material science/SaaS" &rarr; Alchemy Cloud, "Marina management software" &rarr; <b>Molo</b> (slavni Storable exit, zbral le ~900 k$ &rarr; visok multiple), "Video template marketplace" &rarr; VideoBolt, "Creative automation" &rarr; Hunch. To je legitimno (to so posli, ki jih je vodil), a pomembno je razumeti: <b>to je SCV-jev institucionalni track record, predstavljen kot Janov osebni.</b> Slide 12 ("One track record, two chapters") to pripne eksplicitno.</p>
+
+  <div class="flag">
+    <b>Najpomembnejša številka v celotnem decku:</b> cel 2,6x stoji na enem samem podjetju.
+    <table style="margin-top:10px">
+      <tr><th>Portfelj</th><th>MOIC (deck)</th><th>Delež enega podjetja v FV</th><th>MOIC brez njega</th></tr>
+      <tr><td>Cel attributable (19 podjetij)</td><td class="num">2,6x</td><td class="num">50,5 %</td><td class="num" style="color:#a5372c">1,3x</td></tr>
+      <tr><td>"Strategy-fit" podmnožica (9)</td><td class="num">6,6x</td><td class="num">64,8 %</td><td class="num">2,5x</td></tr>
+    </table>
+    "Work intelligence" (Company 2): vloženih 0,827 M€, fair value <b>32,06 M€</b> = 38,77x. To je <b>nerealiziran, samoporočan paper mark</b> - ne denar nazaj. Tabela ga vodi pod "cash on cash", a to je TVPI (FV/vloženo), ne realiziran DPI. V letu 2026, ko LP-ji gledajo skoraj izključno DPI (razdelitve padle na ~6 % AUM, vintage 2021 vrača ~0,08x), je "2,6x na papirju" skoraj brez teže, dokler exit ne pretvori marka v denar.
+  </div>
+  <div class="ok">
+    <b>Poštena protiutež:</b> "strategy-fit" podmnožica <b>brez</b> outlierja je še vedno <b>2,5x</b> čez 8 podjetij - to je spodoben, skoraj top-quartile rezultat in dejansko podpira njihov argument "ko igramo po svoji strategiji, so donosi močnejši". Dva pridržka: (1) podmnožica je izbrana za nazaj (selekcijska pristranskost - sami so pobrali 9, ki se "ujemajo"), (2) večinoma gre še vedno za nerealizirane marke, ne cash. Genuinsko realizirani deli (Molo 3,39x, SplxAI, Orgnostic) so verodostojno jedro; 38,77x je špekulativni vrh.
+  </div>
+
+  <!-- TEZA -->
+  <h2 id="teza"><span class="n">3</span> Teza - drži?</h2>
+  <p class="lead">Tri trditve nosijo celotno zgodbo. Ocena vsake, grounded v podatkih 2026.</p>
+  <div class="card l">
+    <h3 style="margin-top:0">A) "AI je ustvaril drugo pot: majhne ekipe, zgoden dobiček, manj krogov" <span class="tag t-good">večinoma drži</span></h3>
+    <div class="scale"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+    <p class="small">Realno: strošek gradnje res pada, &gt;60 % VC dolarjev gre v AI, primeri "drobna ekipa, velik ARR" obstajajo (Cursor ~78 M$ v letu 1 pri ~20 ljudeh; Midjourney ~300 M$ pri ~142). <b>Pridržek:</b> to so skrajni primeri na vrhu power-lawa, ARR je samoporočan run-rate. "Drobna ekipa, 100 M$ ARR" je izjema, ne mediana. Teza je prava smer, ne pa pravilo.</p>
+  </div>
+  <div class="card l">
+    <h3 style="margin-top:0">B) "SEE founder, ujet pred SF cenami, je strukturni rob" <span class="tag t-good">drži, s pridržki</span></h3>
+    <div class="scale"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+    <p class="small">Realno: ista tehnična kakovost pri nižjih vstopnih valuacijah; regija proizvaja $100 M-$1 mrd exite (Outfit7, Infobip, Bitstamp, Celtra, Memgraph). LAUNCHub: 75 % portfelja je zbralo naslednji krog, 700 M€+ follow-on - najčistejši dokaz, da regijski skladi "graduirajo" podjetja k (pogosto zahodnemu) kapitalu. <b>Pridržek:</b> most vodi večinoma do <b>trade sale</b> zahodnemu strategu, ne do zahodnih mega-krogov in IPO; tanko lokalno growth-kapitala sili v selitev; manj "strelov na gol".</p>
+  </div>
+  <div class="card l">
+    <h3 style="margin-top:0">C) "Evergreen compounding je boljši od klasičnega sklada z rokom" <span class="tag t-warn">delno / retorika</span></h3>
+    <div class="scale"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+    <p class="small">Pravi evergreeni (Sequoia Fund, a16z Perennial) držijo javne delnice v nedogled - to VMG <b>ni</b>. VMG so 3-letni vintage z evergreen blagovno znamko; dejansko bolj disciplinirana <b>rolling-fund</b> varianta. To je OK (izogne se NAV-redemption problemu pravih evergreenov), a "evergreen" je marketinško napihnjeno. "Compound prek cashflowa" pri pre-seed naložbah, ki redko delijo dividende, je bolj slogan kot mehanika.</p>
+  </div>
+
+  <!-- MODEL -->
+  <h2 id="model"><span class="n">4</span> Model - strukturna analiza</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Solo GP + "deep bench" <span class="tag t-blue">legitimen trend</span></h3>
+      <p class="small">"Solo capitalist" je uveljavljen (Elad Gil, Oren Zeev, Lachy Groom - solo GP-ji z 0,5-2 mrd $). Prednost: hitrost odločanja, jasna odgovornost do founderja. Slabost: <b>key-person risk</b> in pasovna širina. VMG-jev "curated circle" (venture partnerji, portfolio CEO-ji, operaterji) to delno razbremeni - a LP še vedno underwrita <b>eno osebo</b>. Za Tonija relevantno: operator-LP baza je hkrati dealflow in value-add motor.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Core + opt-in SPV <span class="tag t-good">smiselno</span></h3>
+      <p class="small">Vsak član dobi pro-rata core alokacijo, deal-by-deal se odloči (opt-in/out), lahko dvigne izpostavljenost prek namenskega SPV. To je transparentno in daje kontrolo. SPV 3 % enkratni setup je rahlo nad Sydecarjevih 2 %, a razumno, če pokriva admin in <b>ne jemlje dodatnega carryja na SPV</b> (preveri!).</p>
+    </div>
+  </div>
+  <div class="flag">
+    <b>Dve poimenovanji, ki ju je treba razčistiti:</b>
+    <ul style="margin-top:8px">
+      <li><b>"Studio"</b> pomeni soustvarjanje od dne 0 (ideja + ekipa + in-house produkt/pravo/finance), z velikim deležem (30-70 %). Če VMG le piše čeke in svetuje, je "studio" <b>napačna in tvegana oznaka</b> - ustvari napačna pričakovanja (founderji pričakujejo operativno ekipo, LP-ji studio-ekonomijo) in zamegli primerjalno skupino. Varneje: "founder-aligned investment platform" ali "operator-led fund". Branljivo le, če dejansko inkubirajo/embeddajo operaterje.</li>
+      <li><b>"Evergreen"</b> - glej točko C zgoraj. Dejansko serijski 3-letni vintage.</li>
+    </ul>
+  </div>
+  <div class="note"><b>Neto:</b> model je premišljen in sodoben (core+SPV, opt-in, operator-LP, solo-GP-plus-bench), a <b>zapakiran v dve besedi, ki obljubita več, kot struktura dejansko je.</b> Resen LP bo to takoj opazil - zanj bolje, da jezik uskladi z resnico, preden ga kdo prebode.</p></div>
+
+  <!-- POGOJI -->
+  <h2 id="pogoji"><span class="n">5</span> Pogoji - benchmark proti trgu</h2>
+  <table>
+    <tr><th>Pogoj</th><th>VMG</th><th>Trg 2026</th><th>Ocena</th></tr>
+    <tr><td>Platform / management fee</td><td class="num">3 %/leto</td><td>median ~1,7 %; pod-50 M€ ~2 %</td><td><span class="tag t-risk">visoko</span> = 9 % zaveze na 3-letni vintage</td></tr>
+    <tr><td>Carry (profit share)</td><td class="num">20 % (80/20)</td><td>20 % skoraj univerzalno</td><td><span class="tag t-good">standard</span></td></tr>
+    <tr><td>GP commitment</td><td class="num">3 %</td><td>1-3 % (pravilo 1-2 %)</td><td><span class="tag t-good">dobro</span> skin in the game</td></tr>
+    <tr><td>Min. vložek LP</td><td class="num">120 k€ / 3 leta</td><td>butični/HNW 100-250 k€</td><td><span class="tag t-good">normalno</span> (~40 k€/leto)</td></tr>
+    <tr><td>SPV setup</td><td class="num">3 % enkratno</td><td>Sydecar 2 %, AngelList ~8 k$+5 % carry</td><td><span class="tag t-warn">ok, preveri carry</span></td></tr>
+    <tr><td>Ciljni neto donos</td><td class="num">30 %</td><td>top-decile early-stage net IRR</td><td><span class="tag t-risk">marketing</span> ne pogoj</td></tr>
+    <tr><td>Naložb/vintage</td><td class="num">10-12</td><td>mikro-sklad tipično 10-25</td><td><span class="tag t-good">ustrezno</span></td></tr>
+  </table>
+  <p><b>Glavna točka o proviziji:</b> 3 %/leto je ~1,8x trenutne mediane. Ker se zaračunava le 3 leta (ne 10), je absolutno nižja kot 2 % čez 10 let (9 % vs 20 %), <b>ampak</b> ker je evergreen in se vintage nalagajo, LP, ki stalno zavezuje, perpetualno plačuje 3 %/leto. Branljivo <b>samo</b>, če fee pokriva realno operativno/value-add ekipo + admin + pravno + SPV - torej če "studio" dejansko nekaj dela. Sicer bo sofisticiran LP pritisnil navzdol. <b>"30 % neto" ni strukturni pogoj</b> - 68,9 % od 2.254 VC skladov je po 10 letih vrnilo &lt;2x; 30 % neto bi bil top-decile. Predstavi strogo kot aspiracijo, nikoli kot pričakovanje (tudi marketinško-compliance tveganje).</p>
+
+  <!-- TRG -->
+  <h2 id="trg"><span class="n">6</span> Časovnica - VC trg oktobra 2026</h2>
+  <div class="grid g3">
+    <div class="card" style="border-top:3px solid var(--risk)"><div class="k">LP razdelitve (DPI)</div><div class="big">~6 %</div><div class="small">AUM v H1 2025 vs ~14 % 10-letno povprečje. Likvidnostna kriza = glavna tema.</div></div>
+    <div class="card" style="border-top:3px solid var(--risk)"><div class="k">Emerging mgr &lt;50 M€</div><div class="big">6 %</div><div class="small">vseh globalnih LP zavez 2025 - najnižje od dot-coma. Mega-skladi &gt;1 mrd = 72 % YTD 2026.</div></div>
+    <div class="card" style="border-top:3px solid var(--good)"><div class="k">Toda &lt;15 M€ skladi</div><div class="big">~90 %</div><div class="small">vseh emerging zavez H1 2026 - denar, ki še teče, gre v najmanjše.</div></div>
+    <div class="card"><div class="k">AI delež VC $</div><div class="big">&gt;60 %</div><div class="small">Carta Q1 2026; pre-seed povpr. instrument 276 k$ (rekord, +27 % YoY)</div></div>
+    <div class="card"><div class="k">Pre-seed valuacije</div><div class="big">35 M$</div><div class="small">median SAFE cap &gt;2,5 M$ raise (Q2 2026, +40 % YoY); AI ~42 % višje od ne-AI</div></div>
+    <div class="card"><div class="k">Vintage 2021 DPI</div><div class="big">~0,08x</div><div class="small">pri TVPI ~1,5x = ~95 % "donosa" je papir. Zakaj LP-ji ne verjamejo markom.</div></div>
+  </div>
+  <div class="note"><b>Kaj to pomeni za VMG:</b> <b>najtežje okolje za zbiranje emerging-manager sklada od ~2015</b> in cash-lačna, DPI-skeptična LP baza (nasprotni veter). <b>Ampak</b> pre-seed je edina vrzel, ki jo veliki skladi zapuščajo; mikro-skladi pobirajo ~90 % emerging zavez; AI stiska strošek gradnje, da majhen pre-seed ček prej doseže prihodek. <b>Timing je pravi za strategijo, težek za fundraising.</b> Janova EIF/SCV kredibiliteta in operator-LP baza (ljudje kot ti) sta ravno pravi odgovor na to okolje - zaobide institucionalne LP-je, ki jih zdaj ni.</div>
+
+  <!-- PLUS -->
+  <h2 id="plus"><span class="n">7</span> Kaj je dejansko dobro</h2>
+  <div class="grid g2">
+    <div class="ok" style="margin:0">
+      <b>Resnične prednosti</b>
+      <ul style="font-size:13px;margin-top:8px">
+        <li>Verodostojen operator z <b>dokazanimi exiti k zahodnim strategom</b> (Molo, Orgnostic, SplxAI) - most do zahodnega kapitala je njegov, ne izmišljen.</li>
+        <li>Strategija cilja na <b>pravo vrzel</b> ob pravem času (pre-seed, AI-native, pre-SF cene).</li>
+        <li><b>3 % GP commit</b> in opt-in core+SPV = usklajenost interesov in kontrola za LP.</li>
+        <li>Operator-LP model = <b>dealflow moat</b> in distribuiran value-add (če je conflict-policy čista).</li>
+        <li><b>Poštena samorazkritja</b> v decku: navede "MOIC ex top performer" (1,4x / 2,5x) - ne skriva koncentracije. To je zrelo.</li>
+        <li>3-letni vintage da <b>zgoden signal</b> (performance se pokaže prej kot v 10-letnem skladu) in redno testira apetit trga.</li>
+      </ul>
+    </div>
+    <div class="flag" style="margin:0">
+      <b>Kje je šibko / kaj preveriti</b>
+      <ul style="font-size:13px;margin-top:8px">
+        <li>Celoten headline donos <b>visi na enem nerealiziranem marku</b> (32 M€). Vprašaj za bazo marka in ali je kaj realiziranega.</li>
+        <li><b>Visoka provizija</b> (3 %/leto) brez jasne operativne ekipe, ki bi jo upravičila.</li>
+        <li><b>"Studio" in "evergreen"</b> obljubita več kot struktura je.</li>
+        <li><b>Key-person risk</b>: en človek, ena presoja.</li>
+        <li>So zahodni mostovi <b>njegovi osebni ali SCV-jevi institucionalni</b>? (Odnosi Storable/Culture Amp/Zscaler - gredo z njim?)</li>
+        <li>Fundraising v najtežjem oknu za emerging managerje; koliko je že zavezanega?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VPRASANJA -->
+  <h2 id="vprasanja"><span class="n">8</span> Vprašanja zanj (diligence)</h2>
+  <div class="qbox"><div class="q">1. Od 2,6x / 6,6x - koliko je realiziran cash (DPI) in koliko nerealiziran fair value? Kako je določen 32 M€ mark na "Work intelligence"?</div><div class="why">Edino najpomembnejše vprašanje. Loči papir od denarja.</div></div>
+  <div class="qbox"><div class="q">2. So zahodni exit-odnosi (Storable, Culture Amp, Zscaler, Cognism) tvoji osebni ali SCV-jevi? Gredo z VMG?</div><div class="why">Most do zahodnega kapitala je glavni value-add - preveri, da je prenosljiv.</div></div>
+  <div class="qbox"><div class="q">3. Ali VMG dejansko soustvarja podjetja (studio), ali piše čeke in svetuje? Kakšna je operativna ekipa, ki jo plača 3 % fee?</div><div class="why">Razčisti "studio" + upraviči provizijo.</div></div>
+  <div class="qbox"><div class="q">4. Ciljna velikost vintage / AUM? Kolikšen je core ček na posel pri 10-12 naložbah?</div><div class="why">Določa, ali 120 k€ sploh da smiseln delež; ali je sklad investibilno velik.</div></div>
+  <div class="qbox"><div class="q">5. "30 % neto" - IRR ali MOIC? Na čem temelji? Kakšen je realen base case in downside?</div><div class="why">Loči aspiracijo od podlage.</div></div>
+  <div class="qbox"><div class="q">6. Se carry (20 %) obračuna tudi na SPV top-up, ali le na core? SPV 3 % je setup ali tudi letno?</div><div class="why">Skupni stroškovni vlek na koncentrirane pozicije.</div></div>
+  <div class="qbox"><div class="q">7. Conflict-of-interest / allocation politika za "curated circle" - kako preprečuješ, da operator-LP-ji usmerjajo lastne/portfolio posle in cherry-pickajo SPV-je?</div><div class="why">LP-kredibilnost operator-modela stoji ali pade na tem.</div></div>
+  <div class="qbox"><div class="q">8. Koliko je že mehko zavezanega za vintage 2027 in od koga (profil LP-jev)?</div><div class="why">V tem oknu je traction dokaz, da raise sploh zapre.</div></div>
+  <div class="qbox"><div class="q">9. Zakaj zdaj in ne znotraj SCV? Kakšen je dogovor s SCV glede track recorda, odnosov, morebitnega non-competea?</div><div class="why">Mehko, a pomembno - čистost odhoda in pravica do uporabe SCV zgodbe.</div></div>
+
+  <!-- LP -->
+  <h2 id="lp"><span class="n">9</span> Če te vabi kot LP (operator-investitor)</h2>
+  <p class="lead">Deck je LP pitch z min. 120 k€/3 leta. Glede na tvoj profil (ex-Saxo/Interenergo, finance) si verjetno naslovljen kot operator-LP - hkrati kapital in dealflow/value-add.</p>
+  <div class="grid g2">
+    <div class="card l">
+      <h3 style="margin-top:0">Za koga je to smiselno</h3>
+      <ul style="font-size:13px">
+        <li>Imaš <b>dealflow ali ekspertizo</b>, ki ju lahko prispevaš (in od tega profitiraš prek SPV opt-in).</li>
+        <li>Ti ustreza <b>deal-by-deal kontrola</b> (ni blind pool - sam izbiraš posle).</li>
+        <li>Razumeš, da je pre-seed <b>power-law in nelikviden 7-10 let</b>; 120 k€ je rizični del portfelja, ne varčevanje.</li>
+        <li>Veš, da vstopaš zaradi <b>dostopa in mreže</b>, ne zaradi "30 % neto" obljube.</li>
+      </ul>
+    </div>
+    <div class="card l">
+      <h3 style="margin-top:0">Rdeče zastavice pred vstopom</h3>
+      <ul style="font-size:13px">
+        <li>Ne podpiši na podlagi 2,6x/6,6x, dokler ne vidiš <b>realiziranega DPI</b> ločeno.</li>
+        <li>Pritisni na <b>3 % fee</b> (ali prvi-vintage popust / founding-LP pogoji).</li>
+        <li>Zahtevaj jasnost o <b>studio vs fund</b> in o conflict politiki.</li>
+        <li>Preveri <b>velikost vintage</b> - da 10-12 čekov dobi smiselne deleže.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><b>Moja ocena zate:</b> človek in strategija sta dovolj resna, da se <b>splača sesti in poslušati</b> - zlasti če te zanima vstop v SEE pre-seed z nekom z dokazano zgodovino in če lahko prispevaš kot operator (tvoja finančna/fintech kilometrina se pokriva z Janovim fintech fokusom). <b>Ampak</b> vstopi z odprtimi očmi glede paper-mark track recorda in drage provizije, in se pogajaj za founding-LP pogoje. To ni "varna" naložba - je dostop do rizičnega razreda, kjer šteje selekcija managerja, in tu je Jan verodostojna izbira, ne pa dokazano vrhunska (ker realiziranih multiplov ni javno).</div>
+
+  <!-- DECK -->
+  <h2 id="deck"><span class="n">10</span> Deck kot izdelek (oblika in naracija)</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Dobro</h3>
+      <ul style="font-size:13px">
+        <li>Čista, sodobna estetika (lime/charcoal, jadralska metafora dosledno izpeljana).</li>
+        <li>Logična struktura: teza &rarr; povzetek &rarr; strategija &rarr; track record &rarr; pogoji.</li>
+        <li>Poštena opomba o koncentraciji ("ex top performer") - redko in zrelo.</li>
+        <li>GP commit 3 % postavljen vidno - signal integritete.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Kje bi ga zategnil</h3>
+      <ul style="font-size:13px">
+        <li>"Studio" in "evergreen" - uskladi z resnico (glej zgoraj).</li>
+        <li>Track record slide loči <b>realiziran DPI</b> od nerealiziranega TVPI - sicer sofisticiran LP podvomi v vse.</li>
+        <li>Nekaj tipkarskih (<i>"significantely"</i>, <i>"convicion"</i>, <i>"Deal apears"</i>) - pri finančnem pitchu kvari vtis natančnosti.</li>
+        <li>"30 % net return" brez metodologije in opozoril = compliance in kredibilnostni riziko.</li>
+        <li>Manjka: velikost vintage/AUM, pipeline primeri, jasna raba sredstev fee-ja.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    Pripravljeno 6. 10. 2026 za Tonija (osebni kontekst). Vir: 17-stranski VMG Studio deck (sept. 2026, "working draft - confidential") + javni research o VC trgu 2026 (Carta, PitchBook-NVCA, Cambridge, AngelList), strukturah skladov (Sequoia Fund, a16z Perennial, rolling funds, SPV sindikati, solo GP) in South Central Ventures / Jan Kobler / SEE ekosistemu. Finančne številke iz decka so samoporočane in večinoma nerealizirane; tržne številke so zaokrožene usmeritve, ne revidirane. Nekateri ujemi portfeljskih podjetij so sklepi (označeno). Ni naložbeni nasvet.
+  </footer>
+
+</div>
+</body>
+</html>
