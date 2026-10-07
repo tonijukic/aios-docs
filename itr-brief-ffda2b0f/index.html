@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITR-LAB - brief za sestanek (diagnostika)</title>
+<style>
+  :root{
+    --navy:#0c2238;--navy-2:#13385c;--blue:#1763a6;--cyan:#13b6c9;--cyan-dk:#0d8595;
+    --amber:#e0a43b;--amber-soft:#fbf1dc;
+    --ink:#1a2330;--muted:#5d6b7a;--line:#e3e8ee;--bg:#f6f8fb;--card:#fff;
+    --good:#1f9d6b;--warn:#d98324;--risk:#c2493d;--soft:#eef3f8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 80px}
+  a{color:var(--blue)}
+  .cover{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 60%,var(--cyan-dk) 130%);color:#eaf3f8;margin:0 -24px;padding:44px 40px 36px;border-radius:0 0 20px 20px}
+  .brand{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+  .cover h1{font-size:28px;line-height:1.2;margin:12px 0 8px;font-weight:800}
+  .cover .sub{font-size:14.5px;color:#c7d8e4;max-width:85%}
+  .cover .meta{margin-top:16px;font-size:12.5px;color:#9fb6c7}
+  h2{font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan-dk);margin:42px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;background:var(--navy-2);color:#fff;border-radius:7px;font-size:12.5px;font-weight:700}
+  h3{margin:16px 0 6px;font-size:16px;color:var(--navy)}
+  .lead{color:var(--muted);font-size:14px;margin:4px 0 14px}
+  p{margin:9px 0}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:720px){.g2,.g3{grid-template-columns:1fr}.cover .sub{max-width:100%}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 17px;box-shadow:0 1px 2px rgba(10,30,50,.04)}
+  .card.l{border-left:4px solid var(--cyan)}
+  .card .k{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .card .big{font-size:22px;font-weight:800;color:var(--navy);line-height:1.1;margin:3px 0 2px}
+  .card .small{font-size:12.5px;color:var(--muted)}
+  ul{margin:7px 0 0;padding-left:20px}li{margin:5px 0}
+  .muted{color:var(--muted)}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:20px;color:#fff;margin-right:5px;vertical-align:middle}
+  .t-good{background:var(--good)}.t-warn{background:var(--warn)}.t-risk{background:var(--risk)}.t-gray{background:#8a8f96}.t-blue{background:var(--blue)}.t-cyan{background:var(--cyan-dk)}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th{background:var(--navy-2);color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.03em;text-transform:uppercase}
+  td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#f9fbfd}
+  .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy);white-space:nowrap}
+  .anchor{background:#fff;border:2px solid var(--amber);border-radius:14px;padding:16px 22px;margin:18px 0 6px}
+  .anchor h3{margin-top:0;color:#8a5a00}
+  .note{background:#0c2238;color:#dcecf4;border-radius:12px;padding:15px 20px;margin:12px 0;font-size:13.5px}
+  .note b{color:var(--cyan)}
+  .opp{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-left:4px solid var(--cyan);border-radius:12px;padding:12px 16px;margin:8px 0}
+  .opp.top{border-left-color:var(--amber)}
+  .opp .rank{flex:0 0 32px;height:32px;background:var(--soft);color:var(--navy-2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+  .opp.top .rank{background:var(--amber-soft);color:#8a5a00}
+  .opp h4{margin:0 0 2px;font-size:14.5px;color:var(--navy)}
+  .opp .why{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+  .qbox{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cyan-dk);border-radius:10px;padding:10px 15px;margin:8px 0}
+  .qbox .q{font-weight:700;color:var(--navy);font-size:13.5px}
+  .qbox .why{font-size:12px;color:var(--muted);margin-top:2px}
+  footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="brand">Interni brief &middot; priprava na sestanek</div>
+    <h1>ITR-LAB - brief za sestanek o diagnostiki</h1>
+    <div class="sub">Skrajšan povzetek raziskave + potrebe, ki jih je ITR-LAB izrazil na prvem sestanku. Za pripravo skupnega nastopa (Toni + Opti) na sestanku v ponedeljek, kjer ciljava na dogovor za storitev diagnostike.</div>
+    <div class="meta">Pripravil Toni Jukić za Žana Breznikarja (Opti Solutions) &middot; 7. 10. 2026 &middot; vir: javni registri + spletni research + zapiski s 1. sestanka (5. 10.)</div>
+  </div>
+
+  <!-- 1 SNAPSHOT -->
+  <h2><span class="n">1</span> Podjetje na hitro</h2>
+  <p class="lead">ITR-LAB d.o.o., Ljubljana. Ekskluzivni slovenski (od 2022 tudi hrvaški) zastopnik <b>Thermo Fisher Scientific</b> za elektronsko mikroskopijo (SEM/TEM/FIB-SEM) + analitika, krio, lab oprema. Lastnika Jani Marušič in Matija Dolinar.</p>
+  <div class="grid g3">
+    <div class="card"><div class="k">Prihodki 2025</div><div class="big">5,3 M€</div><div class="small">2023: 3,98 &rarr; 2024: 4,60 &rarr; 2025: 5,30 (+33 % v 2 letih)</div></div>
+    <div class="card"><div class="k">Dobiček / marža</div><div class="big">~0,4 M€</div><div class="small">stabilen; neto marža pada 10,3 % &rarr; 7,6 %; boniteta A+</div></div>
+    <div class="card"><div class="k">Ekipa</div><div class="big">~5 ljudi</div><div class="small">&gt; 1 M€ prihodka na zaposlenega - ekstremno</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:4px">
+    <div class="card l"><h3>Jašek (zakaj so stabilni)</h3><p class="small">Ozek, globok specialist v najdražji niši (en sistem 0,2-2,5 M€). V Sloveniji so pobrali tako rekoč vse EM razpise od 2019, pogosto kot edini ponudnik. Lastni servisni inženirji - ravno kakovost servisa jim je 2022 prinesla hrvaški teritorij.</p></div>
+    <div class="card l"><h3>Kje jih žuli (zakaj je diagnostika smiselna)</h3><p class="small">Prihodki +33 %, ekipa ostaja ~5, marža pada. Administracija (razpisi, servisni roki, katalog 15+ znamk, 4 trgi) raste hitreje kot število rok. Digitalno: <b>ni CRM-ja, ni spletne trgovine</b>, le osnovni kontaktni obrazec + interni servisni portal.</p></div>
+  </div>
+
+  <!-- 2 KAJ SO POVEDALI -->
+  <h2><span class="n">2</span> Kaj so povedali na 1. sestanku (5. 10.)</h2>
+  <div class="anchor">
+    <h3>To so njihove lastne besede - sidro za ponedeljek</h3>
+    <ul style="font-size:14px">
+      <li><b>"Legit CRM"</b> - pravi CRM, vezan na aktivnosti (ne razpršeno po mailu/Excelih).</li>
+      <li><b>Organizacija servisov</b> - kako naročiti job, videti razpoložljivost (koledar/kapaciteta), in ločiti: ali je servis <b>pod pogodbo, pavšalom ali dodatno</b> zaračunan.</li>
+      <li><b>Delovni nalog</b> - orodje, ki spiše nalog: izbereš stranko, beležiš čas, izbereš lokacijo - in <b>mora delati offline</b> (serviser na terenu, pri inštrumentu, pogosto brez signala).</li>
+    </ul>
+  </div>
+  <div class="note"><b>Prevod za diagnostiko:</b> njihova bolečina je operativna in servisno-terenska, ne marketinška. Osrednja nit ponedeljka = <b>servis kot proces</b> (CRM aktivnosti + koledar razpoložljivosti + terenski delovni nalog z offline načinom + ločevanje pogodba/pavšal/dodatno). To je hkrati njihov najdonosnejši, ponavljajoči prihodek - diagnostika naj ga postavi v središče.</div>
+
+  <!-- 3 KJE DIAGNOSTIKA NAJDE NAJVEC -->
+  <h2><span class="n">3</span> Kje bo diagnostika našla največ (po donosu)</h2>
+  <div class="opp top"><div class="rank">1</div><div><h4>Servis kot proces: koledar + delovni nalog + pogodbe</h4><p class="why">Register nameščene opreme, razpoložljivost, offline delovni nalog (stranka/čas/lokacija), opomniki za kalibracije in obnove pogodb, ločevanje pogodba/pavšal/dodatno. Direktno naslovi vse troje z 1. sestanka in brani ~0,4 M€ letne servisne marže. Kalibracija je zakonsko obvezna in ponavljajoča.</p></div></div>
+  <div class="opp top"><div class="rank">2</div><div><h4>CRM, vezan na aktivnosti</h4><p class="why">Leadi, ponudbe, razpisi, naročila in servisna zgodovina na enem mestu, vsaka kartica z naslednjim korakom. Temelj, na katerega se obesi vse ostalo.</p></div></div>
+  <div class="opp"><div class="rank">3</div><div><h4>Radar javnih naročil (TED + e-JN + EOJN)</h4><p class="why">Dnevni filtriran seznam razpisov po CPV/državi/vrednosti. Za ekipo petih je nemogoče ročno pokrivati 4 trge; zamujen razpis = izgubljen 6-mesten posel. Poceni, deloma javni podatki.</p></div></div>
+  <div class="opp"><div class="rank">4</div><div><h4>Hitra izdelava ponudb (CPQ) + AI branje dokumentov</h4><p class="why">Večznamčne, večvalutne ponudbe v minutah; AI prebere povpraševanja/tehnične liste v sistem. Napade operativno bolečino in odpre izvoz.</p></div></div>
+
+  <!-- 4 KONKURENCA & TRG -->
+  <h2><span class="n">4</span> Konkurenca in trg (na kratko)</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Konkurenca</h3>
+      <ul style="font-size:12.5px">
+        <li><b>Scan d.o.o.</b> (JEOL, Preddvor, 2,37 M€) - edini pravi domači EM tekmec, pol manjši.</li>
+        <li><b>Mikrolux / Tescan</b> - cenovni pritisk; <b>Tescan je dec. 2025 kupil Shimadzu</b> (lastni firmi v Zagrebu in Sarajevu).</li>
+        <li><b>Zeiss</b> - prodaja direktno.</li>
+        <li><b>Analysis Beograd</b> (Thermo EM za RS/ME/BiH, 7,3 M€) - partner-tekmec, ima ljubljansko hčerko.</li>
+        <li>Neodvisnega EM serviserja v regiji <b>ni</b> - servis je njihov adut.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Trg in živ denar</h3>
+      <ul style="font-size:12.5px">
+        <li>Strojna mikroskopija ~8 %/leto; <b>software + servis 11-15 %</b>; kalibracija ~32 % lab storitev, servisne marže 26-42 %.</li>
+        <li>Napovedane nabave 2026-27: ARIS Paket 24, <b>RIUM 2 (20,4 M€)</b>, Kemijski inštitut (~8 M€), UL Medicinska fak. (2 odprta razpisa), HR <b>NPOO 15 M€</b>, RS BIO4 (~450 M€).</li>
+        <li>Kanalno tveganje: Thermo občasno prerisuje teritorije (HR precedens 2022) - kakovost servisa je obramba mandata.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5 VPRASANJA -->
+  <h2><span class="n">5</span> Vprašanja za ponedeljek</h2>
+  <div class="qbox"><div class="q">1. Pokažite nam en teden serviserja - od klica stranke do zaključenega naloga. Kje se zatakne?</div><div class="why">Razgrne delovni nalog + offline potrebo; kvantificira bolečino.</div></div>
+  <div class="qbox"><div class="q">2. Kje danes živi evidenca nameščene opreme in servisnih rokov (kalibracije, pogodbe, garancije)? Kaj pokriva obstoječ portal (admin.itr-lab.si) in kje so luknje?</div><div class="why">Določi izhodišče servisnega koledarja.</div></div>
+  <div class="qbox"><div class="q">3. Kako ločujete servis pod pogodbo / pavšal / dodatno zaračunan - in kje se to pozna pri prihodku?</div><div class="why">Njihova lastna formulacija; veže na maržo.</div></div>
+  <div class="qbox"><div class="q">4. Koliko časa vzame ena razpisna dokumentacija in kdo spremlja razpise na 4 trgih?</div><div class="why">Odpre radar + CPQ.</div></div>
+  <div class="qbox"><div class="q">5. Kaj bi bil za vas uspeh diagnostike - katero eno stvar bi radi, da jutri izgine iz vašega dne?</div><div class="why">Zaključno; definira prvi projekt in obseg diagnostike.</div></div>
+
+  <!-- 6 ZA ZAN -->
+  <h2><span class="n">6</span> Opombe za Žana</h2>
+  <ul style="font-size:13px">
+    <li><b>Ton sestanka:</b> poslušava, ne prodajava. Servis in teren sta njihova rdeča nit - gradiva pogovor okrog tega, ne okrog marketinga/spleta.</li>
+    <li><b>Občutljivo:</b> številke zgoraj so iz javnih virov (bizi/companywall/sloexport). Ne izpostavljajva zneskov njihovih pogodb ali razpisov - uporabiva posplošeno ("v SI ste referenca za Thermo EM").</li>
+    <li><b>Nizka javna vidnost lastnikov</b> (brez LinkedIna) - rapport gradiva na poslu in tehniki, ne na osebnem.</li>
+    <li>Celotna, daljša analiza (konkurenca, kupci po inštitutih, razpisna zgodovina, mockupi) obstaja ločeno - povem, če jo rabiš pred sestankom.</li>
+  </ul>
+
+  <footer>
+    Interno, za pripravo na sestanek (ITR-LAB, ponedeljek). Vir: javni registri (bizi.si, companywall.si, sloexport.si), spletni research o trgu/konkurenci, in zapiski Tonija s 1. sestanka (5. 10. 2026). Finančne številke so javne, zaokrožene; nekatere tržne ocene usmerjevalne. Povezava poteče čez 7 dni.
+  </footer>
+
+</div>
+</body>
+</html>
