@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Napredovanje JU — logika pravil + prilagoditev GUI (za potrditev z Nino)</title>
+<style>
+  :root{--ink:#15241f;--muted:#5c6b64;--line:#e3ebe6;--bg:#f5f8f6;--card:#fff;--green:#0d332b;--green2:#17584a;--moss:#2f7d68;--gold:#b6912f;--gold2:#caa24a;--good:#1f9d6b;--warn:#c98a1a;--risk:#b4472f;--soft:#eaf3ef}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.62}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 80px}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#eaf0ec;padding:1px 5px;border-radius:5px;color:#17584a}
+  .cover{background:linear-gradient(135deg,#0a2a22 0%,#17584a 60%,#2f7d68 140%);color:#eaf6f0;margin:0 -24px;padding:42px 36px 34px;border-radius:0 0 20px 20px;border-bottom:3px solid var(--gold2)}
+  .badge{display:inline-block;background:rgba(202,162,74,.22);border:1px solid rgba(202,162,74,.55);color:#f0dca6;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+  .cover h1{font-size:25px;line-height:1.2;margin:4px 0 8px;font-weight:800}
+  .cover .sub{font-size:14px;color:#cfe6dc;max-width:94%}
+  .cover .meta{margin-top:13px;font-size:12px;color:#a9cdbf}
+  h2{font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--moss);margin:36px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h3{margin:18px 0 4px;font-size:16px;color:var(--green)}
+  p{margin:9px 0}.lead{color:var(--muted);font-size:14px}
+  ul,ol{margin:7px 0 0;padding-left:20px}li{margin:6px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--soft);color:var(--green);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  tr:last-child td{border-bottom:none}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .formula{background:#0a2a22;color:#eaf6f0;border-radius:10px;padding:13px 16px;margin:10px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.5}
+  .formula b{color:#f0dca6}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:12px 0}
+  .ok{background:#e7f6ef;border:1px solid #b5ddc9;border-radius:12px;padding:13px 18px;margin:12px 0;font-size:13.5px}.ok b{color:#1f7a53}
+  .note{background:var(--green);color:#dcefe6;border-radius:12px;padding:14px 19px;margin:12px 0;font-size:13.5px}.note b{color:#f0dca6}
+  .warn{background:#fbf1dc;border:1px solid #e7cf95;border-radius:12px;padding:13px 18px;margin:12px 0;font-size:13.5px}.warn b{color:#8a6410}
+  .q{border:2px solid var(--gold2);background:#fffdf5;border-radius:12px;padding:13px 17px;margin:12px 0}
+  .q h3{margin-top:0;color:var(--gold)}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+  .done{background:#eafaf2;color:#1f7a53}.todo{background:#fdeeea;color:#b4472f}.part{background:#fbf1dc;color:#8a6410}
+  .da{background:#e7f6ef;color:#1f7a53;font-weight:700;padding:1px 7px;border-radius:6px}
+  .oz{background:#fbf1dc;color:#8a6410;font-weight:700;padding:1px 7px;border-radius:6px}
+  .ne{background:#fdeeea;color:#b4472f;font-weight:700;padding:1px 7px;border-radius:6px}
+  a{color:var(--moss)}
+  .mock{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0;margin:12px 0;overflow:hidden}
+  .mock .hd{background:var(--green);color:#eaf6f0;padding:9px 14px;font-size:12px;font-weight:700}
+  .mock table{margin:0;border:0;border-radius:0}
+  .mock .rowex{font-size:12px}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+  .small{font-size:12px;color:var(--muted)}
+  .toc{columns:2;font-size:13px;color:var(--moss)}
+  @media(max-width:640px){.toc{columns:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="badge">Pravo v praksi &middot; Napredovanje JU &middot; za potrditev</div>
+    <h1>Napredovanje javnih uslužbencev v plačne razrede: logika pravil + prilagoditev GUI</h1>
+    <div class="sub">Pregled zakonodaje, natančna logika ugotavljanja upravičenosti (predvsem relacija <b>leta → naslednje napredovanje glede na plačni razred</b>) z vsemi izjemami, kaj je že razvito in kako bo videti vmesnik. Namen: da z Nino potrdiva, ali je glavna logika + izjeme pravilna, nato implementiram.</div>
+    <div class="meta">10. 10. 2026 &middot; interno &middot; osnova: ministrski pripomoček NPR 2.1 + ZSTSPJS + Uredba</div>
+  </div>
+
+  <div class="ok"><b>Izhodišče:</b> jedro izračuna je <b>1:1 prepis ministrskega pripomočka NPR 2.1</b> (preveril sem dejanske Excel formule v datoteki, ki si nama jo poslala). Logiko sem preveril na <b>14 realnih JU</b> (Dom dr. Janka Benedika): korak napredovanja in nov PR se ujemata z Ninino ročno presojo <b>14/14</b>. Spodaj je ta logika razložena, da potrdiva, da je prav — in kje rabiva tvojo odločitev.</div>
+
+  <h2>Kazalo</h2>
+  <div class="toc">
+    1. Zakonodajni okvir<br>
+    2. Glavna logika — leta → napredovanje glede na PR<br>
+    3. Tabela rokov (jedro relacije)<br>
+    4. Odločitev: DA / DA - v ozadju / NE<br>
+    5. Vse izjeme<br>
+    6. Kaj je že razvito vs. kaj manjka<br>
+    7. Ključna odločitev: ocene (točke)<br>
+    8. Prilagoditev GUI (vnosna maska + notranji pogled)<br>
+    9. Vprašanja za potrditev
+  </div>
+
+  <!-- 1 ZAKONODAJA -->
+  <h2>1. Zakonodajni okvir</h2>
+  <table>
+    <tr><th>Vir</th><th>Kaj določa</th></tr>
+    <tr><td><b>ZSTSPJS, 16. člen</b><br><span class="small">napredovanje v višji PR</span></td><td>JU napreduje <b>vsaka tri leta</b> za <b>en ali dva</b> plačna razreda, če izpolnjuje pogoje. Na DM, kjer je mogoče napredovati <b>v naziv</b>, se v posameznem nazivu napreduje <b>največ za 5 PR</b>; na DM <b>brez naziva</b> največ za <b>10 PR</b>. Ob <b>prvem in drugem</b> napredovanju lahko napreduje za največ 2 PR. Funkcionarji in uvrščeni v plačno skupino B (vodstveni) ne napredujejo.</td></tr>
+    <tr><td><b>ZSTSPJS, 17. člen</b><br><span class="small">pogoj</span></td><td>Pogoj za napredovanje je <b>delovna uspešnost</b>, izkazana v napredovalnem obdobju (rezultati dela, samostojnost, ustvarjalnost, natančnost, zanesljivost, kakovost sodelovanja ...).</td></tr>
+    <tr><td><b>Uredba o napredovanju JU v plačne razrede</b></td><td><b>Napredovalno obdobje</b> = čas od zadnjega napredovanja oz. prve zaposlitve, v katerem JU pridobi <b>tri letne ocene</b>. <b>Ocenjevalno obdobje</b> = koledarsko leto. Potrebne <b>točke</b> iz ocen: za <b>1 PR</b> → 1./2. napredovanje ≥ <b>11</b>, 3./4. ≥ <b>12</b>, 5. ≥ <b>13</b>, nadaljnja ≥ <b>14</b>; za <b>2 PR</b> → ≥ <b>14</b> (prvič) oz. ≥ <b>15</b>. Po 6 letih s povprečjem vsaj &raquo;dobro&laquo; napreduje za 1 PR (5. odst. 5. čl.).</td></tr>
+    <tr><td><b>Pripomoček NPR 2.1</b><br><span class="small">ministrski Excel</span></td><td>Dejansko orodje, ki ga uporabljaš. Določa <b>računski postopek</b>: korak napredovanja, dolžino obdobja v letih (tabela rokov), datum naslednjega napredovanja, odločitev DA/NE. <b>Najino jedro je njegov natančen prepis.</b></td></tr>
+  </table>
+  <p class="small">Viri: <a href="https://pisrs.si/pregledPredpisa?id=ZAKO8826">ZSTSPJS (PISRS)</a> &middot; <a href="https://pisrs.si/pregledPredpisa?id=URED4797">Uredba o napredovanju JU v plačne razrede (PISRS)</a> &middot; <a href="https://www.racunovodstvo.net/zakonodaja/uredba-o-napredovanju-javnih-usluzbencev-v-placne-razrede">Uredba (računovodstvo.net)</a> &middot; ministrski pripomoček NPR 2.1 (interno gradivo).</p>
+
+  <!-- 2 GLAVNA LOGIKA -->
+  <h2>2. Glavna logika — leta → napredovanje glede na plačni razred</h2>
+  <p>Vprašanje &raquo;kdaj je JU upravičen do napredovanja&laquo; se razbije na dvoje: <b>(A) ali je preteklo dovolj ČASA</b> (napredovalno obdobje) in <b>(B) ali ima JU dovolj OCEN (točk)</b>. Ministrski pripomoček (in najino jedro) natančno računa <b>(A) — časovno upravičenost</b> glede na to, <b>v katerem po vrsti napredovanju</b> je JU. Prav to je relacija, ki te zanima.</p>
+
+  <h3>Korak 1 — v katerem napredovanju je JU (korak P)</h3>
+  <div class="formula">korak P = <b>trenutni PR</b> − <b>izhodiščni PR DM</b> − <b>PR po 15. čl. (min. plača)</b> + 1</div>
+  <ul>
+    <li>Pove, <b>katero zaporedno napredovanje</b> JU pravkar čaka (1. = prvo nad izhodiščnim, 2., 3. ...).</li>
+    <li>PR, pridobljeni zaradi <b>minimalne plače (15. čl.)</b>, se <b>odštejejo</b> — ne štejejo kot napredovanje.</li>
+    <li><b>KONEC</b>, če je trenutni PR = najvišji možni PR DM/naziva (ni več napredovanja). <b>NAPAKA</b> pri neskladnih podatkih (trenutni PR nižji od izhodiščnega ali višji od najvišjega).</li>
+  </ul>
+
+  <h3>Korak 2 — koliko let mora preteči (rok Q)</h3>
+  <p><b>To je jedro relacije &raquo;leta ↔ plačni razred&laquo;:</b> koliko let traja napredovalno obdobje, je odvisno od <b>koraka P</b> in od tega, ali je DM <b>z nazivom (Z)</b> ali <b>brez naziva (B)</b>. Tabela je spodaj (točka 3).</p>
+
+  <h3>Korak 3 — datum naslednjega napredovanja</h3>
+  <div class="formula">datum naslednjega = <b>začetek obdobja</b> (zadnje napredovanje ali prva zaposlitev) + <b>Q let</b></div>
+
+  <h3>Korak 4 — nov plačni razred</h3>
+  <div class="formula">nov PR = trenutni PR + <b>tip</b>  (redno +1 / pospešeno +2 / zadržano +0),  vendar ≤ najvišji PR</div>
+
+  <!-- 3 TABELA ROKOV -->
+  <h2>3. Tabela rokov (jedro relacije leta ↔ PR)</h2>
+  <p>Dolžina napredovalnega obdobja v letih po koraku P — <b>natančno iz formule pripomočka NPR 2.1</b>:</p>
+  <table>
+    <tr><th>Korak napredovanja (P)</th><th>DM <b>Z nazivom</b> (Z)</th><th>DM <b>brez naziva</b> (B)</th></tr>
+    <tr><td>1.</td><td>2 leta</td><td>2 leta</td></tr>
+    <tr><td>2.</td><td>2 leta</td><td>2 leta</td></tr>
+    <tr><td>3.</td><td>2 leta</td><td><b>1 leto</b></td></tr>
+    <tr><td>4.</td><td>3 leta</td><td>3 leta</td></tr>
+    <tr><td>5.</td><td>3 leta</td><td><b>1,5 leta</b></td></tr>
+    <tr><td>6.</td><td>3 leta</td><td>3 leta</td></tr>
+    <tr><td>7.</td><td>3 leta</td><td>3 leta</td></tr>
+    <tr><td>8. in naprej</td><td>4 leta</td><td>4 leta</td></tr>
+  </table>
+  <div class="warn"><b>To je najpomembnejša točka za tvojo potrditev.</b> ZSTSPJS načelno govori o napredovanju &raquo;vsaka tri leta&laquo;, ministrski pripomoček NPR 2.1 pa dejansko uporablja <b>zgornjo tabelo po korakih</b> (in krajše roke pri DM brez naziva). Najino jedro je dobesedni prepis te tabele in se je na 14 realnih JU izkazal za pravilnega. Prosim, <b>potrdi, da ta tabela ustreza veljavni ureditvi / tvoji praksi</b> (oz. kje jo je treba popraviti).</div>
+
+  <!-- 4 ODLOCITEV -->
+  <h2>4. Odločitev: DA / DA - v ozadju / NE</h2>
+  <table>
+    <tr><th>Izid</th><th>Pogoj</th><th>Pomen</th></tr>
+    <tr><td><span class="da">DA</span></td><td>datum naslednjega ≤ datum napredovanja</td><td>Časovno upravičen — napreduje (za +tip PR).</td></tr>
+    <tr><td><span class="oz">DA - v ozadju</span></td><td>datum ≤ datum napredovanja <b>in</b> PR po 22. čl. &gt; trenutni PR</td><td>Napreduje &raquo;v ozadju&laquo;: ima že višjo plačo po 22. členu, formalni PR ga šele dohiteva.</td></tr>
+    <tr><td><span class="ne">NE</span></td><td>datum naslednjega &gt; datum napredovanja</td><td>Rok še ni potekel — še ni upravičen.</td></tr>
+  </table>
+  <div class="card"><b>Primer (realni JU):</b> zaposlen 1. 1. 2026, korak P = 5, DM brez naziva → rok 1,5 leta → datum naslednjega = 1. 7. 2027. Na presečni datum 1. 6. 2026 je izid <span class="ne">NE</span> (rok še teče). Jedro to <b>pravilno zadrži</b> (preverjeno na 2 takih JU).</div>
+
+  <!-- 5 IZJEME -->
+  <h2>5. Vse izjeme</h2>
+  <table>
+    <tr><th>Izjema</th><th>Kako vpliva na logiko</th><th>Status</th></tr>
+    <tr><td><b>Min. plača (15. čl., 2. odst.)</b></td><td>PR, pridobljen zaradi dviga na minimalno plačo, <b>ne šteje</b> za napredovanje → odšteje se v koraku P.</td><td><span class="pill done">v jedru</span></td></tr>
+    <tr><td><b>22. člen (2./3. odst.)</b></td><td>JU ima višji PR &raquo;za plačo&laquo; (do 5 oz. 6–10 nad min.). Napreduje <b>&raquo;v ozadju&laquo;</b>, dokler ga formalni PR ne dohiti; ob prehodu dobi pravico do plače po višjem PR.</td><td><span class="pill done">v jedru</span></td></tr>
+    <tr><td><b>Pospešeno napredovanje (+2 PR)</b></td><td>Namesto +1 se doda +2. <b>Kvota: največ 10 %</b> zaposlenih (zaokroženo navzgor). Pogoj: zagotovljena <b>finančna sredstva</b> (tvoje stikalo pri delodajalcu).</td><td><span class="pill done">v jedru</span></td></tr>
+    <tr><td><b>Zadržano napredovanje (+0)</b></td><td>Napredovanje se zadrži (ostane isti PR). <b>Kvota: največ 5 %</b> zaposlenih. Po <b>1 letu</b> preide v redno (+1 PR).</td><td><span class="pill part">kvota v jedru; avtomatika &raquo;+1 po letu&laquo; za vgraditi</span></td></tr>
+    <tr><td><b>Zgornja meja PR</b></td><td>Največ <b>5 PR v nazivu</b> (Z) / <b>10 PR na DM</b> (B); ko je dosežen najvišji PR → <b>KONEC</b>. Napredovanje, ki bi preseglo najvišji PR → NAPAKA.</td><td><span class="pill done">v jedru</span></td></tr>
+    <tr><td><b>Prekinitev delovnega razmerja &lt; 90 dni</b></td><td>Krajša prekinitev se <b>ne šteje</b> v napredovalno dobo (obdobje teče naprej).</td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td><b>Prehod v višji tarifni razred</b></td><td><b>Prekine</b> časovno obdobje za napredovanje (začne se znova). <span class="small">(tvoja pripomba 3.10.)</span></td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td><b>Prva zaposlitev</b></td><td>Če JU še ni napredoval, je začetek obdobja <b>datum prve zaposlitve</b> v javnem sektorju.</td><td><span class="pill part">prek začetka obdobja</span></td></tr>
+    <tr><td><b>Napredovanje v naziv (DM z nazivom)</b></td><td>Ločena polja (datum zadnjega napredovanja v naziv, številka/datum odločbe). Vpliva na vrsto DM (Z) in s tem na tabelo rokov.</td><td><span class="pill part">polja dodana v maski; logika naziva za dorečenje</span></td></tr>
+  </table>
+
+  <!-- 6 ZE RAZVITO -->
+  <h2>6. Kaj je že razvito vs. kaj manjka</h2>
+  <table>
+    <tr><th>Del</th><th>Status</th></tr>
+    <tr><td>Korak P, tabela rokov Q, datum naslednjega, odločitev DA/v ozadju/NE, nov PR</td><td><span class="pill done">narejeno + preverjeno 14/14</span></td></tr>
+    <tr><td>Izjeme 15. čl, 22. čl, pospešeno/zadržano + kvoti 10 %/5 %</td><td><span class="pill done">narejeno</span></td></tr>
+    <tr><td>Katalog FDMN (šifra DM → izhodiščni/najvišji PR, Z/B)</td><td><span class="pill todo">manjka (zdaj ročni vnos / ocena)</span></td></tr>
+    <tr><td>Avtomatika upravičenosti iz <b>ocen (točk)</b></td><td><span class="pill todo">ni — tip (redno/pospešeno/zadržano) je zdaj ročni vnos</span></td></tr>
+    <tr><td>Plačna lestvica 2026 (PR → bruto) + nova plača / prehodno obdobje</td><td><span class="pill todo">manjka</span></td></tr>
+    <tr><td>Prekinitve &lt; 90 dni, prehod v višji TR, zadržano → +1 po letu</td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td>Generator aneksov / sklepov</td><td><span class="pill todo">manjka</span></td></tr>
+  </table>
+
+  <!-- 7 KLJUCNA ODLOCITEV -->
+  <div class="q">
+    <h3>7. Ključna odločitev: ocene (točke) — avtomatika ali ročno?</h3>
+    <p>Ministrski pripomoček (in zdaj najino jedro) <b>ne presoja ocen</b> — predpostavi, da kadrovik že ve, ali gre za <b>redno / pospešeno / zadržano</b> napredovanje (to je vnos). Orodje nato izračuna <b>čas + nov PR</b>.</p>
+    <p>Lahko pa gremo korak dlje: da <b>aplikacija sama</b> iz vnesenih <b>letnih ocen</b> sešteje točke in <b>določi upravičenost</b> (≥ 11/12/13/14 za 1 PR; ≥ 14/15 za 2 PR) ter predlaga redno/pospešeno. To je tvoja vsebinska odločitev:</p>
+    <ul>
+      <li><b>Možnost A (kot pripomoček):</b> tip ostane ročni vnos; aplikacija računa čas + PR + dokumentacijo. Hitrejše, manj vnosa.</li>
+      <li><b>Možnost B (polna avtomatika):</b> vnesejo se ocene po letih; aplikacija sama ugotovi upravičenost in tip. Več vnosa, a &raquo;vse v enem&laquo; in manj možnosti za napako.</li>
+    </ul>
+  </div>
+
+  <!-- 8 GUI -->
+  <h2>8. Prilagoditev GUI</h2>
+  <p>Dva dela, oba že obstajata; prilagoditev = povezati ju z jedrom in prikazati logiko.</p>
+
+  <h3>(a) Vnosna maska za stranko / kadrovika</h3>
+  <p>Že posodobljena po tvojih pripombah (3.10.). Polja se preslikajo v vhode jedra:</p>
+  <table>
+    <tr><th>Polje v maski</th><th>Vhod jedra</th></tr>
+    <tr><td>Izhodiščni PR DM / naziva</td><td>izhodiščni PR (G)</td></tr>
+    <tr><td>Končni (najvišji) PR DM / naziva</td><td>najvišji PR (H)</td></tr>
+    <tr><td>DM z nazivom / brez (samodejno iz KFDMN)</td><td>vrsta Z / B</td></tr>
+    <tr><td>PR, v katerega je uvrščen</td><td>trenutni PR (J)</td></tr>
+    <tr><td>Višji PR po 15. členu</td><td>PR min. plača (K)</td></tr>
+    <tr><td>Višji PR po 2./3. odst. 22. člena</td><td>PR za plačo (L) → &raquo;v ozadju&laquo;</td></tr>
+    <tr><td>Datum zaposlitve / zadnjega napredovanja v PR</td><td>začetek obdobja (M)</td></tr>
+    <tr><td>Datum prehoda v višji TR, krajša prekinitev</td><td>popravek začetka obdobja (izjeme)</td></tr>
+  </table>
+
+  <h3>(b) Notranji pogled (ti + ekipa) — rezultat presoje</h3>
+  <p>Po oddaji maske se za vsakega JU prikaže izračun z <b>razlago, zakaj</b>, in delodajalčev panel s kvotami. Groba postavitev:</p>
+  <div class="mock">
+    <div class="hd">Dom dr. Janka Benedika &middot; presečni datum 1. 6. 2026 &middot; 14 JU</div>
+    <table class="rowex">
+      <tr><th>JU</th><th>DM (Z/B)</th><th>korak</th><th>rok</th><th>naslednje</th><th>odločitev</th><th>nov PR</th></tr>
+      <tr><td>Habjan Matej</td><td>B</td><td>3.</td><td>1 leto</td><td>27. 12. 2022</td><td><span class="oz">DA - v ozadju</span></td><td>7</td></tr>
+      <tr><td>Hadžić Emina</td><td>B</td><td>5.</td><td>1,5 leta</td><td>1. 7. 2027</td><td><span class="ne">NE</span></td><td>8</td></tr>
+      <tr><td>Hubanić Martina</td><td>B</td><td>1.</td><td>2 leta</td><td>...</td><td><span class="da">DA</span></td><td>4</td></tr>
+    </table>
+  </div>
+  <p class="small">Ob kliku na JU: razlaga (&raquo;rok poteče 1. 7. 2027, zato na presečni datum še ne napreduje&laquo;) + vir vrednosti. Delodajalčev panel: napreduje N od 14 &middot; pospešeno N/max (10 %) &middot; zadržano M/max (5 %), z opozorilom ob preseženi kvoti. Nato: predlog <b>aneksa / sklepa</b> (redno = aneks; pospešeno = sklep + aneks; zadržano = sklep).</p>
+
+  <!-- 9 VPRASANJA -->
+  <h2>9. Vprašanja za potrditev (Nina)</h2>
+  <ol>
+    <li><b>Tabela rokov</b> (točka 3): ali ustreza veljavni ureditvi — tudi krajša roka pri DM brez naziva (3. korak = 1 leto, 5. korak = 1,5 leta)? To je najpomembnejše.</li>
+    <li><b>Ocene (točka 7):</b> možnost A (tip ročno, kot pripomoček) ali B (aplikacija sama iz ocen določi upravičenost + tip)?</li>
+    <li><b>Zadržano → +1 po 1 letu:</b> potrdiš, da naj aplikacija to samodejno upošteva?</li>
+    <li><b>Prekinitev &lt; 90 dni</b> in <b>prehod v višji TR:</b> točno kako vplivata na začetek/tek obdobja?</li>
+    <li><b>Zgornja meja</b> 5 PR (naziv) / 10 PR (brez naziva) — potrditev.</li>
+    <li><b>Katalog FDMN</b> kot vir izhodiščnega/najvišjega PR in vrste Z/B — grem to potegniti kot referenčno tabelo?</li>
+  </ol>
+  <div class="note"><b>Naslednji korak:</b> ko potrdita glavno logiko + izjeme (in odločitev o ocenah), <b>implementiram</b> — povežem vnosno masko z jedrom, dodam manjkajoče izjeme in notranji pogled z razlago in kvotami. Brez potrditve ničesar ne spreminjam.</div>
+
+  <footer>
+    Pravo v praksi (Nina) &middot; napredovanje javnih uslužbencev v plačne razrede. Jedro = prepis ministrskega pripomočka NPR 2.1 (preverjene Excel formule), skladno z ZSTSPJS (16./17. čl) in Uredbo o napredovanju JU. Preverjeno 14/14 na realnih podatkih. Ločena infra od F45. Zaupno.
+  </footer>
+
+</div>
+</body>
+</html>
