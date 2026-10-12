@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>F45 CRM - kaj pomenijo statusi (faze)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1b16;--card:#15241d;--card2:#1b2f26;--line:#294236;--txt:#eaf2ed;--muted:#9fb3a8;
+    --green:#2fae6e;--green-soft:#153a28;--gold:#d8b05a;--blue:#5aa9ff;--red:#ef6b6b;--teal:#38c5b5;--grey:#8a9a90;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 22px 70px}
+  header.h{text-align:center;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  h1{font-size:30px;margin:8px 0 8px;font-weight:800}
+  .lead{color:var(--muted);font-size:16px;max-width:60ch;margin:0 auto}
+  h2{font-size:19px;margin:34px 0 14px;font-weight:700;border-left:3px solid var(--gold);padding-left:12px}
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:8px}
+  .lens{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+  .lens .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:1px solid var(--line)}
+  .lens b{color:var(--txt)} .lens .d{color:var(--muted);font-size:14px}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 10px;font-size:13px}
+  .chip{padding:4px 11px;border-radius:30px;font-weight:600;font-size:12.5px;border:1px solid transparent}
+  .arrow{color:var(--muted)}
+  .c-lead{background:rgba(90,169,255,.14);color:#8cc4ff;border-color:rgba(90,169,255,.3)}
+  .c-contacted{background:rgba(216,176,90,.14);color:var(--gold);border-color:rgba(216,176,90,.3)}
+  .c-trialist{background:rgba(47,174,110,.14);color:var(--green);border-color:rgba(47,174,110,.3)}
+  .c-obiskar{background:rgba(56,197,181,.14);color:var(--teal);border-color:rgba(56,197,181,.3)}
+  .c-member{background:rgba(47,174,110,.22);color:#6fe0a4;border-color:rgba(47,174,110,.45)}
+  .c-former{background:rgba(138,154,144,.16);color:#b6c6bc;border-color:rgba(138,154,144,.3)}
+  .c-lost{background:rgba(239,107,107,.14);color:var(--red);border-color:rgba(239,107,107,.3)}
+  .status{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+  .status .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .status .top .how{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+  .auto{background:rgba(47,174,110,.14);color:var(--green)}
+  .man{background:rgba(216,176,90,.14);color:var(--gold)}
+  .status p{margin:6px 0 0;font-size:14.5px}
+  .status .mech{color:var(--muted);font-size:13px;margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+  .alenka{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:10px}
+  .alenka .row{display:flex;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:14px;align-items:flex-start}
+  .alenka .row:last-child{border-bottom:0}
+  .alenka .mark{flex:none;font-weight:800;font-size:15px}
+  .ok{color:var(--green)} .fix{color:var(--gold)}
+  .alenka .txt b{color:var(--txt)} .alenka .txt{color:var(--muted)}
+  .note{background:var(--green-soft);border:1px solid rgba(47,174,110,.3);border-radius:12px;padding:14px 16px;font-size:14px;color:#cdeedd;margin-top:8px}
+  footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:18px}
+  code{background:var(--card2);padding:1px 6px;border-radius:5px;font-size:12.5px;color:#cfe}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="h">
+    <div class="kicker">F45 Bežigrad &middot; CRM (dashboard)</div>
+    <h1>Kaj pomenijo statusi (faze)</h1>
+    <p class="lead">Razlaga vseh faz osebe v CRM-ju in kako jih sistem dodeli - za Alenko. Odgovor na vprašanje "Ajda - imenovanje leadov".</p>
+  </header>
+
+  <h2>Najprej: tri ločene "leče" na osebo</h2>
+  <div class="intro">
+    <div class="lens"><div class="n">1</div><div><b>Faza</b> <span class="d">- kje v življenjskem ciklu je oseba (lead → ... → član → bivši). Večinoma <b>samodejno</b> iz Glofoxa. To je spodaj glavna tema.</span></div></div>
+    <div class="lens"><div class="n">2</div><div><b>Prodajni status</b> <span class="d">- <code>odprt</code> / <code>na čakanju</code> / <code>zaprt</code>. Ročno. "Ali še aktivno prodajamo?"</span></div></div>
+    <div class="lens"><div class="n">3</div><div><b>Prioriteta</b> <span class="d">- <code>vroč</code> / <code>topel</code> / <code>hladen</code>. Ročno. Kakovost leada za razvrščanje.</span></div></div>
+    <p style="margin:12px 0 0;color:var(--muted);font-size:13.5px">Leči 2 in 3 ureja ekipa ročno - <b>sinhronizacija z Glofoxom ju nikoli ne prepiše</b>. Spodaj govorimo o <b>fazi</b>.</p>
+  </div>
+
+  <h2>Pot skozi faze</h2>
+  <div class="flow">
+    <span class="chip c-lead">lead</span><span class="arrow">→</span>
+    <span class="chip c-contacted">kontaktiran</span><span class="arrow">→</span>
+    <span class="chip c-trialist">trialist</span><span class="arrow">→</span>
+    <span class="chip c-obiskar">obiskar</span><span class="arrow">→</span>
+    <span class="chip c-member">član</span><span class="arrow">→</span>
+    <span class="chip c-former">bivši</span>
+    <span class="arrow" style="margin-left:6px">(stranski izhod:)</span><span class="chip c-lost">izgubljen</span>
+  </div>
+
+  <!-- LEAD -->
+  <div class="status">
+    <div class="top"><span class="chip c-lead">lead</span> <b>Nov kontakt, še brez triala</b> <span class="how auto">samodejno</span></div>
+    <p>Nekdo, ki je "vstopil v naš svet" - pustil podatke, pokazal zanimanje, se registriral. Še ni začel preizkusa.</p>
+    <p class="mech"><b>Kako:</b> iz Glofox "LEAD" košare. Svež (≤ 30 dni) → <b>aktiven lead</b> na delovnem seznamu; starejši → <b>arhiviran</b> (hladen lead, ostane v iskanju za remarketing). Vir se določi samodejno (aplikacija / spletna stran) ali ročno (marketinške akcije / ostalo).</p>
+  </div>
+
+  <!-- CONTACTED -->
+  <div class="status">
+    <div class="top"><span class="chip c-contacted">kontaktiran</span> <b>Lead, ki smo ga že kontaktirali (pred trialom)</b> <span class="how man">ročno</span></div>
+    <p>Faza, ki jo <b>ekipa nastavi ročno</b>, ko je lead kontaktiran, a še ni začel preizkusa. Je <b>med lead in trialist</b>.</p>
+    <p class="mech"><b>Pomembno:</b> to ni status "ko se konča trial". Je za leade <b>pred</b> trialom. Kaj se zgodi po trialu - glej obiskar / član / izgubljen spodaj.</p>
+  </div>
+
+  <!-- TRIALIST -->
+  <div class="status">
+    <div class="top"><span class="chip c-trialist">trialist</span> <b>V 14-dnevnem brezplačnem preizkusu</b> <span class="how auto">samodejno</span></div>
+    <p>Oseba, ki trenutno izvaja preizkus.</p>
+    <p class="mech"><b>Kako:</b> iz Glofox "TRIAL" košare - šteje, če je prijavljen v zadnjih 30 dneh ALI je trial še aktiven. Okno preizkusa = začetek / prvi obisk + 13 dni (14. dan je zadnji). Po izteku ostane trialist, dokler ga obiski ali članarina ne premaknejo naprej (ni avtomatsko "izgubljen").</p>
+  </div>
+
+  <!-- OBISKAR -->
+  <div class="status">
+    <div class="top"><span class="chip c-obiskar">obiskar</span> <b>Trenira, a nima redne članarine</b> <span class="how auto">samodejno</span></div>
+    <p>Hodi na treninge in plačuje <b>po obisku / na kredite / drop-in</b> - nima vezane (ponavljajoče) kartice. To velja za <b>kogarkoli</b>: ex-trialista, ki po preizkusu še hodi, pa tudi nekoga v Glofoxu brez kartice, a z obiski.</p>
+    <p class="mech"><b>Kako:</b> dva pogoja hkrati - <b>ima obiske</b> IN <b>nima kartice</b> (prazna <code>expiry</code> in <code>end</code>). Določi se iz udeležbe (obiski zadnjega leta).</p>
+  </div>
+
+  <!-- MEMBER -->
+  <div class="status">
+    <div class="top"><span class="chip c-member">član</span> <b>Ima aktivno / obnavljajočo članarino</b> <span class="how auto">samodejno</span></div>
+    <p>Redni član z veljavno kartico.</p>
+    <p class="mech"><b>Kako:</b> iz Glofoxa - kartica s prihodnjim iztekom ALI obnavljajoča ALI zamrznjena (PAUSED/LOCKED). To je "Glofox resnica" (avtoritativno); dovoljena je tudi reaktivacija bivši → član.</p>
+  </div>
+
+  <!-- FORMER -->
+  <div class="status">
+    <div class="top"><span class="chip c-former">bivši</span> <b>Nekdanji član - kartica potekla</b> <span class="how auto">samodejno</span></div>
+    <p>Imel je vezano/obnavljajočo kartico, ki je potekla in ni bila obnovljena → odtekel član. (Sem spada tudi prijava brez kartice, ki ni nikoli trenirala - mrtev vpis.)</p>
+    <p class="mech"><b>Kako:</b> iz Glofoxa, samodejno.</p>
+  </div>
+
+  <!-- LOST -->
+  <div class="status">
+    <div class="top"><span class="chip c-lost">izgubljen</span> <b>Treniral, a eno leto brez treninga</b> <span class="how auto">samodejno</span></div>
+    <p>Trialist ali obiskar, ki <b>eno leto ni treniral</b>. Šele takrat ga sistem označi za izgubljenega.</p>
+    <p class="mech"><b>Tonijevo pravilo:</b> prag je <b>1 leto</b> (ne 21/23 dni). Zato nekdo po koncu triala NI takoj izgubljen - ostane trialist / obiskar, dokler ne mine celo leto brez obiska.</p>
+  </div>
+
+  <h2>Kako sistem sploh dodeli oznako</h2>
+  <div class="intro" style="font-size:14px">
+    <p style="margin:0 0 8px"><b>Samodejno iz Glofoxa:</b> sinhronizacija potegne tri košare (ČLANI, TRIAL, LEAD) in razvrsti vsako osebo. Obiski (rezervacije zadnjega leta) odločijo <b>obiskar vs izgubljen</b>.</p>
+    <p style="margin:0 0 8px"><b>Avtoritativne faze</b> (član / bivši / obiskar / izgubljen) sledijo Glofoxu in udeležbi. <b>lead / kontaktiran / trialist</b> lahko nastavi ekipa ročno.</p>
+    <p style="margin:0"><b>Varovalo:</b> sync osebo le <b>premika naprej</b>, nikoli nazaj, in <b>nikoli ne prepiše</b> ročnih polj (opombe, skrbnik, naslednji korak, prodajni status, prioriteta).</p>
+  </div>
+
+  <h2>Tvoj predlog, Alenka - kaj drži in kaj uskladimo</h2>
+  <div class="alenka">
+    <div class="row"><span class="mark ok">&#10003;</span><span class="txt"><b>1. lead - ko vstopi.</b> Drži - nov kontakt pred trialom.</span></div>
+    <div class="row"><span class="mark ok">&#10003;</span><span class="txt"><b>2. trialist - ko začne s trialom.</b> Drži - v 14-dnevnem preizkusu.</span></div>
+    <div class="row"><span class="mark fix">~</span><span class="txt"><b>3. "ko konča s trialom → kontaktiran".</b> Tu majhna uskladitev: <b>kontaktiran</b> je mišljen za lead <b>pred</b> trialom (ko ga pokličemo). Po koncu triala je odvisno od vedenja: če še hodi (plača obisk) → <b>obiskar</b>; če sklene članarino → <b>član</b>; če izgine, a <b>šele po letu dni</b> brez treninga → <b>izgubljen</b>. Dokler ni jasno, ostane <b>trialist / obiskar</b>.</span></div>
+    <div class="row"><span class="mark ok">&#10003;</span><span class="txt"><b>4. član - ko sklene članarino.</b> Drži - aktivna kartica.</span></div>
+    <div class="row"><span class="mark ok">&#10003;</span><span class="txt"><b>5. obiskar - ko kupi obisk.</b> Drži - trenira brez redne članarine (plača po obisku / kredite).</span></div>
+  </div>
+  <div class="note"><b>Tvoj občutek glede "še ni izgubljen" je točen</b> in se ujema s sistemom: nekdo postane "izgubljen" šele po <b>enem letu</b> brez treninga - ne takoj po zamiku članarine. Veliko jih zamakne in se vrne; ti ostanejo trialist / obiskar, ne izgubljen.</div>
+
+  <footer>
+    Interni pregled za ekipo F45 Bežigrad &middot; Povezava je zasebna in poteče čez 7 dni (19.10.2026).<br>Vir: CRM v dashboardu (faze, sinhronizacija z Glofoxom). Pripravljeno 12.10.2026.
+  </footer>
+</div>
+</body>
+</html>
