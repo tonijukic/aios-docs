@@ -55,7 +55,7 @@
     <div class="badge">Pravo v praksi &middot; Napredovanje JU &middot; za potrditev</div>
     <h1>Napredovanje javnih uslužbencev v plačne razrede: logika pravil + prilagoditev GUI</h1>
     <div class="sub">Pregled zakonodaje, natančna logika ugotavljanja upravičenosti (predvsem relacija <b>leta → naslednje napredovanje glede na plačni razred</b>) z vsemi izjemami, kaj je že razvito in kako bo videti vmesnik. Namen: da z Nino potrdiva, ali je glavna logika + izjeme pravilna, nato implementiram.</div>
-    <div class="meta">10. 10. 2026 &middot; interno &middot; osnova: ministrski pripomoček NPR 2.1 + ZSTSPJS + Uredba</div>
+    <div class="meta">10. 10. 2026 (dopolnjeno 12. 10. s členi ZSTSPJS, ki jih je potrdila Nina) &middot; interno &middot; osnova: ministrski pripomoček NPR 2.1 + ZSTSPJS (15., 22., 25.–28. čl.)</div>
   </div>
 
   <div class="ok"><b>Izhodišče:</b> jedro izračuna je <b>1:1 prepis ministrskega pripomočka NPR 2.1</b> (preveril sem dejanske Excel formule v datoteki, ki si nama jo poslala). Logiko sem preveril na <b>14 realnih JU</b> (Dom dr. Janka Benedika): korak napredovanja in nov PR se ujemata z Ninino ročno presojo <b>14/14</b>. Spodaj je ta logika razložena, da potrdiva, da je prav — in kje rabiva tvojo odločitev.</div>
@@ -77,9 +77,12 @@
   <h2>1. Zakonodajni okvir</h2>
   <table>
     <tr><th>Vir</th><th>Kaj določa</th></tr>
-    <tr><td><b>ZSTSPJS, 16. člen</b><br><span class="small">napredovanje v višji PR</span></td><td>JU napreduje <b>vsaka tri leta</b> za <b>en ali dva</b> plačna razreda, če izpolnjuje pogoje. Na DM, kjer je mogoče napredovati <b>v naziv</b>, se v posameznem nazivu napreduje <b>največ za 5 PR</b>; na DM <b>brez naziva</b> največ za <b>10 PR</b>. Ob <b>prvem in drugem</b> napredovanju lahko napreduje za največ 2 PR. Funkcionarji in uvrščeni v plačno skupino B (vodstveni) ne napredujejo.</td></tr>
-    <tr><td><b>ZSTSPJS, 17. člen</b><br><span class="small">pogoj</span></td><td>Pogoj za napredovanje je <b>delovna uspešnost</b>, izkazana v napredovalnem obdobju (rezultati dela, samostojnost, ustvarjalnost, natančnost, zanesljivost, kakovost sodelovanja ...).</td></tr>
-    <tr><td><b>Uredba o napredovanju JU v plačne razrede</b></td><td><b>Napredovalno obdobje</b> = čas od zadnjega napredovanja oz. prve zaposlitve, v katerem JU pridobi <b>tri letne ocene</b>. <b>Ocenjevalno obdobje</b> = koledarsko leto. Potrebne <b>točke</b> iz ocen: za <b>1 PR</b> → 1./2. napredovanje ≥ <b>11</b>, 3./4. ≥ <b>12</b>, 5. ≥ <b>13</b>, nadaljnja ≥ <b>14</b>; za <b>2 PR</b> → ≥ <b>14</b> (prvič) oz. ≥ <b>15</b>. Po 6 letih s povprečjem vsaj &raquo;dobro&laquo; napreduje za 1 PR (5. odst. 5. čl.).</td></tr>
+    <tr><td><b>ZSTSPJS, 25. člen</b><br><span class="small">napredovanje v višji PR — <b>osnovno pravilo</b></span></td><td>JU vsakokrat napreduje za <b>en plačni razred</b>. Časovno obdobje: v <b>1.–3. PR</b> delovnega mesta vsakič po <b>2 letih</b>, v <b>4.–7. PR</b> po <b>3 letih</b>, v <b>8. in naprej</b> po <b>4 letih</b> (25/3). Na DM <b>brez naziva</b> v <b>3. in 5. PR</b> po <b>polovici</b> obdobja (25/4). Največ <b>5 PR v nazivu</b> / <b>10 PR brez naziva</b> (25/2). Obdobje teče od prve zaposlitve / zadnjega napredovanja / prekinitve (25/7); napredovanje v naziv na istem DM obdobja <b>ne prekine</b> (25/8); prekine in začne znova pri prehodu v <b>višji tarifni razred</b> ali ob <b>prekinitvi razmerja &ge; 90 dni</b> (25/9). <b>Pravico do plače</b> JU pridobi <b>1. junija</b> (če pogoje izpolni 2. 12.–1. 6.) oz. <b>1. decembra</b> (2. 6.–1. 12.); aneks najpozneje <b>15 dni prej</b> (25/5).</td></tr>
+    <tr><td><b>ZSTSPJS, 27. člen</b><br><span class="small">pospešeno</span></td><td>JU napreduje za <b>dva PR</b>, če dela <b>bistveno nad pričakovanji</b> pri večini kriterijev iz 28. čl. Odloči predstojnik <b>s sklepom</b> z obrazložitvijo. Kvota: največ <b>10 %</b> zaposlenih pri uporabniku proračuna na 1. 1. leta napredovanja (zaokroženo <b>navzgor</b>).</td></tr>
+    <tr><td><b>ZSTSPJS, 26. člen</b><br><span class="small">zadržano</span></td><td>Časovno obdobje se <b>podaljša za eno leto</b>, če JU dela <b>bistveno pod pričakovanji</b>. Odloči predstojnik <b>s sklepom</b> z obrazložitvijo (do izpolnitve obdobja). Ne več kot <b>enkrat</b> na obdobje. Kvota: največ <b>5 %</b> (zaokroženo <b>navzgor</b>). Možen preizkus pred komisijo + sodno varstvo.</td></tr>
+    <tr><td><b>ZSTSPJS, 28. člen</b><br><span class="small">kriteriji (ocene)</span></td><td>Zadržano/pospešeno se presoja po <b>7 kriterijih</b>: (1) kakovost in povezovanje znanj, (2) obseg dela in dodatno delo, (3) spoštovanje rokov, (4) samostojnost, (5) natančnost / pogostost napak, (6) prilagodljivost, (7) sodelovanje in odnos do strank. <span class="small">(Namesto starega točkovnega sistema ocen.)</span></td></tr>
+    <tr><td><b>ZSTSPJS, 15. člen</b><br><span class="small">minimalna plača</span></td><td>PR, pridobljen ker bi bil JU sicer pod <b>minimalno plačo</b>, se <b>ne šteje za napredovanje</b> in časovnega obdobja <b>ne prekine</b> (15/2). V koraku P se odšteje.</td></tr>
+    <tr><td><b>ZSTSPJS, 22. člen</b><br><span class="small">višji PR / „v ozadju“</span></td><td>Višji PR „za plačo“: po <b>2. in 3. odstavku</b> (do 5 oz. 6–10 nad izhodiščnim) se <b>ne šteje za napredovanje</b> → JU napreduje <b>„v ozadju“</b>, dokler ga formalni PR ne dohiti. <b>Pozor (Ninina pripomba):</b> po <b>1. odstavku</b> pa se vsi višji PR <b>štejejo za napredovanje</b>.</td></tr>
     <tr><td><b>Pripomoček NPR 2.1</b><br><span class="small">ministrski Excel</span></td><td>Dejansko orodje, ki ga uporabljaš. Določa <b>računski postopek</b>: korak napredovanja, dolžino obdobja v letih (tabela rokov), datum naslednjega napredovanja, odločitev DA/NE. <b>Najino jedro je njegov natančen prepis.</b></td></tr>
   </table>
   <p class="small">Viri: <a href="https://pisrs.si/pregledPredpisa?id=ZAKO8826">ZSTSPJS (PISRS)</a> &middot; <a href="https://pisrs.si/pregledPredpisa?id=URED4797">Uredba o napredovanju JU v plačne razrede (PISRS)</a> &middot; <a href="https://www.racunovodstvo.net/zakonodaja/uredba-o-napredovanju-javnih-usluzbencev-v-placne-razrede">Uredba (računovodstvo.net)</a> &middot; ministrski pripomoček NPR 2.1 (interno gradivo).</p>
@@ -99,8 +102,15 @@
   <h3>Korak 2 — koliko let mora preteči (rok Q)</h3>
   <p><b>To je jedro relacije &raquo;leta ↔ plačni razred&laquo;:</b> koliko let traja napredovalno obdobje, je odvisno od <b>koraka P</b> in od tega, ali je DM <b>z nazivom (Z)</b> ali <b>brez naziva (B)</b>. Tabela je spodaj (točka 3).</p>
 
-  <h3>Korak 3 — datum naslednjega napredovanja</h3>
-  <div class="formula">datum naslednjega = <b>začetek obdobja</b> (zadnje napredovanje ali prva zaposlitev) + <b>Q let</b></div>
+  <h3>Korak 3 — datum izpolnitve pogojev</h3>
+  <div class="formula">datum izpolnitve = <b>začetek obdobja</b> (zadnje napredovanje ali prva zaposlitev) + <b>Q let</b></div>
+
+  <h3>Korak 3b — datum pridobitve pravice do plače (25/5) <span class="pill todo">za vgraditi</span></h3>
+  <p><b>Dopolnitev po tvoji pripombi (11. 10.):</b> napredovanje ne začne veljati na sam datum izpolnitve pogojev, ampak se „zaokroži“ na enega od dveh letnih datumov:</p>
+  <div class="formula">pogoje izpolni <b>2. 12.–1. 6.</b>  →  pravica do plače <b>1. junija</b>
+pogoje izpolni <b>2. 6.–1. 12.</b>  →  pravica do plače <b>1. decembra</b>
+aneks k pogodbi: najpozneje <b>15 dni pred</b> izpolnitvijo pogojev</div>
+  <p class="small">Jedro zdaj računa datum izpolnitve (zgoraj). Ta korak (zamik na 1. 6. / 1. 12. + rok 15 dni za aneks) <b>dodam</b> — pomemben je za pravi datum na aneksu in za pravočasno opozorilo.</p>
 
   <h3>Korak 4 — nov plačni razred</h3>
   <div class="formula">nov PR = trenutni PR + <b>tip</b>  (redno +1 / pospešeno +2 / zadržano +0),  vendar ≤ najvišji PR</div>
@@ -119,7 +129,7 @@
     <tr><td>7.</td><td>3 leta</td><td>3 leta</td></tr>
     <tr><td>8. in naprej</td><td>4 leta</td><td>4 leta</td></tr>
   </table>
-  <div class="warn"><b>To je najpomembnejša točka za tvojo potrditev.</b> ZSTSPJS načelno govori o napredovanju &raquo;vsaka tri leta&laquo;, ministrski pripomoček NPR 2.1 pa dejansko uporablja <b>zgornjo tabelo po korakih</b> (in krajše roke pri DM brez naziva). Najino jedro je dobesedni prepis te tabele in se je na 14 realnih JU izkazal za pravilnega. Prosim, <b>potrdi, da ta tabela ustreza veljavni ureditvi / tvoji praksi</b> (oz. kje jo je treba popraviti).</div>
+  <div class="ok"><b>Potrjeno z zakonom (tvoj mail 11. 10.).</b> Tabela je zdaj neposredno podprta s <b>25. členom ZSTSPJS</b>: tretji odstavek določa roke <b>2 / 3 / 4 leta</b> glede na plačni razred delovnega mesta (1.–3. / 4.–7. / 8. in naprej), četrti odstavek pa <b>polovične roke</b> za DM brez naziva v 3. in 5. PR (torej <b>1 leto</b> oz. <b>1,5 leta</b>) — točno tako, kot je v jedru in kot se je izkazalo na 14 realnih JU. Prejšnja omemba &raquo;vsaka tri leta&laquo; je izhajala iz starejše ureditve; veljavni 25/3 je zgornja tabela.</div>
 
   <!-- 4 ODLOCITEV -->
   <h2>4. Odločitev: DA / DA - v ozadju / NE</h2>
@@ -156,6 +166,7 @@
     <tr><td>Avtomatika upravičenosti iz <b>ocen (točk)</b></td><td><span class="pill todo">ni — tip (redno/pospešeno/zadržano) je zdaj ročni vnos</span></td></tr>
     <tr><td>Plačna lestvica 2026 (PR → bruto) + nova plača / prehodno obdobje</td><td><span class="pill todo">manjka</span></td></tr>
     <tr><td>Prekinitve &lt; 90 dni, prehod v višji TR, zadržano → +1 po letu</td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td><b>Zamik na 1. 6. / 1. 12.</b> (pravica do plače) + rok <b>15 dni</b> za aneks (25/5)</td><td><span class="pill todo">za vgraditi — iz tvoje pripombe 11. 10.</span></td></tr>
     <tr><td>Generator aneksov / sklepov</td><td><span class="pill todo">manjka</span></td></tr>
   </table>
 
