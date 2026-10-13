@@ -55,7 +55,7 @@
     <div class="badge">Pravo v praksi &middot; Napredovanje JU &middot; za potrditev</div>
     <h1>Napredovanje javnih uslužbencev v plačne razrede: logika pravil + prilagoditev GUI</h1>
     <div class="sub">Pregled zakonodaje, natančna logika ugotavljanja upravičenosti (predvsem relacija <b>leta → naslednje napredovanje glede na plačni razred</b>) z vsemi izjemami, kaj je že razvito in kako bo videti vmesnik. Namen: da z Nino potrdiva, ali je glavna logika + izjeme pravilna, nato implementiram.</div>
-    <div class="meta">10. 10. 2026 (dopolnjeno 12. 10. s členi ZSTSPJS, ki jih je potrdila Nina) &middot; interno &middot; osnova: ministrski pripomoček NPR 2.1 + ZSTSPJS (15., 22., 25.–28. čl.)</div>
+    <div class="meta">10. 10. 2026 · dopolnjeno 12. 10. (členi ZSTSPJS, Nina) in 13. 10. (pravna revizija Mire: ocen ni več, prekinitve, 18. čl.) · osnova: NPR 2.1 + ZSTSPJS (15., 18., 22., 25.–28. čl.)</div>
   </div>
 
   <div class="ok"><b>Izhodišče:</b> jedro izračuna je <b>1:1 prepis ministrskega pripomočka NPR 2.1</b> (preveril sem dejanske Excel formule v datoteki, ki si nama jo poslala). Logiko sem preveril na <b>14 realnih JU</b> (Dom dr. Janka Benedika): korak napredovanja in nov PR se ujemata z Ninino ročno presojo <b>14/14</b>. Spodaj je ta logika razložena, da potrdiva, da je prav — in kje rabiva tvojo odločitev.</div>
@@ -68,7 +68,7 @@
     4. Odločitev: DA / DA - v ozadju / NE<br>
     5. Vse izjeme<br>
     6. Kaj je že razvito vs. kaj manjka<br>
-    7. Ključna odločitev: ocene (točke)<br>
+    7. Ocene — jih ni več<br>
     8. Prilagoditev GUI (vnosna maska + notranji pogled)<br>
     9. Vprašanja za potrditev
   </div>
@@ -150,8 +150,8 @@ aneks k pogodbi: najpozneje <b>15 dni pred</b> izpolnitvijo pogojev</div>
     <tr><td><b>Pospešeno napredovanje (+2 PR)</b></td><td>Namesto +1 se doda +2. <b>Kvota: največ 10 %</b> zaposlenih (zaokroženo navzgor). Pogoj: zagotovljena <b>finančna sredstva</b> (tvoje stikalo pri delodajalcu).</td><td><span class="pill done">v jedru</span></td></tr>
     <tr><td><b>Zadržano napredovanje (+0)</b></td><td>Napredovanje se zadrži (ostane isti PR). <b>Kvota: največ 5 %</b> zaposlenih. Po <b>1 letu</b> preide v redno (+1 PR).</td><td><span class="pill part">kvota v jedru; avtomatika &raquo;+1 po letu&laquo; za vgraditi</span></td></tr>
     <tr><td><b>Zgornja meja PR</b></td><td>Največ <b>5 PR v nazivu</b> (Z) / <b>10 PR na DM</b> (B); ko je dosežen najvišji PR → <b>KONEC</b>. Napredovanje, ki bi preseglo najvišji PR → NAPAKA.</td><td><span class="pill done">v jedru</span></td></tr>
-    <tr><td><b>Prekinitev delovnega razmerja &lt; 90 dni</b></td><td>Krajša prekinitev se <b>ne šteje</b> v napredovalno dobo (obdobje teče naprej).</td><td><span class="pill todo">za vgraditi</span></td></tr>
-    <tr><td><b>Prehod v višji tarifni razred</b></td><td><b>Prekine</b> časovno obdobje za napredovanje (začne se znova). <span class="small">(tvoja pripomba 3.10.)</span></td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td><b>Prekinitev delovnega razmerja &lt; 90 dni</b></td><td>Krajša prekinitev (pod 90 dni) obdobja <b>ne prekine</b>, ga pa <b>podaljša za čas, ko JU ni bil v delovnem razmerju</b>. <span class="small">(natančnost: Mira, 12. 10.)</span></td><td><span class="pill todo">za vgraditi</span></td></tr>
+    <tr><td><b>Prehod v višji tarifni razred</b></td><td>Z dnem prehoda prične teči <b>novo napredovalno obdobje</b>; štetje let glede na določitev plače po <b>18. členu ZSTSPJS</b> in število napredovanj. <span class="small">(natančnost: Mira, 12. 10.)</span></td><td><span class="pill todo">za vgraditi</span></td></tr>
     <tr><td><b>Prva zaposlitev</b></td><td>Če JU še ni napredoval, je začetek obdobja <b>datum prve zaposlitve</b> v javnem sektorju.</td><td><span class="pill part">prek začetka obdobja</span></td></tr>
     <tr><td><b>Napredovanje v naziv (DM z nazivom)</b></td><td>Ločena polja (datum zadnjega napredovanja v naziv, številka/datum odločbe). Vpliva na vrsto DM (Z) in s tem na tabelo rokov.</td><td><span class="pill part">polja dodana v maski; logika naziva za dorečenje</span></td></tr>
   </table>
@@ -170,15 +170,11 @@ aneks k pogodbi: najpozneje <b>15 dni pred</b> izpolnitvijo pogojev</div>
     <tr><td>Generator aneksov / sklepov</td><td><span class="pill todo">manjka</span></td></tr>
   </table>
 
-  <!-- 7 KLJUCNA ODLOCITEV -->
-  <div class="q">
-    <h3>7. Ključna odločitev: ocene (točke) — avtomatika ali ročno?</h3>
-    <p>Ministrski pripomoček (in zdaj najino jedro) <b>ne presoja ocen</b> — predpostavi, da kadrovik že ve, ali gre za <b>redno / pospešeno / zadržano</b> napredovanje (to je vnos). Orodje nato izračuna <b>čas + nov PR</b>.</p>
-    <p>Lahko pa gremo korak dlje: da <b>aplikacija sama</b> iz vnesenih <b>letnih ocen</b> sešteje točke in <b>določi upravičenost</b> (≥ 11/12/13/14 za 1 PR; ≥ 14/15 za 2 PR) ter predlaga redno/pospešeno. To je tvoja vsebinska odločitev:</p>
-    <ul>
-      <li><b>Možnost A (kot pripomoček):</b> tip ostane ročni vnos; aplikacija računa čas + PR + dokumentacijo. Hitrejše, manj vnosa.</li>
-      <li><b>Možnost B (polna avtomatika):</b> vnesejo se ocene po letih; aplikacija sama ugotovi upravičenost in tip. Več vnosa, a &raquo;vse v enem&laquo; in manj možnosti za napako.</li>
-    </ul>
+  <!-- 7 OCENE -->
+  <div class="ok">
+    <h3 style="margin-top:0">7. Ocene — jih ni več (pripomba Mire, 12. 10.)</h3>
+    <p>Po <b>novi ureditvi ZSTSPJS ni več letnih ocen s točkami</b> (star sistem pragov 11/12/13/14 je odpravljen). Za napredovanje velja <b>samo časovno obdobje</b> (2 / 3 / 4 leta po 25/3). <b>Pospešeno in zadržano</b> napredovanje se ne določa po točkah, ampak <b>kvalitativno</b>: delo &raquo;bistveno nad&laquo; (27. čl.) oz. &raquo;bistveno pod pričakovanji&laquo; (26. čl.) po <b>7 kriterijih 28. člena</b>, o čemer predstojnik odloči s sklepom.</p>
+    <p>Zato <b>jedro pravilno dela brez ocen</b>: tip (redno / pospešeno / zadržano) je <b>vnos</b> (kadrovik ga določi po presoji predstojnika), aplikacija pa izračuna <b>čas, datume in nov PR</b>. Stara sekcija o „točkah“ je odstranjena, ker ne velja več.</p>
   </div>
 
   <!-- 8 GUI -->
@@ -212,20 +208,21 @@ aneks k pogodbi: najpozneje <b>15 dni pred</b> izpolnitvijo pogojev</div>
   </div>
   <p class="small">Ob kliku na JU: razlaga (&raquo;rok poteče 1. 7. 2027, zato na presečni datum še ne napreduje&laquo;) + vir vrednosti. Delodajalčev panel: napreduje N od 14 &middot; pospešeno N/max (10 %) &middot; zadržano M/max (5 %), z opozorilom ob preseženi kvoti. Nato: predlog <b>aneksa / sklepa</b> (redno = aneks; pospešeno = sklep + aneks; zadržano = sklep).</p>
 
-  <!-- 9 VPRASANJA -->
-  <h2>9. Vprašanja za potrditev (Nina)</h2>
-  <ol>
-    <li><b>Tabela rokov</b> (točka 3): ali ustreza veljavni ureditvi — tudi krajša roka pri DM brez naziva (3. korak = 1 leto, 5. korak = 1,5 leta)? To je najpomembnejše.</li>
-    <li><b>Ocene (točka 7):</b> možnost A (tip ročno, kot pripomoček) ali B (aplikacija sama iz ocen določi upravičenost + tip)?</li>
-    <li><b>Zadržano → +1 po 1 letu:</b> potrdiš, da naj aplikacija to samodejno upošteva?</li>
-    <li><b>Prekinitev &lt; 90 dni</b> in <b>prehod v višji TR:</b> točno kako vplivata na začetek/tek obdobja?</li>
-    <li><b>Zgornja meja</b> 5 PR (naziv) / 10 PR (brez naziva) — potrditev.</li>
-    <li><b>Katalog FDMN</b> kot vir izhodiščnega/najvišjega PR in vrste Z/B — grem to potegniti kot referenčno tabelo?</li>
-  </ol>
-  <div class="note"><b>Naslednji korak:</b> ko potrdita glavno logiko + izjeme (in odločitev o ocenah), <b>implementiram</b> — povežem vnosno masko z jedrom, dodam manjkajoče izjeme in notranji pogled z razlago in kvotami. Brez potrditve ničesar ne spreminjam.</div>
+  <!-- 9 STATUS POTRDITEV -->
+  <h2>9. Kaj je potrjeno in kaj še ostane</h2>
+  <table>
+    <tr><th>Točka</th><th>Status</th></tr>
+    <tr><td><b>Tabela rokov</b> (2/3/4 leta; polovica za DM brez naziva v 3./5. PR)</td><td><span class="pill done">potrjeno — 25/3,4 ZSTSPJS</span></td></tr>
+    <tr><td><b>Ocene</b> — jih ni več; tip (redno/pospešeno/zadržano) je vnos</td><td><span class="pill done">potrjeno — Mira 12. 10.</span></td></tr>
+    <tr><td><b>Prekinitev &lt; 90 dni</b> → obdobje se podaljša za čas odsotnosti</td><td><span class="pill part">pojasnjeno (Mira) → za vgraditi</span></td></tr>
+    <tr><td><b>Prehod v višji TR</b> → novo obdobje, štetje po 18. čl.</td><td><span class="pill part">pojasnjeno (Mira) → za vgraditi</span></td></tr>
+    <tr><td><b>Zamik na 1. 6. / 1. 12.</b> + rok 15 dni za aneks</td><td><span class="pill part">v logiki → za dokončno vgraditev</span></td></tr>
+    <tr><td><b>Katalog FDMN</b> (šifra DM → izhodiščni/najvišji PR, Z/B)</td><td><span class="pill todo">potrebujem potrditev, da potegnem kot referenčno tabelo</span></td></tr>
+  </table>
+  <div class="note"><b>Naslednji korak:</b> glavna logika + ocene + izjeme so <b>vsebinsko potrjene</b> (Nina + Mira). Vgradim še tri dopolnitve (prekinitev &lt;90 dni, višji TR / 18. čl., dokončni zamik 1. 6./1. 12.) in povežem vnosno masko z jedrom. Edino še rabim potrditev glede <b>kataloga FDMN</b>.</div>
 
   <footer>
-    Pravo v praksi (Nina) &middot; napredovanje javnih uslužbencev v plačne razrede. Jedro = prepis ministrskega pripomočka NPR 2.1 (preverjene Excel formule), skladno z ZSTSPJS (16./17. čl) in Uredbo o napredovanju JU. Preverjeno 14/14 na realnih podatkih. Ločena infra od F45. Zaupno.
+    Pravo v praksi (Nina) &middot; napredovanje javnih uslužbencev v plačne razrede. Jedro skladno z <b>ZSTSPJS (15., 18., 22., 25.–28. čl.)</b>; preverjeno 14/14 na realnih podatkih. Pravna revizija: Mira Bojić (12. 10. 2026). Ločena infra od F45. Zaupno.
   </footer>
 
 </div>
