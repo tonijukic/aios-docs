@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Miha - API dostop treh aplikacij za upravljanje stavb</title>
+<style>
+  :root { --bg:#0f1115; --card:#191c23; --line:#2a2f3a; --txt:#e7e9ee; --mut:#9aa3b2; --grn:#34d399; --amb:#fbbf24; --acc:#6ea8fe; --red:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; padding:32px 16px; }
+  .wrap { max-width:880px; margin:0 auto; }
+  h1 { font-size:23px; margin:0 0 4px; }
+  .sub { color:var(--mut); margin:0 0 8px; font-size:14px; }
+  .tag { display:inline-block; font-size:11px; color:var(--amb); border:1px solid rgba(251,191,36,.4); border-radius:999px; padding:1px 9px; margin-bottom:22px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 22px; margin:0 0 16px; }
+  .card h2 { font-size:17px; margin:0 0 4px; }
+  .verdict { font-size:13px; font-weight:700; padding:3px 11px; border-radius:999px; display:inline-block; margin:2px 0 12px; }
+  .v-yes { background:rgba(52,211,153,.15); color:var(--grn); }
+  .v-part { background:rgba(251,191,36,.15); color:var(--amb); }
+  p { margin:0 0 10px; } ul { margin:4px 0 0; padding-left:20px; } li { margin:5px 0; }
+  code { background:#11141a; border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:8px; }
+  th,td { padding:7px 8px; border-top:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--mut); border-top:0; }
+  .need { border-left:3px solid var(--acc); background:#11141a; border-radius:0 8px 8px 0; padding:8px 12px; margin-top:8px; font-size:13.5px; }
+  .need b { color:var(--acc); }
+  a { color:var(--acc); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Miha - upravljanje stavb: ima katera aplikacija API?</h1>
+  <p class="sub">Predhodna raziskava &middot; 15. 10. 2026</p>
+  <div class="tag">SVETOVALNI KONTEKST (Miha) - zaupno, NE F45</div>
+
+  <div class="card">
+    <h2>Povzetek</h2>
+    <table>
+      <tr><th>Aplikacija</th><th>API?</th><th>Tip</th><th>Najboljša pot</th></tr>
+      <tr><td><b>Palisada</b> (parkirišča)</td><td style="color:var(--grn)">DA (B2B)</td><td>Integracijski vmesniki</td><td>Dogovor z izvajalcem - ni javne dokumentacije</td></tr>
+      <tr><td><b>Spacebring</b> = „Ofis"</td><td style="color:var(--grn)">DA (najboljši)</td><td>Javni REST + webhooki + MCP</td><td>Doplačilo API add-on na naročnino</td></tr>
+      <tr><td><b>BTicino</b> (domofoni)</td><td style="color:var(--amb)">DELNO</td><td>Lokalni protokol + SIP</td><td>OpenWebNet / SIP; cloud SDK v prehodu</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>1. Palisada - parkirni sistem</h2>
+    <span class="verdict v-yes">API DA - prek integracij (B2B)</span>
+    <p>Gre za <a href="https://palisada-sistemi.si">palisada-sistemi.si</a> (slovensko podjetje, parkirni sistemi + „Nadzorni center" spletna aplikacija). Sistem je <b>modularen in izrecno predviden za povezavo z zunanjimi aplikacijami</b>:</p>
+    <ul>
+      <li>Posredovanje <b>stanja zasedenosti</b> parkirišča mobilnim parkirnim aplikacijam prek vmesnika.</li>
+      <li>Povezava prek API na <b>NCUP</b> (nacionalni center) - daljinsko upravljanje zapornic, sprememba zasedenosti, semaforji.</li>
+      <li>Povezava z <b>redarsko aplikacijo</b> in <b>plačilnimi sistemi</b> prek vmesnikov.</li>
+    </ul>
+    <p>Ni pa javnega razvijalskega portala / odprte dokumentacije - to je integracija „na dogovor".</p>
+    <div class="need"><b>Rabim od Mihe:</b> kateri Palisada moduli so v uporabi + dovoljenje, da vprašam Palisado za API specifikacijo (kontakt: info@palisada-sistemi.si).</div>
+  </div>
+
+  <div class="card">
+    <h2>2. „Ofis" = Spacebring (najverjetneje)</h2>
+    <span class="verdict v-yes">API DA - moderni, najmočnejši od treh</span>
+    <p>„Space brink" se ujema s <b>Spacebring</b> (prej andcards; SaaS za upravljanje pisarn/coworkinga, Gdansk). „Ofis" je zelo verjetno njihova <b>prevedena/white-label</b> različica. <span style="color:var(--amb)">To moram potrditi z Miho.</span></p>
+    <ul>
+      <li><b>Javni REST API</b> (HTTPS), zgrajen po REST načelih; <a href="https://www.spacebring.com/docs/api">dokumentacija</a> + OpenAPI spec na GitHubu.</li>
+      <li><b>Webhooki</b> (dogodki v realnem času) - npr. rezervacije, člani, računi.</li>
+      <li>Predvidene integracije: <b>CRM, sistemi za dostop/kontrolo vrat</b>, lasten tech-stack.</li>
+      <li>Ima celo <b>odprt MCP strežnik</b> (v imeniku konektorjev Clauda in ChatGPT) - za hitre poizvedbe brez pisanja kode.</li>
+      <li>Komercialno: <b>API &amp; webhooki so plačljiv add-on</b> na Spacebring naročnino.</li>
+    </ul>
+    <div class="need"><b>Rabim od Mihe:</b> potrditev, da je „Ofis" res Spacebring + admin dostop do računa in kaj točno želijo povezati (npr. parkirišče ↔ pisarne ↔ domofon ↔ računovodstvo).</div>
+  </div>
+
+  <div class="card">
+    <h2>3. BTicino domofoni + ideja večjezičnega ogovarjanja</h2>
+    <span class="verdict v-part">API DELNO - lokalno (OpenWebNet) + SIP; cloud v prehodu</span>
+    <p>BTicino (skupina Legrand). Integracijske poti:</p>
+    <ul>
+      <li><b>OpenWebNet</b> - njihov lokalni protokol (od 2000). Podpira razrede za <b>domofone in videodomofone</b> (odpiranje vrat, kamera, dogodki klica). Dostop prek <b>IP prehoda (npr. F454)</b>; obstaja veliko odprtokodnih integracij (Home Assistant, openHAB) - dokaz, da je tehnično odprto.</li>
+      <li><b>SIP</b> - IP domofoni (npr. Classe 300X/100X) delujejo po SIP; nanje je mogoče priklopiti lasten SIP odjemalec/softphone.</li>
+      <li><b>Cloud / uradni Legrand developer SDK</b> - <span style="color:var(--amb)">obstaja, a je „DoorEntry SDK" ukinjen in se seli na Netatmo arhitekturo</span> → trenutno zanesljiva pot je <b>lokalno (OpenWebNet/SIP)</b>, ne cloud.</li>
+    </ul>
+    <p style="margin-top:12px"><b>Glede večjezičnega ogovarjanja obiskovalca:</b></p>
+    <ul>
+      <li>BTicino <b>Sfera</b> panel že ima <b>večjezično govorno sintezo</b> - a le za <b>statusna sporočila</b> (odpiranje vrat, klic posredovan, zasedeno), nastavljivo prek <code>TiSferaDesign</code>. Ni pogovor z obiskovalcem.</li>
+      <li>„Moderno, da ogovorimo obiskovalca v več jezikih" (koncierge/IVR) <b>ni vgrajena funkcija</b> - izvedljivo je kot <b>nadgradnja prek integracije</b>: panel/IP sistem kot SIP točka → lasten sistem z večjezičnim TTS (meni jezikov ali avtodetekcija), ali prek OpenWebNet prožimo lasten avdio ob dogodku klica.</li>
+      <li>Izvedljivost + cena močno odvisni od <b>obstoječe strojne opreme</b>.</li>
+    </ul>
+    <div class="need"><b>Rabim od Mihe (ključno):</b> katera BTicino oprema je nameščena - 2-žični (Sfera/Linea panel + Classe monitorji) ali IP sistem? Je prisoten prehod <code>F454</code>? Uporabljajo cloud/aplikacijo (Netatmo)? Od tega je odvisno, ali gre večjezični koncierge sploh in po kateri poti.</div>
+  </div>
+
+  <div class="card">
+    <h2>Zaključek + naslednji korak</h2>
+    <p>Vse tri imajo neko obliko dostopa: <b>Spacebring</b> je najbolj „developer-friendly" (javni REST + webhooki + MCP), <b>Palisada</b> ima B2B integracije na dogovor, <b>BTicino</b> je odprt lokalno (OpenWebNet/SIP), cloud pa je v prehodu. Večjezično ogovarjanje je izvedljivo, a kot custom nadgradnja, ne „iz škatle".</p>
+    <p>Ko mi poveš več o Mihi in ciljih, lahko naredim konkreten predlog arhitekture (kaj povezati s čim) + oceno obsega.</p>
+  </div>
+</div>
+</body>
+</html>
