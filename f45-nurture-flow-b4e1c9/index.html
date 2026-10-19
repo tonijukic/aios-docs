@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>F45 trial nurture - flow za pregled (Toni, Sara, Alenka)</title>
+<style>
+  :root{--navy:#211551;--red:#D6001C;--lime:#c7f000;--ink:#23203a;--muted:#6a6680;--bg:#eceef2;--card:#fff;--line:#e4e2ec;--amber:#9a6a00;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:0 0 70px}
+  header{background:var(--navy);padding:26px 34px}
+  header .wm{font-weight:800;font-size:30px;color:#fff;letter-spacing:1px}
+  header .wm small{font-weight:700;font-size:15px;letter-spacing:2px;margin-left:2px}
+  .bar{height:4px;background:var(--red)}
+  h1{font-size:24px;margin:28px 34px 4px}
+  .sub{margin:0 34px 18px;color:var(--muted);font-size:14px}
+  .review{background:#fff7e8;border:1px solid #f0d890;border-radius:10px;margin:0 34px 16px;padding:12px 16px;font-size:13px;color:#6a5200}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:0 34px 10px;font-size:12px;color:#4a4663}
+  .lg{display:flex;align-items:center;gap:6px}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .dot.auto{background:#1f7a1a}.dot.man{background:var(--amber)}.dot.evt{background:var(--navy)}.dot.br{background:var(--red)}
+  .hint{margin:0 34px 16px;font-size:12px;color:var(--muted);font-style:italic}
+  .groupttl{margin:30px 34px 10px;font-size:13px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:var(--red)}
+  .spine{margin:0 34px}
+  .event{display:flex;align-items:center;gap:10px;margin:14px 0 6px}
+  .event .ic{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+  .event .lbl{font-weight:800;color:var(--navy);font-size:14px}
+  .event .lbl small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+  .mail{background:var(--card);border:1px solid var(--line);border-left:5px solid #1f7a1a;border-radius:10px;padding:12px 16px;margin:8px 0 8px 40px}
+  .mail.man{border-left-color:var(--amber)}
+  .mrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+  .step{font-weight:800;font-size:12px;color:#fff;background:#1f7a1a;border-radius:6px;padding:2px 8px}
+  .step.man{background:var(--amber)}
+  .when{font-size:12px;color:var(--muted)}
+  .mode{font-size:10px;font-weight:800;letter-spacing:.5px;margin-left:auto;padding:2px 8px;border-radius:999px}
+  .mode.auto{background:#eafbe7;color:#1f7a1a}.mode.man{background:#fff3e0;color:var(--amber)}
+  .subj{font-weight:700;color:var(--navy);font-size:14px}
+  .purp{font-size:13px;color:#4a4663;margin:2px 0 8px}
+  .conn{height:16px;border-left:2px dashed #c9c5da;margin-left:54px}
+  details{margin-top:4px}
+  summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#fff;background:var(--navy);border-radius:7px;padding:6px 12px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary .chev{transition:transform .15s;font-size:11px}
+  details[open] summary .chev{transform:rotate(90deg)}
+  details[open] summary{background:var(--red)}
+  .copy{white-space:pre-line;background:#fbfbfd;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-top:8px;font-size:13.5px;line-height:1.6;color:#23203a}
+  .copy b{color:var(--navy)}
+  .copy .subjl{display:block;font-weight:700;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px}
+  .shots{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 4px}
+  .shots figure{margin:0;flex:1;min-width:150px;max-width:200px}
+  .shots img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 4px 14px rgba(33,21,81,.14)}
+  .shots figcaption{text-align:center;font-size:12px;color:var(--muted);margin-top:6px}
+  .branches{margin:0 34px}
+  .branch{background:#fff7f8;border:1px solid #f3c6cd;border-radius:12px;padding:14px 18px;margin:12px 0}
+  .branch h3{margin:0 0 4px;color:#b00018;font-size:15px}
+  .cond{font-size:12px;font-weight:700;color:#b00018;background:#fde7ea;display:inline-block;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+  .branch .when2{color:var(--amber);font-weight:600;font-size:13px}
+  .rejoin{font-size:13px;color:#1f7a1a;font-weight:600;margin-top:6px}
+  .rejoin::before{content:"\21aa  "}
+  .branch summary{background:#b00018}
+  .branch details[open] summary{background:#7d0011}
+  .rules{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:12px 34px;padding:16px 20px}
+  .rules h2{margin:0 0 10px;font-size:16px;color:var(--navy)}
+  .rules ul{margin:0;padding-left:20px}.rules li{margin:7px 0;font-size:14px}
+  .tag{display:inline-block;font-weight:700;font-size:11px;padding:1px 7px;border-radius:5px;background:#f1eff7;color:#4a4663}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="wm">F45<small>BEŽIGRAD</small></span></header>
+  <div class="bar"></div>
+
+  <h1>Trial nurture - celoten flow za pregled</h1>
+  <p class="sub">Glavna pot + pod-flowi &middot; klikni gumb pod korakom za celotno besedilo &middot; 19.10.2026</p>
+  <div class="review"><b>Za Saro in Alenko:</b> to je predlog e-poštne sekvence za trialiste. Pod vsakim korakom je gumb "Poglej načrtovano besedilo" s celim mailom. Vesel bom komentarjev. Povezava je aktivna 7 dni (do 26.10.2026).</div>
+  <div class="legend">
+    <span class="lg"><span class="dot evt"></span> dogodek (sprožilec)</span>
+    <span class="lg"><span class="dot auto"></span> samodejni mail</span>
+    <span class="lg"><span class="dot man"></span> ročni mail (Alenka)</span>
+    <span class="lg"><span class="dot br"></span> pod-flow / veja</span>
+  </div>
+  <p class="hint">Oznake {{ime}}, {{g:ženska/moški}}, {{osebna vrstica}} se napolnijo ob pošiljanju.</p>
+
+  <!-- GLAVNA POT -->
+  <div class="groupttl">Glavna pot - vse gre po načrtu</div>
+  <div class="spine">
+
+    <div class="event"><span class="ic">1</span><span class="lbl">Registracija / aplikacija nameščena<small>profil ustvarjen, F45 app na telefonu</small></span></div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Korak 1/3</span><span class="when">+2h po registraciji</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Korak 1/3: aplikacija je tu - aktiviraj 14 brezplačnih dni</div>
+      <div class="purp">Pozdrav + napoti na aktivacijo preizkusa v aplikaciji (razdelek Urnik).</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Korak 1/3: aplikacija je tu - aktiviraj 14 brezplačnih dni</span>Zdravo {{ime}},
+
+super - aplikacija F45 Training je na tvojem telefonu in tvoj profil je pripravljen. To je prvi korak.
+
+Ostane še eno: aktiviraj svojih 14 brezplačnih dni. To narediš kar v aplikaciji, v razdelku Urnik (Schedule). Tako sam/-a izbereš, kdaj se odštevanje začne - lahko takoj ali čez kakšen dan.
+
+Ko to narediš, ti pošljem naslednji korak. Če kje zatakne, mi samo piši.
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="conn"></div>
+
+    <div class="event"><span class="ic">2</span><span class="lbl">Aktivacija 14 dni<small>pritisnil start - odštevanje teče</small></span></div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Korak 2/3</span><span class="when">+1h po aktivaciji</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Korak 2/3: 14 dni teče - rezerviraj prvi trening</div>
+      <div class="purp">Pojasni štetje 14 dni + napoti na rezervacijo v app-u.</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Korak 2/3: 14 dni teče - rezerviraj prvi trening</span>Zdravo {{ime}},
+
+odlično - tvojih 14 brezplačnih dni je zdaj aktivnih in odštevanje teče. Dobro je vedeti: 14 dni se začne šteti od prvega dne prijave, zato ne odlašaj s prvim terminom.
+
+V aplikaciji odpri zavihek Schedule (urnik), izbereš termin, ki ti ustreza, in v par klikih si {{g:prijavljena/prijavljen}}.
+
+Za start priporočam trening za moč (torek, četrtek, nedelja) - tempo je obvladljiv, poudarek na tehniki, idealno, če trenutno nisi v najboljši formi.
+
+Se vidiva kmalu!
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="conn"></div>
+
+    <div class="event"><span class="ic">3</span><span class="lbl">Prva rezervacija<small>prijavil se na prvi trening</small></span></div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Korak 3/3</span><span class="when">takoj ob rezervaciji</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Korak 3/3: vidiva se - kaj te čaka na prvem treningu</div>
+      <div class="purp">Polna logistika (prihod pogosto čez par ur).</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Korak 3/3: vidiva se - kaj te čaka na prvem treningu</span>Zdravo {{ime}},
+
+super, prvi termin je rezerviran - se že veseliva! Da boš takoj {{g:domača/domač}}, na hitro vse, kar je dobro vedeti:
+- <b>Kaj prinesti:</b> čisto športno obutev (ki je ne uporabljaš zunaj) in brisačo. Pridi 15 minut prej, da ti trenerji razkažejo studio in ti razložijo, kako bo potekal trening.
+- <b>Garderobe in tuši:</b> na voljo so garderobe in ločeni tuši, zasnovani tako, da nudijo popolno zasebnost. Po želji prinesi natikače.
+- <b>Okrepčilo:</b> avtomat pri nas nudi proteinske napitke za po treningu in napitke za energijo pred njim.
+- <b>Lokacija:</b> Dunajska cesta 167, Poslovna stavba Rotonda - najdeš nas točno vmes med okroglim in pravokotnim delom Rotonde, vhod z dvoriščne strani.
+
+Trenerji te na mestu popeljejo skozi vse - samo pridi {{g:nasmejana/nasmejan}} in {{g:pripravljena/pripravljen}} na zabavo. Se vidiva!
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="conn"></div>
+
+    <div class="event"><span class="ic">4</span><span class="lbl">Prvi opravljen trening<small>dejansko bil na vadbi</small></span></div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Po 1. treningu</span><span class="when">+8h po treningu</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Čestitke za prvi trening - kako je bilo?</div>
+      <div class="purp">Prošnja za povratno informacijo + nasvet za regeneracijo + rezerviraj naslednji termin.</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Čestitke za prvi trening - kako je bilo?</span>Zdravo {{ime}},
+
+bravo za prvi F45 trening! Zanima me, kako se ti je zdel:
+- Kaj ti je šlo dobro, kaj je bilo težje?
+- So ti trenerji med vadbo posvetili dovolj pozornosti?
+- Bi kaj naredili bolje?
+
+Kar odgovori na ta mail - tvoja iskrena povratna informacija nam res pomaga.
+
+Nasvet: največ napreduješ z rednim ritmom (3-4x na teden), zato si kar zdaj v aplikaciji rezerviraj naslednji termin.
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Pripadnost</span><span class="when">+72h po aktivaciji</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Del globalne družine F45</div>
+      <div class="purp">Skupnost, globalna franšiza (+ FS8), domači trenerji, 300+ članov, druženja čez leto.</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Del globalne družine F45</span>Zdravo {{ime}},
+
+morda te zanima, kako velika je pravzaprav F45 družina, katere del postajaš tudi ti.
+
+F45 je globalna franšiza z začetki v Avstraliji leta 2011, danes pa šteje več kot 1.300 studiev v več kot 55 državah po svetu. Pod isto okrilje v tujini spada tudi pilates koncept FS8. Povsod te čaka enak preverjen sistem: pameten, vsak dan drugačen program, ki se nenehno razvija.
+
+Tu v Ljubljani smo del te družine od leta 2019. V naši trenerski ekipi so trenerji, ki so z nami od samega začetka, in več kot 300 rednih članov - večina na letnih kartah. To pove veliko o tem, kako se pri nas ljudje počutijo.
+
+Skupnost pa gradimo tudi izven dvorane: med letom se družimo na treningih na prostem, kdaj skočimo v hribe, ob koncu leta pa vedno pripravimo tudi pravo zabavo. Prav ta skupnost je tisto, kar nas dela drugačne.
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="mail">
+      <div class="mrow"><span class="step">Aplikacija</span><span class="when">+7 dni po 1. treningu</span><span class="mode auto">AUTO</span></div>
+      <div class="subj">Kaj vse se ti odklene kot članu</div>
+      <div class="purp">Vrednost članstva. Brez linkov na trgovino - app že ima. Spodaj primeri zaslonov aplikacije.</div>
+      <div class="shots">
+        <figure><img src="img/prehrana.png" alt="Jedilniki v aplikaciji"><figcaption>Prehrana / jedilniki</figcaption></figure>
+        <figure><img src="img/lionheart.png" alt="LionHeart vpogledi"><figcaption>Srčni utrip (LionHeart)</figcaption></figure>
+        <figure><img src="img/doma.png" alt="Treningi od doma"><figcaption>Treningi od doma</figcaption></figure>
+      </div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Kaj vse se ti odklene kot članu</span>Zdravo {{ime}},
+
+med preizkusom aplikacijo uporabljaš za rezervacije - ko pa postaneš {{g:članica/član}}, se ti odklene še veliko več. Majhen vpogled:
+- Prehrana: recepti in jedilniki za 3 različne režime, ki jih pripravijo strokovnjaki.
+- Članki in vsebine o vadbi, prehrani in dobrem počutju.
+- Tvoji rezultati in napredek: spremljanje forme skozi čas in grafi treningov.
+- Srčni utrip (LionHeart): po vsakem treningu poročilo (min/max utrip, kalorije, točke).
+- Treningi od doma: kadar ne moreš priti v studio.
+
+To je le delček tega, kar dobiš kot član - pravi razlog več, da po preizkusu ostaneš z nami.
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="conn"></div>
+
+    <div class="event"><span class="ic">5</span><span class="lbl">Zaključek preizkusa - prodaja<small>ročno, Alenka, z osebno vrstico</small></span></div>
+    <div class="mail man">
+      <div class="mrow"><span class="step man">Članarina</span><span class="when">okoli 9.-11. dne</span><span class="mode man">ROČNO</span></div>
+      <div class="subj">Katera članarina je prava zate</div>
+      <div class="purp">Vodeno priporočilo po algoritmu (frekvenca → fleksibilnost → družinski član).</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Katera članarina je prava zate</span>Zdravo {{ime}},
+
+{{osebna vrstica}}
+
+da ti olajšam izbiro, greva čez dve preprosti vprašanji - hitro vidiva, katera članarina se najbolj prilega tvojemu ritmu.
+
+<b>1) Kolikokrat na teden načrtuješ trening?</b>
+- 3× ali več → <b>Redna</b>: neomejeni treningi, kadarkoli ti ustreza.
+- 2× na teden → odvisno od urnika (spodaj).
+- 1× na teden → <b>Mini</b>: 4 obiski na mesec.
+
+<b>2) Če 2× - so tvoji dnevi stalni ali nihajo?</b>
+- Stalni (zmoreš fiksni par dni) → <b>Polovička</b>: izbereš nedelja+sreda ALI ponedeljek+četrtek. Najugodnejša za 2× na teden.
+- Nihajo (treniraš, ko ti uspe) → <b>8 obiskov</b>: katerihkoli 8 treningov na mesec, svoboda glede dni.
+
+Pameten trik: če bi pri nas treniral tudi kdo od najbližjih (družinski član), se splača <b>Družinska</b> - neomejeni obiski, cena na osebo pa primerljiva karti 8 obiskov. Pogosto najboljša kupčija.
+
+Čim dlje se zavežeš (12 / 3 / 1 mesec), ugodnejša je mesečna cena. Vse cene so v aplikaciji pod zavihkom Članarine.
+
+Glede na tvoj ritem med preizkusom imam že predlog zate - pa ga skupaj potrdiva, ko se slišiva ali srečava.
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+    <div class="mail man">
+      <div class="mrow"><span class="step man">Zadnji dan</span><span class="when">konec preizkusa &minus; 24h</span><span class="mode man">ROČNO</span></div>
+      <div class="subj">Zadnji dan tvojega preizkusa - greva naprej?</div>
+      <div class="purp">Zadnji poziv: 10 min, izbereva članarino, nadaljuj brez prekinitve.</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Zadnji dan tvojega preizkusa - greva naprej?</span>Zdravo {{ime}},
+
+{{osebna vrstica}}
+
+tvoj 14-dnevni preizkus se jutri izteče. Če si med treningi {{g:začutila/začutil}}, da ti to ustreza, je zdaj pravi trenutek, da nadaljuješ brez prekinitve ritma - rezultati pridejo takrat, ko vadba postane redna.
+
+Predlagam, da si vzameva 10 minut in izbereva članarino, ki se najbolj prilega tvojemu ritmu in cilju. Vse cene so v aplikaciji pod zavihkom Članarine, se pa z veseljem slišiva ali srečava.
+
+Hvala, da si nas {{g:preizkusila/preizkusil}} - upam, da ostaneš del ekipe!
+
+Alenka, Team F45</div>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- POD-FLOWI -->
+  <div class="groupttl">Pod-flowi - ko se zgodi nekaj nepredvidljivega</div>
+  <div class="branches">
+
+    <div class="branch">
+      <h3>A &middot; Registriran, a NI aktiviral preizkusa</h3>
+      <span class="cond">pogoj: 48h po registraciji IN še ni aktivacije</span>
+      <div class="when2">glavna pot obstane na Koraku 1/3 (koraki 2+ so vezani na aktivacijo)</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Tvojih 14 dni te čaka - aktiviraj, ko ti paše</span>Zdravo {{ime}},
+
+opazila sem, da je aplikacija nameščena, preizkusa pa še nisi {{g:aktivirala/aktiviral}}. Nič za to - 14 brezplačnih dni te čaka in sam/-a izbereš, kdaj zaženeš odštevanje.
+
+Ko ti paše, v aplikaciji (razdelek Urnik) aktiviraj preizkus in rezerviraj prvi termin. Če rabiš pomoč ali imaš vprašanje, mi samo piši - z veseljem pomagam.
+
+Alenka, Team F45</div>
+      </details>
+      <div class="rejoin">ko aktivira → vrne se na Korak 2/3 in naprej po glavni poti</div>
+    </div>
+
+    <div class="branch">
+      <h3>B &middot; Aktiviral, a še nima opravljenega treninga</h3>
+      <span class="cond">pogoj: 48h po aktivaciji IN nobenega opravljenega treninga</span>
+      <div class="when2">namesto tišine med Korakom 2/3 in 3/3</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Preizkus teče - ujemi naslednji termin</span>Zdravo {{ime}},
+
+tvoj 14-dnevni preizkus teče in odštevanje že gre. Da ga kar najbolje izkoristiš, predlagam, da se zdaj prijaviš na prvi termin - v aplikaciji, zavihek Schedule (urnik), par klikov.
+
+Če se je vmes kaj zapletlo (poškodba, službena pot, dopust), mi samo javi. V tem primeru preizkus ustavimo in ti ga nastavimo na kasnejši, boljši čas - da ne izgubiš svoje priložnosti.
+
+Alenka, Team F45</div>
+      </details>
+      <div class="rejoin">ko opravi prvi trening → Korak 3/3 (če še ni) in nato "Po 1. treningu"</div>
+    </div>
+
+    <div class="branch">
+      <h3>C &middot; Treniral, nato utihnil</h3>
+      <span class="cond">pogoj: po 1. treningu nekaj dni brez nove prijave, preizkus še teče</span>
+      <div class="when2">vzporedno z glavno potjo</div>
+      <details><summary><span class="chev">&#9656;</span> Poglej načrtovano besedilo</summary>
+        <div class="copy"><span class="subjl">Zadeva: Ne zamudi svojega preizkusa</span>Zdravo {{ime}},
+
+nekaj dni te ni bilo na treningu - je vse v redu?
+
+Tvoj brezplačni preizkus še traja, a se kmalu izteče. Če se je vmes kaj zapletlo, mi javi in skupaj najdeva termin, ki ti ustreza.
+
+Alenka, Team F45</div>
+      </details>
+      <div class="rejoin">ko spet rezervira/trenira → nadaljuje glavno pot</div>
+    </div>
+
+    <div class="branch">
+      <h3>P &middot; Pavza / reset preizkusa</h3>
+      <span class="cond">pogoj: član javi oviro (poškodba, služba, dopust)</span>
+      <div class="when2">na zahtevo - sproži Alenka ročno, ni nov mail</div>
+      <div style="font-size:13px;margin:6px 0">Alenka ustavi preizkus in nastavi nov začetni datum. Sekvenca se <b>zamakne</b> na nov datum (vsi sprožilci se preračunajo).</div>
+      <div class="rejoin">ob novem datumu se preizkus "znova zažene" - flow teče od ustrezne točke</div>
+    </div>
+
+  </div>
+
+  <!-- PRAVILA -->
+  <div class="groupttl">Pravila, ki držijo celoto</div>
+  <div class="rules">
+    <h2>Kako se flow obnaša</h2>
+    <ul>
+      <li><span class="tag">enkratnost</span> vsak korak se pošlje največ enkrat na osebo.</li>
+      <li><span class="tag">event-driven</span> koraki 2+ se sprožijo šele ob svojem dogodku - ne po koledarju. Kdor ne aktivira, ne dobi korakov 2+; ujame ga Varianta A.</li>
+      <li><span class="tag">izključnost vej</span> variante se sprožijo le dokler primarni dogodek manjka; ko se zgodi, oseba skoči nazaj na glavno pot.</li>
+      <li><span class="tag">ročno</span> Članarina in Zadnji dan pošlje Alenka (osebna vrstica).</li>
+      <li><span class="tag">app-first</span> nikjer ne linkamo na spletni urnik; usmeritve so z besedami v aplikacijo.</li>
+      <li><span class="tag">stikalo</span> dokler je sistem v testnem načinu, scheduler pripravi, a nič ne pošlje do potrditve.</li>
+    </ul>
+  </div>
+
+  <p class="sub" style="margin-top:22px">F45 Training Bežigrad &middot; interni predlog &middot; povezava poteče 26.10.2026 &middot; slike: posnetki uradne aplikacije F45 Training (App Store)</p>
+</div>
+</body>
+</html>
