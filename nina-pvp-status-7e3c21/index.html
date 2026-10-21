@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Pravo v praksi - kje sva ostala (status)</title>
+<style>
+  :root{--green:#1f5c3d;--gold:#b9912f;--ink:#23231f;--muted:#6f6e66;--bg:#f3f1ea;--card:#fff;--line:#e5e2d6;--amber:#9a6a00;--red:#b00018;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:0 0 70px}
+  header{background:var(--green);padding:26px 34px}
+  header .wm{font-weight:800;font-size:24px;color:#fff;letter-spacing:.5px}
+  header .wm span{color:var(--gold)}
+  .bar{height:4px;background:var(--gold)}
+  h1{font-size:24px;margin:28px 34px 4px}
+  .sub{margin:0 34px 16px;color:var(--muted);font-size:14px}
+  .intro{background:#fffdf5;border:1px solid #ead9a8;border-radius:10px;margin:0 34px 18px;padding:14px 18px;font-size:14px;color:#5c4e24}
+  .groupttl{margin:28px 34px 10px;font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--green)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 34px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .card h3{margin:0 0 6px;font-size:15px;color:var(--green)}
+  .pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.4px;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .live{background:#e4f4ea;color:#1f5c3d}
+  .upd{background:#eef2fb;color:#2a4a9a}
+  .wait{background:#fff3e0;color:var(--amber)}
+  .card ul{margin:6px 0 0;padding-left:18px}
+  .card li{margin:4px 0;font-size:13px;color:#3a392f}
+  .checks{margin:0 34px}
+  .chk{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;margin:10px 0}
+  .chk.done{border-left-color:#1f5c3d}
+  .chk .st{font-size:11px;font-weight:800;letter-spacing:.4px;float:right;padding:2px 9px;border-radius:999px}
+  .st.d{background:#e4f4ea;color:#1f5c3d}.st.p{background:#fff3e0;color:var(--amber)}
+  .chk h4{margin:0 0 3px;font-size:14px;color:var(--ink)}
+  .chk p{margin:3px 0 0;font-size:13px;color:#4a4940}
+  .who{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .next{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 34px;padding:16px 20px}
+  .next ol{margin:0;padding-left:20px}.next li{margin:8px 0;font-size:14px}
+  .foot{margin:22px 34px 0;color:var(--muted);font-size:12px}
+  code{background:#f0ede3;padding:1px 6px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="wm">Pravo v <span>praksi</span> &middot; AIOS</span></header>
+  <div class="bar"></div>
+
+  <h1>Kje sva ostala - status projekta</h1>
+  <p class="sub">Povzetek za Nino in Tonija &middot; stanje na 21.10.2026 &middot; zadnje delo: do 14.10.</p>
+  <div class="intro">Par dni sva oba mirovala (preveč drugega dela). Ta stran na hitro pokaže, kaj je zadnjič spremenjeno, kaj teče v živo in <b>kaj še čaka na vaju</b>, da do konca tedna gladko nadaljujeva. Vse teče na <code>pravovpraksi.onrender.com</code>; pošiljanje strankam ostaja izklopljeno do skupne potrditve.</div>
+
+  <!-- STATUS PO KOMPONENTAH -->
+  <div class="groupttl">Kaj je zadnjič spremenjeno / kaj teče</div>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Tracker nalog<span class="pill live">ŽIVO</span></h3>
+      <ul>
+        <li>Zadeve/naloge, roki, ure po sodelavkah, stroški - vse DB-backed (Neon).</li>
+        <li>Cenik (50 storitev / 9 področij) + Cenovni dogovori (pavšal poraba + opozorila).</li>
+        <li>Nastavitve = self-service (ekipa, pravice, reset gesel).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Napredovanje JU<span class="pill upd">POSODOBLJENO</span></h3>
+      <ul>
+        <li>Vhodni obrazec posodobljen s tvojimi pripombami (1. sklop).</li>
+        <li>Pravna podlaga ZSTSPJS (čl. 25/26/27/28) + Mirine pripombe vgrajene.</li>
+        <li>Jedro: zamik pravice na 1.6./1.12. + rok aneksa 15 dni (25/5).</li>
+        <li>Prototip obrazca javno na <code>/napredovanje/</code>, interni demo izračuna na <code>/napredovanje-interno/</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Radar javnih naročil<span class="pill live">ŽIVO</span></h3>
+      <ul>
+        <li>Samodejna osvežitev 2×/dan (cron 07:15 + 17:15).</li>
+        <li>"Pošlji predlog": relevantna podjetja po CPV + AI povzetek naložene dokumentacije + merilnik napredka.</li>
+        <li>Arhiv dokumentacije v tvoj Google Drive (po strankah) - <b>aktiviran 14.10.</b></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Obvestilnik<span class="pill upd">POSODOBLJENO</span></h3>
+      <ul>
+        <li>Sestavljalnik iz radar-člankov + predogled (iframe).</li>
+        <li>CTA gumb "Pokliči me za posvet" (cal.com) na dnu.</li>
+        <li>Pošiljanje strankam ŠE izklopljeno - čaka test + potrditev.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>FDMN katalog watcher<span class="pill live">ŽIVO</span></h3>
+      <ul>
+        <li>Tedenski nadzor uradnega kataloga delovnih mest (MJU), 5.639 DM.</li>
+        <li>Mail tebi + Toniju ob spremembi kataloga (ob nespremenjenem molči).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Zakonodajni radar (PISRS)<span class="pill live">ŽIVO</span></h3>
+      <ul>
+        <li>Uradni PISRS API + IP-RS vir, AI povzetki na klik.</li>
+        <li>Opozorilo o zastarelih podatkih (rdeč banner) povsod.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- KAJ ČAKA NINO -->
+  <div class="groupttl">Kaj sva prosila Nino, da izvede (tehnično)</div>
+  <div class="checks">
+
+    <div class="chk done"><span class="st d">OPRAVLJENO</span>
+      <h4>Drive dostop (re-auth)</h4>
+      <p class="who">Nina</p>
+      <p>Avtorizacija z dovoljenjem za Drive (<code>drive.file</code>). <b>Opravljeno 14.10.</b> → arhiv razpisne dokumentacije v tvojem Drive zdaj deluje.</p>
+    </div>
+
+    <div class="chk"><span class="st p">ČAKA</span>
+      <h4>Nov namenski predal za javna naročila</h4>
+      <p class="who">Nina</p>
+      <p>Prijava (OAuth) v <b>novi</b> predal <code>javnanarocila.pravovpraksi@gmail.com</code> prek <code>/api/oauth/gmail/start</code>. Toni je GCP del že uredil 13.10. - manjka samo tvoja prijava v ta predal.</p>
+    </div>
+
+    <div class="chk"><span class="st p">ČAKA</span>
+      <h4>Preusmeritev obvestil javnirazpisi.com</h4>
+      <p class="who">Nina</p>
+      <p>Preusmeri obvestila ponudnika na novi namenski predal (da jih radar bere ločeno od delovnega maila). CPV kode si že uredila 13.10.</p>
+    </div>
+
+    <div class="chk"><span class="st p">ČAKA</span>
+      <h4>cal.com - povezava koledarja</h4>
+      <p class="who">Nina</p>
+      <p>V <code>cal.com/nina-volgemut-posvet</code> poveži Google koledar (da se izogne konfliktom), nastavi razpoložljivost in dogodek "posvet". Gumb "Dogovori klic" je že vstavljen na predlogih + v obvestilniku.</p>
+    </div>
+
+    <div class="chk"><span class="st p">ČAKA</span>
+      <h4>Napredovanje - vir kataloga DM</h4>
+      <p class="who">Nina</p>
+      <p>Potrebujem odgovor: ali imaš svoj katalog delovnih mest (šifra DM → PR, z/brez naziva), ali potegnem uradnega (MJU/FDMN)? Od tega je odvisen naslednji korak pri izračunu.</p>
+    </div>
+
+    <div class="chk"><span class="st p">ČAKA</span>
+      <h4>Obvestilnik - pregled oblike in izbora</h4>
+      <p class="who">Nina + Toni</p>
+      <p>Skupaj pregledava testne obvestilnike (kako se iz vseh člankov izberejo pravi + oblika), preden vklopiva pošiljanje strankam.</p>
+    </div>
+
+  </div>
+
+  <!-- KAJ ČAKA TONIJA -->
+  <div class="groupttl">Kaj čaka Tonija (tehnično)</div>
+  <div class="checks">
+    <div class="chk done"><span class="st d">OPRAVLJENO</span>
+      <h4>GCP priprava (Gmail + Drive API, test-userji)</h4>
+      <p class="who">Toni</p>
+      <p>Omogočeni API-ji + dodani test-userji na projektu 640338011379. Narejeno 13.10.</p>
+    </div>
+    <div class="chk"><span class="st p">ČAKA NINO</span>
+      <h4>Dokončaj nov predal za radar</h4>
+      <p class="who">Toni</p>
+      <p>Ko se Nina prijavi v novi predal: poberi <code>GMAIL_REFRESH_TOKEN_NAROCILA</code> iz logov → nastavi env <code>PROCUREMENT_MAIL_ACCOUNT=narocila</code>.</p>
+    </div>
+    <div class="chk"><span class="st p">PO TESTU</span>
+      <h4>Vklop pošiljanja strankam</h4>
+      <p class="who">Toni</p>
+      <p><code>PVP_MAIL_ACCOUNT=nina</code> + autosend zastavice - šele ko je obvestilnik flow stestiran in potrjen. Prej odloči še: javnirazpisi plačljivo vs. brezplačno (7-dnevni preizkus je potekel).</p>
+    </div>
+  </div>
+
+  <!-- NASLEDNJI KORAKI -->
+  <div class="groupttl">Naslednji koraki - ta teden</div>
+  <div class="next">
+    <ol>
+      <li><b>Radar - nov predal do konca:</b> Nina prijava v <code>javnanarocila.pravovpraksi@gmail.com</code> + preusmeritev obvestil → Toni token/env. Potem radar bere ločeni predal.</li>
+      <li><b>Obvestilnik:</b> skupaj pregledava testne obvestilnike (izbor + oblika) → odločitev o vklopu pošiljanja.</li>
+      <li><b>Napredovanje:</b> Nina potrdi vir kataloga DM → vgradim še dve izjemi (prekinitev &lt;90 dni podaljša obdobje; prehod v višji tarifni razred po 18. čl) in nadaljujem proti pravemu backendu (autofill delodajalca, uvoz uslužbencev iz Excela).</li>
+    </ol>
+  </div>
+
+  <p class="foot">Pravo v praksi &middot; interni status &middot; povezava je aktivna 7 dni (poteče 28.10.2026) &middot; dosegljiva le prek te povezave.</p>
+</div>
+</body>
+</html>
