@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mediacija v Sloveniji + strateška pot za Nino (Pravo v praksi)</title>
+<style>
+  :root{--ink:#1a2230;--muted:#5d6675;--line:#e5e2d9;--bg:#f7f5ef;--card:#fff;
+    --green:#1f6d4f;--green-dk:#124a35;--gold:#b8893b;--gold-soft:#f3e8d2;--navy:#1d2b3a;
+    --good:#1f9d6b;--good-bg:#e8f6ef;--warn:#b0760f;--warn-bg:#f8efda;--risk:#b2453a;--risk-bg:#f7e7e4}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,"Times New Roman",serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:860px;margin:0 auto;padding:0 26px 80px}
+  .cover{background:linear-gradient(135deg,#124a35,#1f6d4f 60%,#2f8c66);color:#f3efe2;margin:0 -26px;padding:40px 44px 34px;border-radius:0 0 18px 18px}
+  .brand{font-family:Arial,sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#d9e8df;font-weight:700}
+  .cover h1{font-size:28px;margin:12px 0 8px;font-weight:700;line-height:1.22}
+  .cover .sub{font-size:14.5px;color:#d3e4da;max-width:90%}
+  .cover .meta{font-family:Arial,sans-serif;margin-top:16px;font-size:12px;color:#bcd3c6}
+  h2{font-family:Arial,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-dk);margin:40px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px}
+  h2 .n{font-family:Arial,sans-serif;width:25px;height:25px;border-radius:6px;background:var(--green-dk);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  h3{font-size:17px;margin:18px 0 4px;color:var(--navy)}
+  p{margin:10px 0}
+  a{color:var(--green);word-break:break-word}
+  .tldr{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 24px;margin:24px 0}
+  .tldr h3{margin-top:0;color:var(--gold)}
+  .tldr ul{margin:8px 0 0;padding-left:20px}.tldr li{margin:7px 0;font-size:14.5px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0}
+  .stat{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat .n{font-family:Arial,sans-serif;font-size:27px;font-weight:800;color:var(--green-dk);line-height:1}
+  .stat .l{font-family:Arial,sans-serif;font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 18px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-family:Arial,sans-serif}
+  th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.03em;text-transform:uppercase}
+  td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+  .quote{background:var(--gold-soft);border-radius:12px;padding:15px 20px;margin:14px 0;font-style:italic;color:#5c4a28}
+  .src{font-family:Arial,sans-serif;font-size:11.5px;color:var(--muted);margin-top:4px}
+  .reflist{font-family:Arial,sans-serif;font-size:13px}
+  .reflist .r{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:8px 0}
+  .reflist .r b{color:var(--navy)}
+  .tag{font-family:Arial,sans-serif;display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 8px;border-radius:20px;margin-right:6px}
+  .t-key{background:var(--good-bg);color:var(--good)}.t-emp{background:var(--warn-bg);color:var(--warn)}.t-art{background:#e9edf2;color:var(--navy)}
+  .note{background:var(--navy);color:#dfe8ef;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:13.5px;font-family:Arial,sans-serif}
+  .note b{color:#9fd3bb}
+  .partbar{background:linear-gradient(135deg,#1d2b3a,#2f4a5e);color:#eaf1f6;margin:48px -26px 8px;padding:22px 30px;border-radius:14px}
+  .partbar .k{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9fd3bb;font-weight:700}
+  .partbar h2b{display:block;font-family:Arial,sans-serif;font-size:22px;font-weight:700;margin-top:6px}
+  .partbar p{margin:8px 0 0;font-size:13.5px;color:#cdddea;font-family:Arial,sans-serif}
+  .phase{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:16px 20px;margin:14px 0}
+  .phase .ph{font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+  .phase h3{margin:4px 0 8px}
+  .phase ul{margin:6px 0 0;padding-left:20px;font-size:14.5px}.phase li{margin:6px 0}
+  .check{list-style:none;padding:0;margin:10px 0;font-family:Arial,sans-serif;font-size:14px}
+  .check li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px 10px 40px;margin:8px 0;position:relative}
+  .check li:before{content:"";position:absolute;left:14px;top:12px;width:15px;height:15px;border:2px solid var(--gold);border-radius:4px}
+  footer{font-family:Arial,sans-serif;margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="cover">
+    <div class="brand">Pravo v praksi &middot; Nina &middot; mediacija</div>
+    <h1>Mediacija v Sloveniji + strateška pot za Nino</h1>
+    <div class="sub">Del A: kaj kažejo raziskave o zavedanju, rabi in zadovoljstvu. Del B: kako lahko Nina ob obstoječi praksi dolgoročno in postopno zgradi mediacijsko področje - prepoznavnost in prve stranke.</div>
+    <div class="meta">Pripravila Ajda za Tonija &middot; 23. 10. 2026 &middot; interno gradivo, ni pravni nasvet</div>
+  </div>
+
+  <div class="tldr">
+    <h3>Na kratko</h3>
+    <ul>
+      <li><b>Paradoks "Trnuljčice":</b> zakonodaja je dobra, mediacija je hitra, cenejša in uporabniki so zadovoljni - a ostaja <b>močno premalo uporabljena</b>. Glavni razlog: <b>nizko zavedanje</b>.</li>
+      <li><b>Prav ta vrzel je priložnost:</b> kdor zna mediacijo razložiti in jo ponuditi na konkretnem področju, si gradi prednost na skoraj praznem trgu.</li>
+      <li><b>Pot za Nino je postopna:</b> 140-urno usposabljanje &rarr; izbor niše (gospodarska / delovnopravna) &rarr; vpis na sezname sodišč (pasiven pritok) &rarr; vzporedno gradnja prepoznavnosti prek vsebine in delavnic &rarr; prve stranke iz obstoječe mreže in napotitev drugih pravnikov.</li>
+      <li><b>Realno:</b> dohodek raste počasi - zato je pravilno, da ostane <b>dopolnilo</b> obstoječi praksi, dokler se ne razvije.</li>
+    </ul>
+  </div>
+
+  <div class="partbar">
+    <div class="k">Del A</div>
+    <h2b>Raziskava: stanje mediacije v Sloveniji</h2b>
+    <p>Zavedanje, raba, uspešnost in zadovoljstvo - z viri. Kjer natančen podatek ni enoznačen, je to označeno.</p>
+  </div>
+
+  <h2><span class="n">1</span> Zavedanje / poznavanje mediacije</h2>
+  <p>Nizko zavedanje je v vseh virih navedeno kot <b>glavna ovira</b> za rabo. Na ravni EU je splošno poznavanje alternativnega reševanja sporov (ARS/ADR) nizko - le okrog <b>5 % potrošnikov</b>, ki so naleteli na težavo in ukrepali, se je obrnilo na organ ARS.</p>
+  <p>Za Slovenijo <b>enoznačnega odstotka poznavanja med prebivalstvom ni</b> v javno dostopnem viru. Magistrsko delo <i>Mediacija - fenomen v teoriji, paradoks v praksi</i> (Ana Pristov, PF UL, 2025) je izvedlo <b>dve anketi - med splošno populacijo in med odvetniki</b> prav z namenom oceniti poznavanje in dejansko rabo; to je najboljši vir za konkretne odstotke.</p>
+  <div class="quote">"Kljub dobrim zakonodajnim rešitvam mediacija v Sloveniji ostaja premalo uporabljena, predvsem zaradi pomanjkanja sistemske podpore, sodne prakse in ozaveščenosti." - povzetek magistrske naloge (Pristov, 2025)</div>
+
+  <h2><span class="n">2</span> Koliko se je ljudje poslužujejo (raba)</h2>
+  <div class="stats">
+    <div class="stat"><div class="n">&lt;1 %</div><div class="l">sporov v EU rešenih z mediacijo</div></div>
+    <div class="stat"><div class="n">~7 %</div><div class="l">slovenskih sodnih zadev, kjer se mediacija dejansko izvede</div></div>
+    <div class="stat"><div class="n">~1/3</div><div class="l">zadev, kjer sodišče mediacijo ponudi</div></div>
+    <div class="stat"><div class="n">~320</div><div class="l">mediatorjev na seznamu Ministrstva za pravosodje</div></div>
+  </div>
+  <p>Najmočnejši podatek daje <b>empirična študija</b> (Cepec, Grajzl, Mörec, 2023-24), ki je analizirala <b>~400.000 zadev (2008-2023)</b> na vseh 44 okrajnih in 11 okrožnih sodiščih: mediacija je bila <b>ponujena v ~tretjini zadev, izvedena pa le v ~7 % vseh</b>. To je jedro paradoksa - ponudba je, realizacija ne.</p>
+  <p>Sodna statistika: mediacija ponujena v <b>13.145</b> zadevah, obe stranki sta privolili v <b>3.417</b>, uspešno zaključenih <b>1.661 (49 %)</b>. Leta 2021 je bila ponujena v <b>64 % zadev na okrožnih in le 46 % na okrajnih sodiščih</b> (Betetto).</p>
+  <p class="src">Opomba: številke se nanašajo na <b>sodišču pridruženo</b> mediacijo; pogodbena/zunajsodna mediacija (gospodarska, družinska, delovnopravna, okoljska) ni zajeta v istih statistikah.</p>
+
+  <h2><span class="n">3</span> Uspešnost in učinki</h2>
+  <table>
+    <tr><th>Učinek</th><th>Ugotovitev</th></tr>
+    <tr><td>Delež dogovorov</td><td>~<b>49 %</b> sodnih mediacij (ob privolitvi obeh strank) se konča sporazumno</td></tr>
+    <tr><td>Trajanje postopka</td><td>skrajša za ~<b>14 %</b> (~50 dni)</td></tr>
+    <tr><td>Verjetnost poravnave</td><td>zraste za <b>&gt;30 odstotnih točk</b> (skoraj 3&times; pogostejše poravnave)</td></tr>
+    <tr><td>Kje najbolj deluje</td><td>gospodarski spori, odškodninski zahtevki, intelektualna lastnina</td></tr>
+    <tr><td>Kje ne deluje</td><td>zadeve s <b>5+ strankami</b> - brez učinka</td></tr>
+  </table>
+  <p class="src">Vir: Cepec, Grajzl, Mörec (2023-24), ekonometrična analiza ~400.000 zadev; IUS-INFO kolumna.</p>
+
+  <h2><span class="n">4</span> Zadovoljstvo udeležencev</h2>
+  <p>Raziskave in zaključna dela dosledno kažejo <b>visoko zadovoljstvo</b> - tudi ko ne pride do dogovora ali le do delne rešitve. Udeleženci:</p>
+  <div class="card">
+    <ul style="margin:0;padding-left:20px">
+      <li>so imeli občutek, da so <b>slišani</b> in da je mediator <b>nepristranski</b>;</li>
+      <li>so mediacijo doživeli kot <b>varen prostor</b>, kjer so izrazili mnenje brez sankcij;</li>
+      <li>so se je <b>radi udeležili</b> in bili z izidom bolj zadovoljni kot pri klasičnem sporu;</li>
+      <li>so bili <b>večinoma zadovoljni s procesom</b> tudi brez popolne rešitve.</li>
+    </ul>
+  </div>
+  <p class="src">Vir: diplomska dela FSD UL in zbornik Trbanc &amp; Boštjančič (UL); skladno z mednarodnimi ugotovitvami.</p>
+
+  <h2><span class="n">5</span> Zakaj premalo - paradoks in predlogi</h2>
+  <p>Nina Betetto (<i>Kako prebuditi Trnuljčico</i>) opiše mediacijo kot "speče" orodje: po zagonu okrog leta 2000 je sistemska podpora upadla, uporaba pa je odvisna od <b>posameznih predsednikov sodišč</b>, ne od sistema.</p>
+  <table>
+    <tr><th>Ovira</th><th>Predlog</th></tr>
+    <tr><td>Neizvajanje informativnih sestankov (18. člen ZARSS)</td><td>obvezni informativni sestanki kot reden del postopka</td></tr>
+    <tr><td>Odvisnost od volje sodnika/sodišča</td><td>vgraditev mediacije v pravdni postopek</td></tr>
+    <tr><td>Premalo spodbud</td><td>"nudge" / mehki paternalizem, stroškovne sankcije za neutemeljeno zavrnitev</td></tr>
+    <tr><td>Primerjava</td><td>italijanski model obvezne mediacije reši ~250.000 zadev/leto (20&times; nad evropskim povprečjem)</td></tr>
+  </table>
+
+  <div class="partbar">
+    <div class="k">Del B</div>
+    <h2b>Strateška pot: kako Nina postopno preide v mediacijo</h2b>
+    <p>Dolgoročen, nizko-tvegan prehod ob obstoječi praksi: najprej kvalifikacija in niša, nato prepoznavnost, nato stranke. Osrednja logika: <b>trg je skoraj prazen, vrzel je zavedanje - tisti, ki ozavešča, si gradi mesto na njem.</b></p>
+  </div>
+
+  <h2><span class="n">6</span> Zakaj je to za Nino smiselno</h2>
+  <p>Nina že ima <b>pravno znanje, obstoječo bazo strank in blagovno znamko</b> (Pravo v praksi). Mediacija ni rez z dosedanjim delom, ampak <b>nadgradnja</b>: ista mreža, isto zaupanje, nova storitev. Ključne prednosti njenega izhodišča:</p>
+  <div class="card">
+    <ul style="margin:0;padding-left:20px">
+      <li><b>Obstoječa praksa = vir prvih primerov.</b> Spore, ki jih danes vidi pri strankah, lahko jutri ponudi reševati prek mediacije.</li>
+      <li><b>Specializacija, ki jo že ima</b> (delovno pravo, javni uslužbenci, pogodbe, varstvo podatkov) se naravno prevede v <b>nišo mediacije</b> - ne začenja od nič.</li>
+      <li><b>Nizko tveganje:</b> mediacija se gradi vzporedno, brez odpovedi obstoječemu prihodku.</li>
+    </ul>
+  </div>
+  <div class="note"><b>Pomembno (nevtralnost):</b> mediator je <b>nepristranski</b> in v istem sporu ne sme biti pravni svetovalec nobene od strani. Mediacijo zato vodi kot <b>ločeno storitev</b> od svojega svetovalnega dela - to je hkrati razlog, zakaj jo drugi pravniki/odvetniki lahko <b>napotujejo</b> brez strahu, da izgubijo stranko.</div>
+
+  <h2><span class="n">7</span> Kvalifikacija - kako formalno postane mediatorka</h2>
+  <div class="phase">
+    <div class="ph">Temelj</div>
+    <h3>140-urno osnovno usposabljanje za mediatorje</h3>
+    <ul>
+      <li>Osnovno usposabljanje (~140 ur) pri priznanem izvajalcu da <b>veljaven naziv Mediator</b> in omogoča samostojno opravljanje mediacije ter <b>vpis na katerikoli seznam mediatorjev v Sloveniji</b> (sodišča, ministrstvo).</li>
+      <li>Izvajalci: <b>Zavod RAKMO</b>, <b>Društvo mediatorjev Slovenije (DMS)</b>, <b>Mediacijski center pri OZS</b>, <b>GZS</b> (gospodarska). Vpis je odprt za vsakogar.</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Nadgradnja</div>
+    <h3>Nadaljevalno usposabljanje za izbrano področje</h3>
+    <ul>
+      <li>Po osnovnem sledi specializacija: <b>gospodarska, delovnopravna, družinska ali šolska</b> mediacija (pogoj zanje = opravljeno osnovno).</li>
+      <li>Priporočilo za Nino: osnovno &rarr; nato <b>gospodarska in/ali delovnopravna</b> (ujema se z njeno obstoječo prakso).</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Vpis</div>
+    <h3>Uvrstitev na sezname mediatorjev</h3>
+    <ul>
+      <li><b>Pogoji za vpis na seznam sodišč:</b> poslovna sposobnost, nekaznovanost (naklepno kaznivo dejanje, pregon po uradni dolžnosti) in najmanj <b>izobrazba 1. stopnje (VS)</b> - Nina to z lahkoto izpolnjuje.</li>
+      <li>Vlogo za uvrstitev <b>vloži pri tistem sodišču</b>, kjer želi opravljati mediacijo (sodišču pridružena mediacija po ZARSS). Hkrati smiselno članstvo v DMS za mrežo in kredibilnost.</li>
+      <li>Okvir ureja <b>ZMCGZ</b> (sama mediacija) in <b>ZARSS</b> (sodišču pridružena); strankam velja tudi Evropski kodeks ravnanja za mediatorje.</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">8</span> Izbor niše - kje naj začne</h2>
+  <p>Po raziskavi mediacija <b>najbolj deluje</b> pri gospodarskih in odškodninskih sporih, slabo pa pri zadevah z mnogo strankami. To naj usmeri izbor. Predlog prioritet glede na Nine obstoječe znanje:</p>
+  <table>
+    <tr><th>Niša</th><th>Zakaj za Nino</th><th>Vir strank</th></tr>
+    <tr><td><b>Gospodarska</b> (pogodbe, dobavitelji, terjatve)</td><td>dokazano najučinkovitejša; ujema se z B2B pravno prakso</td><td>podjetja, GZS mreža, napotitve odvetnikov</td></tr>
+    <tr><td><b>Delovnopravna</b> (delodajalec-zaposleni)</td><td>njeno znanje javnih uslužbencev / delovnega prava</td><td>HR oddelki, javni sektor, kadrovske agencije</td></tr>
+    <tr><td><b>Varstvo podatkov / GDPR spori</b> (diferenciator)</td><td>njena specializacija - skoraj brez konkurence kot "mediacijska" niša</td><td>podjetja, ki jih že svetuje</td></tr>
+  </table>
+  <p class="src">Nasvet: ne razpršiti se. Ena primarna niša za pozicioniranje + ena sekundarna. GDPR-kot-niša je njena neponovljiva razlika na trgu.</p>
+
+  <h2><span class="n">9</span> Prepoznavnost - kako postane "obraz mediacije" na svojem področju</h2>
+  <p>Raziskava sama ponuja idealen "kavelj": <b>mediacija je dobra, a je ljudje ne poznajo.</b> Nina naj zato nastopi kot <b>tista, ki ozavešča</b> - to gradi avtoriteto in hkrati ustvarja povpraševanje.</p>
+  <div class="phase">
+    <div class="ph">Vsebina</div>
+    <h3>Vsebinski motor (začne takoj, pred kvalifikacijo)</h3>
+    <ul>
+      <li><b>Prvi članek</b> na podlagi te raziskave: "Zakaj mediacija deluje, pa je skoraj ne uporabljamo" (paradoks Trnuljčice). Objava na <b>pravovpraksi.si</b> + LinkedIn; citati Pristov 2025, Cepec idr., Betetto.</li>
+      <li><b>LinkedIn kot glavni kanal:</b> reden ritem (npr. 1&times;/teden) - rušenje mitov, "kdaj je mediacija boljša od tožbe", anonimizirane mini-zgodbe. Trde številke iz raziskave (14 % krajši postopek, 49 % uspeh, &gt;30 o.t. več poravnav) so močna sporočila.</li>
+      <li><b>Stran "Mediacija"</b> na spletni strani: kaj je, kdaj pomaga, cena vs. tožba, kako se naroči.</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Dogodki</div>
+    <h3>Delavnice in webinarji za ciljne skupine</h3>
+    <ul>
+      <li>Brezplačne/nizko-cenovne <b>delavnice</b> za: HR vodje (delovnopravna), lastnike manjših podjetij (gospodarska), javni sektor. Informativni sestanki so po raziskavi premalo izkoriščeni - Nina zapolni prav to vrzel.</li>
+      <li>Nastopi na dogodkih partnerjev (GZS, zbornice, ITR-LAB mreža); gostovanja v podcastih/panelih.</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Dokazi</div>
+    <h3>Zid verodostojnosti</h3>
+    <ul>
+      <li>Na spletno stran: certifikat o usposabljanju, članstvo v DMS, uvrstitev na seznam(e) sodišč - znaki, ki gradijo zaupanje pri napotiteljih.</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">10</span> Pridobivanje strank - dva motorja</h2>
+  <table>
+    <tr><th>Motor</th><th>Kako</th><th>Časovni horizont</th></tr>
+    <tr><td><b>Pasivni</b> - napotitve</td><td>Po vpisu na sezname sodišč pritekajo <b>sodišču pridružene</b> mediacije. Ni jih treba iskati - sistem jih dodeli.</td><td>po vpisu (6-12 mes.)</td></tr>
+    <tr><td><b>Aktivni</b> - lastna mreža</td><td>Cross-sell obstoječim strankam; napotitve drugih pravnikov/odvetnikov; B2B dogovori s podjetji za "prednostnega mediatorja"; HR/javni sektor.</td><td>takoj po kvalifikaciji</td></tr>
+  </table>
+  <h3>Konkretni kanali</h3>
+  <div class="card">
+    <ul style="margin:0;padding-left:20px">
+      <li><b>Obstoječe stranke:</b> kjer danes vidi spor, ponudi mediacijo kot hitrejšo in cenejšo pot od tožbe.</li>
+      <li><b>Partnerstva z odvetniki:</b> mediator je nevtralen, zato odvetnik <b>ne izgubi</b> stranke - ostane njen zastopnik. To je vir rednih napotitev, ne konkurenca.</li>
+      <li><b>Podjetja z rednimi spori</b> (dobavitelji, zaposleni): dogovor o Nini kot prvem mediatorju pred tožbo.</li>
+      <li><b>Pozicija vrednosti:</b> hitreje, ceneje, ohrani odnos, visoko zadovoljstvo - vse podprto s številkami iz Dela A.</li>
+    </ul>
+  </div>
+  <p class="src">Cene: pri sodišču pridruženi mediaciji so nagrade urejene s predpisom; pri zasebni/pogodbeni mediaciji ceno postavi sama (urno, strošek praviloma delita stranki).</p>
+
+  <h2><span class="n">11</span> Časovnica - postopen prehod</h2>
+  <div class="phase">
+    <div class="ph">Faza 0 &middot; 0-6 mesecev</div>
+    <h3>Kvalifikacija + prvi glas</h3>
+    <ul>
+      <li>Vpis na 140-urno osnovno usposabljanje; izbor primarne niše.</li>
+      <li>Objava prvega članka (paradoks) + zagon LinkedIn ritma. Postavitev strani "Mediacija".</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Faza 1 &middot; 6-12 mesecev</div>
+    <h3>Vpis + prve mediacije</h3>
+    <ul>
+      <li>Nadaljevalno usposabljanje (gospodarska/delovnopravna); vloge za sezname sodišč; članstvo DMS.</li>
+      <li>Prve 1-2 mediaciji iz lastne mreže (tudi pro bono / znižano za reference). Prva delavnica.</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <div class="ph">Faza 2 &middot; 1-3 leta</div>
+    <h3>Prepoznavnost in redni pritok</h3>
+    <ul>
+      <li>Reden pritok iz sodnih seznamov + napotitev. Redne delavnice, morda stalni B2B dogovori.</li>
+      <li>Mediacija postane prepoznan, dopolnilni steber Pravo v praksi.</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">12</span> Prvih 90 dni - konkreten seznam</h2>
+  <ul class="check">
+    <li>Izbrati izvajalca osnovnega usposabljanja (RAKMO / DMS / OZS / GZS) in rezervirati termin.</li>
+    <li>Določiti <b>eno primarno nišo</b> (predlog: gospodarska ali delovnopravna) + sekundarno.</li>
+    <li>Napisati in objaviti <b>prvi članek</b> na podlagi te raziskave (pravovpraksi.si + LinkedIn).</li>
+    <li>Postaviti osnutek strani "Mediacija" na spletni strani (kaj, kdaj, zakaj, cena vs. tožba).</li>
+    <li>Narediti seznam <b>obstoječih strank in pravnikov</b>, ki bi lahko napotovali mediacije.</li>
+    <li>Zastaviti ritem LinkedIn objav (1&times;/teden, 8 tem vnaprej).</li>
+  </ul>
+
+  <h2><span class="n">13</span> Pošteni pridržki</h2>
+  <table>
+    <tr><th>Tveganje</th><th>Kako z njim</th></tr>
+    <tr><td>Nizka raba (~7 %) = povpraševanje je treba delno <b>ustvariti</b></td><td>zato je vsebinski/izobraževalni motor del strategije, ne dodatek</td></tr>
+    <tr><td>Dohodek raste počasi</td><td>ostane <b>dopolnilo</b> obstoječi praksi, dokler se ne razvije (Tonijeva usmeritev "na dolgi rok počasi")</td></tr>
+    <tr><td>Pravilo nevtralnosti</td><td>mediacija vodena ločeno od svetovanja; ne svetuje strani v istem sporu</td></tr>
+    <tr><td>Konkurenca na seznamih (~320 mediatorjev)</td><td>diferenciacija z nišo (npr. GDPR/varstvo podatkov) in prepoznavnostjo, ne s ceno</td></tr>
+  </table>
+
+  <h2><span class="n">14</span> Viri</h2>
+  <div class="reflist">
+    <div class="r"><span class="tag t-key">magistrsko</span><b>Ana Pristov: Mediacija - fenomen v teoriji, paradoks v praksi</b> (PF UL, 2025). Dve anketi (populacija + odvetniki) + primerjava 6 tujih ureditev. <a href="https://repozitorij.uni-lj.si/IzpisGradiva.php?id=176123">RUL</a></div>
+    <div class="r"><span class="tag t-emp">empirična študija</span><b>Cepec, Grajzl, Mörec: O vlogi sodišču pridružene mediacije</b> (2023-24), ~400.000 zadev. <a href="https://www.iusinfo.si/medijsko-sredisce/kolumne/o-vlogi-sodiscu-pridruzene-mediacije-v-pravdnih-postopkih-empiricna-vaja-318796">IUS-INFO</a></div>
+    <div class="r"><span class="tag t-art">članek</span><b>Nina Betetto: Mediacija v Sloveniji - kako prebuditi Trnuljčico</b>. <a href="https://www.slo-med.si/prispevki-clanov-dms/mediacija-v-sloveniji-kako-prebuditi-trnuljcico">slo-med.si</a></div>
+    <div class="r"><span class="tag t-art">usposabljanje</span><b>Zavod RAKMO: 140-urno osnovno usposabljanje za mediatorje</b> (+ nadaljevalna: delovna, gospodarska, družinska, šolska). <a href="https://www.rakmo.si/izobrazevanja/usposabljanje-za-mediatorje.html">rakmo.si</a></div>
+    <div class="r"><span class="tag t-art">vpis</span><b>SPOT / gov.si: Uvrstitev na seznam mediatorjev v programih sodišč</b> - pogoji in postopek vloge. <a href="https://spot.gov.si/sl/dejavnosti-in-poklici/dovoljenja/uvrstitev-na-seznam-mediatorjev-v-programih-sodisc">spot.gov.si</a></div>
+    <div class="r"><span class="tag t-art">zakon</span><b>ZMCGZ - Zakon o mediaciji v civilnih in gospodarskih zadevah</b> (okvir mediacije); ZARSS za sodišču pridruženo. <a href="https://pisrs.si/Pis.web/pregledPredpisa?id=ZAKO5289">PISRS</a></div>
+    <div class="r"><span class="tag t-art">kodeks</span><b>Evropski kodeks ravnanja za mediatorje</b> (Mediacijski center OZS). <a href="https://www.odv-zb.si/mediacijski-center/pravni-akti/evropski-kodeks-ravnanja-za-mediatorje/">odv-zb.si</a></div>
+    <div class="r"><span class="tag t-art">zbornik</span><b>Trbanc &amp; Boštjančič: Mediacija</b> (Založba UL) - zadovoljstvo, psihološki vidiki. <a href="https://ebooks.uni-lj.si/ZalozbaUL/catalog/book/346">ebooks.uni-lj.si</a></div>
+  </div>
+
+  <div class="note"><b>Naslednji korak, če želiš:</b> lahko (1) iz magistrske Pristov (2025) potegnem konkretne anketne odstotke poznavanja, (2) napišem osnutek Nineinega prvega članka "paradoks Trnuljčice", ali (3) pripravim konkretno primerjavo izvajalcev usposabljanja (cena, trajanje, termini). Povej, kaj od tega je najbolj uporabno.</div>
+
+  <footer>
+    Pripravila Ajda za Tonija (projekt Nina - Pravo v praksi), 23. 10. 2026. Del A: pregled virov (RUL/Pristov 2025, IUS-INFO/Cepec idr., slo-med.si/Betetto, Založba UL, FSD UL, Evropska komisija). Del B: strateška usmeritev na podlagi javnih podatkov o usposabljanju in vpisu (RAKMO, SPOT/gov.si, ZMCGZ/ZARSS). Interno delovno gradivo, ni pravni nasvet. Povezava poteče 6. 11. 2026.
+  </footer>
+</div>
+</body>
+</html>
