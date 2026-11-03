@@ -87,6 +87,25 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .banner{background:var(--amber-s);border:1px solid #f0dcae;border-radius:12px;padding:12px 16px;font-size:13.5px;color:#7a5512;display:flex;gap:10px;align-items:flex-start}
   .alert-dot{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;margin-right:6px}
+  /* apartment photos + editor */
+  .ap-card{position:relative;cursor:pointer;transition:.12s}
+  .ap-card:hover{border-color:#c7cbd4;box-shadow:0 2px 10px rgba(17,18,28,.09)}
+  .ap-cover{width:100%;height:124px;border-radius:12px;object-fit:cover;background:#eef0f4;display:block;margin-bottom:11px}
+  .ap-cover.ph{display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:13px}
+  .ap-badge{position:absolute;top:26px;right:26px;background:rgba(20,22,27,.72);color:#fff;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px}
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin:8px 0}
+  .gal .ph{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#eef0f4}
+  .gal .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .gal .ph .del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(20,22,27,.74);color:#fff;border:0;cursor:pointer;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
+  .upl{display:inline-flex;align-items:center;gap:7px;border:1.5px dashed #c7cbd4;border-radius:10px;padding:10px 15px;font-size:13px;color:var(--mut);cursor:pointer;background:#fafbfc}
+  .upl:hover{border-color:var(--blue);color:var(--blue)}
+  .upl input{display:none}
+  .fld{display:block;margin:9px 0} .fld2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .fld .l{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-bottom:3px;display:block}
+  .fld input,.fld textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 11px;font:inherit;background:#fff}
+  .fld textarea{min-height:62px;resize:vertical}
+  .gphotos{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 2px}
+  .gphotos img{height:84px;border-radius:10px;object-fit:cover;flex:none}
   @media(max-width:860px){.side{height:auto;padding:10px 16px;flex-wrap:wrap}.side .foot{display:none}.nav{margin-left:0}.cards4,.cards3{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -150,6 +169,7 @@
               <select class="in" id="msg-lang" style="margin-left:6px"><option value="sl">Slovensko</option><option value="en">English</option></select></label>
           </div>
           <div class="wa-wrap"><div class="msg-prev" id="msg-prev"></div></div>
+          <div id="msg-photos"></div>
           <div style="display:flex;gap:9px;margin-top:14px;flex-wrap:wrap">
             <button class="btn wa" id="msg-send">&#128241; Pošlji po WhatsApp</button>
             <button class="btn ghost" id="msg-copy">Kopiraj besedilo</button>
@@ -162,7 +182,8 @@
 
     <!-- APARTMENTS -->
     <section class="seg" id="seg-ap">
-      <div class="top"><div><h1>Apartmaji</h1><div class="sub" id="ap-count"></div></div></div>
+      <div class="top"><div><h1>Apartmaji</h1><div class="sub" id="ap-count"></div></div>
+        <button class="btn" onclick="openApNew()">+ Dodaj stanovanje</button></div>
       <div class="grid cards3" id="ap-grid"></div>
     </section>
 
@@ -185,6 +206,7 @@
           <div id="g-ap" style="font-size:20px;font-weight:700;margin-top:3px"></div>
           <div id="g-dates" style="font-size:13px;opacity:.9;margin-top:4px"></div>
         </div>
+        <div class="gphotos" id="g-photos"></div>
         <div style="padding:18px">
           <div class="grid" style="gap:10px">
             <div class="card" style="box-shadow:none"><div class="muted" style="font-size:12px">KODA ZA VSTOP</div><div id="g-code" style="margin-top:4px"></div></div>
@@ -213,12 +235,19 @@ const types=["Studio","2-sobno","1-sobno","Mansarda","Loft","Apartma Deluxe"];
 const apartments=streets.map((s,i)=>({
   id:"A"+(i+1), name:s, type:types[i%types.length],
   addr:s+", 1000 Ljubljana", code:String(1000+((i*137)%8999)).padStart(4,"0"),
-  wifi:"PapezFerko_"+(i+1), wifiPass:"dobrodosli"+(i+1),
+  wifi:"Vratar_"+(i+1), wifiPass:"dobrodosli"+(i+1),
   floor:(i%4)+1, max:[2,4,2,3,4,5][i%6],
   dir:"Vhod z ulice, "+((i%4)+1)+". nadstropje, stanovanje "+(i+1)+". Lockbox desno od vrat.",
-  park:i%3===0?"Javna garaža 150m (NUK/Kongresni)":"Modra cona, dovolilnica v stanovanju"
+  park:i%3===0?"Javna garaža 150m (NUK/Kongresni)":"Modra cona, dovolilnica v stanovanju",
+  photos: i<4 ? [0,1,2].map(j=>"https://picsum.photos/seed/vr"+(i+1)+"_"+j+"/480/360") : []
 }));
-const apById=Object.fromEntries(apartments.map(a=>[a.id,a]));
+/* shramba (localStorage): slike + uredbe stanovanj preživijo osvežitev */
+const AP_LS="vratar_aps_v1";
+function saveAps(){try{localStorage.setItem(AP_LS,JSON.stringify(apartments));}catch(e){/* quota - ostane v pomnilniku */}}
+function loadAps(){try{const d=JSON.parse(localStorage.getItem(AP_LS)||"null");if(Array.isArray(d)&&d.length){apartments.length=0;d.forEach(a=>{a.photos=a.photos||[];apartments.push(a);});}}catch(e){}}
+loadAps();
+let apById=Object.fromEntries(apartments.map(a=>[a.id,a]));
+function reindex(){apById=Object.fromEntries(apartments.map(a=>[a.id,a]));}
 
 const today=new Date(); today.setHours(0,0,0,0);
 const d=(off)=>{const x=new Date(today);x.setDate(x.getDate()+off);return x;};
@@ -370,6 +399,9 @@ function renderPreview(){
   const lang=document.getElementById("msg-lang").value;
   const t=tplById[msgTpl];
   document.getElementById("msg-prev").textContent=merge(t[lang],r,lang);
+  const ph=(apById[r.ap].photos||[]);const mp=document.getElementById("msg-photos");
+  if(ph.length){mp.innerHTML=`<div class="muted" style="font-size:12px;margin:12px 0 6px">Priložene slike stanovanja (${ph.length}) - gostu gredo prek WhatsApp Cloud API ali povezave na pogled gosta:</div><div class="gphotos" style="padding:0">${ph.map(s=>`<img src="${s}">`).join("")}</div>`;}
+  else{mp.innerHTML=`<div class="muted" style="font-size:12px;margin-top:10px">To stanovanje še nima slik - dodaj jih v razdelku Apartmaji.</div>`;}
 }
 function selMsgRes(id){const sel=document.getElementById("msg-res");renderMsgPanel();sel.value=id;
   // auto-guess language by country
@@ -380,20 +412,95 @@ function sendWA(){
   window.open("https://wa.me/"+r.phone+"?text="+encodeURIComponent(txt),"_blank");
   if(!r.msgs.includes(msgTpl))r.msgs.push(msgTpl);
   if(r.status==="nova"&&msgTpl==="prearrival")r.status="info-poslan";
-  toast("WhatsApp odprt z besedilom za "+r.guest);renderRes();renderDash();
+  const np=(apById[r.ap].photos||[]).length;
+  toast("WhatsApp odprt z besedilom za "+r.guest+(np?" (+"+np+" slik stanovanja)":""));renderRes();renderDash();
 }
 
 /* ---------- RENDER: APARTMAJI ---------- */
 function renderAp(){
   document.getElementById("ap-count").textContent=apartments.length+" stanovanj v upravljanju";
-  document.getElementById("ap-grid").innerHTML=apartments.map(a=>`<div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${a.name}</div><span class="ap-ic">${a.id.slice(1)}</span></div>
+  document.getElementById("ap-grid").innerHTML=apartments.map(a=>{
+    const ph=a.photos||[];
+    const cover=ph.length?`<img class="ap-cover" src="${ph[0]}">`:`<div class="ap-cover ph">Brez slik - klikni za dodajanje</div>`;
+    const badge=ph.length?`<span class="ap-badge">&#128247; ${ph.length}</span>`:'';
+    return `<div class="card ap-card" onclick="openAp('${a.id}')">${badge}${cover}
+    <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${a.name||'(brez imena)'}</div><span class="ap-ic">${a.id.slice(1)}</span></div>
     <div class="muted" style="font-size:13px">${a.type} &middot; ${a.floor}. nadstropje &middot; do ${a.max} oseb</div>
     <div class="kv" style="grid-template-columns:90px 1fr;margin:11px 0 0">
       <span class="kk">Koda</span><span><span class="code">${a.code}</span></span>
       <span class="kk">WiFi</span><span class="mono" style="font-size:12px">${a.wifi} / ${a.wifiPass}</span>
-      <span class="kk">Parkir.</span><span style="font-size:12.5px">${a.park}</span>
-    </div></div>`).join("");
+    </div></div>`;
+  }).join("");
+}
+
+/* ---------- APARTMA: urejevalnik (uredi/dodaj/izbriši + slike) ---------- */
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function val(id){return document.getElementById(id).value.trim();}
+function openAp(id){window._apEdit=apById[id];renderApEditor(window._apEdit,false);}
+function openApNew(){
+  const n=apartments.length+1;
+  window._apEdit={id:"A"+(1000+Math.floor(Math.random()*9000)),name:"",type:"Studio",addr:", 1000 Ljubljana",
+    code:"",wifi:"Vratar_"+n,wifiPass:"",floor:1,max:2,dir:"Lockbox desno od vrat.",park:"Modra cona, dovolilnica v stanovanju",photos:[],_new:true};
+  renderApEditor(window._apEdit,true);
+}
+function renderApEditor(a,isNew){
+  const ph=a.photos||[];
+  const gal=ph.length?ph.map((src,idx)=>`<div class="ph"><img src="${src}"><button class="del" onclick="apDelPhoto(${idx})">&times;</button></div>`).join("")
+    :'<div class="muted" style="font-size:13px;grid-column:1/-1">Še ni slik. Dodaj jih spodaj.</div>';
+  document.getElementById("drawer").innerHTML=`
+    <div class="dr-head"><span class="x" onclick="closeDrawer()">&times;</span>
+      <div style="font-size:13px;opacity:.8">${isNew?'Novo stanovanje':esc(a.id)+' &middot; Stanovanje'}</div>
+      <div style="font-size:21px;font-weight:700;margin-top:2px">${isNew?'Dodaj stanovanje':(esc(a.name)||'(brez imena)')}</div></div>
+    <div class="dr-body">
+      <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Slike stanovanja</div>
+      <div class="gal" id="ap-gal">${gal}</div>
+      <label class="upl">&#128247; Dodaj slike<input type="file" accept="image/*" multiple onchange="apAddPhotos(this)"></label>
+      <div class="muted" style="font-size:12px;margin-top:7px">Slike se pokažejo gostu (Pogled gosta) in jih lahko priložiš sporočilu - npr. kako najde vhod, izgled stanovanja, lockbox.</div>
+      <div style="height:1px;background:var(--line);margin:17px 0"></div>
+      <div class="fld2">
+        <div class="fld"><span class="l">Ime / naslov</span><input id="f-name" value="${esc(a.name)}"></div>
+        <div class="fld"><span class="l">Tip</span><input id="f-type" value="${esc(a.type)}"></div>
+      </div>
+      <div class="fld"><span class="l">Polni naslov</span><input id="f-addr" value="${esc(a.addr)}"></div>
+      <div class="fld2">
+        <div class="fld"><span class="l">Vstopna koda</span><input id="f-code" value="${esc(a.code)}"></div>
+        <div class="fld"><span class="l">Nadstropje</span><input id="f-floor" type="number" value="${a.floor}"></div>
+      </div>
+      <div class="fld2">
+        <div class="fld"><span class="l">WiFi ime</span><input id="f-wifi" value="${esc(a.wifi)}"></div>
+        <div class="fld"><span class="l">WiFi geslo</span><input id="f-wpass" value="${esc(a.wifiPass)}"></div>
+      </div>
+      <div class="fld2">
+        <div class="fld"><span class="l">Max oseb</span><input id="f-max" type="number" value="${a.max}"></div>
+        <div class="fld"><span class="l">Parkiranje</span><input id="f-park" value="${esc(a.park)}"></div>
+      </div>
+      <div class="fld"><span class="l">Navodila za vstop</span><textarea id="f-dir">${esc(a.dir)}</textarea></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+        <button class="btn" onclick="saveAp()">${isNew?'Dodaj stanovanje':'Shrani'}</button>
+        ${isNew?'':`<button class="btn ghost" onclick="deleteAp('${a.id}')" style="color:var(--red);border-color:#f3c6cd">Izbriši stanovanje</button>`}
+      </div>
+    </div>`;
+  document.getElementById("ov").classList.add("open");
+  document.getElementById("drawer").classList.add("open");
+}
+function apAddPhotos(input){
+  const a=window._apEdit;a.photos=a.photos||[];
+  const files=[...input.files];if(!files.length)return;let left=files.length;
+  files.forEach(f=>{const rd=new FileReader();rd.onload=e=>{a.photos.push(e.target.result);if(--left===0){saveAps();renderApEditor(a,!!a._new);}};rd.readAsDataURL(f);});
+}
+function apDelPhoto(idx){const a=window._apEdit;a.photos.splice(idx,1);saveAps();renderApEditor(a,!!a._new);}
+function saveAp(){
+  const a=window._apEdit;
+  a.name=val("f-name");a.type=val("f-type");a.addr=val("f-addr");a.code=val("f-code");
+  a.floor=+val("f-floor")||1;a.wifi=val("f-wifi");a.wifiPass=val("f-wpass");a.max=+val("f-max")||1;
+  a.park=val("f-park");a.dir=val("f-dir");
+  if(a._new){delete a._new;apartments.push(a);}
+  reindex();saveAps();renderAp();renderDash();closeDrawer();toast("Stanovanje shranjeno");
+}
+function deleteAp(id){
+  if(!confirm("Izbrišem to stanovanje in njegove slike?"))return;
+  const i=apartments.findIndex(a=>a.id===id);if(i<0)return;
+  apartments.splice(i,1);reindex();saveAps();renderAp();renderDash();closeDrawer();toast("Stanovanje izbrisano");
 }
 
 /* ---------- RENDER: SKLADNOST ---------- */
@@ -426,6 +533,8 @@ function renderGuest(){
   document.getElementById("g-addr").innerHTML=a.addr+'<br><span class="muted" style="font-size:12.5px">'+a.dir+'</span>';
   document.getElementById("g-wifi").innerHTML=a.wifi+' <span class="muted">/</span> '+a.wifiPass;
   document.getElementById("g-times").textContent="Check-in po 15:00 · Check-out do 10:00";
+  const ph=a.photos||[];const gp=document.getElementById("g-photos");
+  gp.innerHTML=ph.map(s=>`<img src="${s}">`).join("");gp.style.display=ph.length?"flex":"none";
 }
 
 /* ---------- NAV ---------- */
