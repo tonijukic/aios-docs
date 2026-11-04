@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Vratar - Navy & zlata (premium)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5f8;--card:#ffffff;--ink:#16202f;--muted:#6a7488;--line:#e2e7ef;--soft:#eef2f7;--accent:#1f3a5f;--accent-d:#132840;--grad1:#1b3350;--grad2:#2f6a9e;--gold:#c99a2e;--ok:#1f9d57;--radius:14px;--shadow:0 1px 2px rgba(16,24,40,.06),0 10px 30px rgba(16,24,40,.10);}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:"Outfit",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:40px}
+  .wrap{max-width:540px;margin:0 auto;padding:0 14px}
+  /* demo bar */
+  .demobar{background:#15202b;color:#cdd7e0;font-size:12.5px}
+  .demobar .in{max-width:540px;margin:0 auto;padding:7px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .demobar b{color:#fff}
+  .demobar select{background:#1f2c3a;color:#e7edf2;border:1px solid #33424f;border-radius:8px;padding:4px 8px;font-family:inherit;font-size:12.5px}
+  .demobar .sp{flex:1}
+  /* header / hero */
+  header.hero{background:linear-gradient(135deg,var(--grad1),var(--grad2));color:#fff;
+    padding:20px 18px 20px;box-shadow:var(--shadow)}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px;opacity:.95}
+  .brand .key{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.18);border-radius:7px;font-size:13px}
+  .hello{font-size:13px;opacity:.9;margin-top:14px}
+  .apt{font-size:22px;font-weight:700;margin-top:2px;line-height:1.2}
+  .stay{font-size:13.5px;opacity:.95;margin-top:6px}
+  .stay b{font-weight:600}
+  .statusrow{margin-top:12px;display:flex;gap:7px;flex-wrap:wrap}
+  .spill{font-size:12px;font-weight:600;background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.28);padding:3px 10px;border-radius:999px}
+  /* tabs */
+  .tabsbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(16,32,48,.04)}
+  .tabsbar .in{max-width:540px;margin:0 auto;display:flex;gap:4px;padding:7px 10px}
+  .tabbtn{flex:1;appearance:none;border:none;background:none;font-family:inherit;font-size:12px;font-weight:600;
+    color:var(--muted);padding:8px 2px;border-radius:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.15s}
+  .tabbtn .ti{font-size:18px;line-height:1}
+  .tabbtn.on{color:var(--accent-d);background:var(--soft)}
+  .tabbtn .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;margin:-3px 0 0 16px;display:none}
+  .tabbtn.hasdot .dot{display:block}
+  /* panels / cards */
+  main{margin-top:12px}
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .22s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px 16px;margin:12px 0}
+  .card h2{font-size:16px;margin:0 0 3px;display:flex;align-items:center;gap:9px}
+  .card h2 .ic{width:28px;height:28px;flex:none;display:inline-flex;align-items:center;justify-content:center;
+    background:var(--soft);border-radius:9px;font-size:15px}
+  .card .lead{color:var(--muted);font-size:13px;margin:0 0 12px;padding-left:37px}
+  .kv{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .code{font-family:ui-monospace,Menlo,monospace;font-size:26px;font-weight:700;letter-spacing:3px;color:var(--accent-d)}
+  .btn{appearance:none;border:1px solid var(--line);background:var(--soft);color:var(--ink);
+    font-family:inherit;font-size:14px;font-weight:600;padding:11px 14px;border-radius:12px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;justify-content:center;text-decoration:none}
+  .btn:hover{border-color:#cfd8e0}
+  .btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.p:hover{background:var(--accent-d);border-color:var(--accent-d)}
+  .btn.full{width:100%}
+  .btn.sm{padding:7px 11px;font-size:13px;border-radius:10px}
+  .row2{display:flex;gap:10px;flex-wrap:wrap}
+  .row2 .btn{flex:1}
+  .steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding:8px 0 8px 36px;border-top:1px solid var(--line);font-size:14.5px}
+  .steps li:first-child{border-top:none}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:24px;height:24px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  .photos{display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;margin:10px 0 0}
+  .photos img{height:120px;border-radius:12px;flex:none;object-fit:cover;border:1px solid var(--line)}
+  .reco{display:flex;gap:11px;padding:11px 0;border-top:1px solid var(--line)}
+  .reco:first-of-type{border-top:none}
+  .reco .em{width:38px;height:38px;flex:none;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:19px}
+  .reco .nm{font-weight:600;font-size:14.5px}
+  .reco .ds{color:var(--muted);font-size:12.5px;line-height:1.4}
+  .reco .meta{color:var(--muted);font-size:11.5px;margin-top:2px}
+  .reco a{color:var(--accent);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap;align-self:center}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;color:var(--gold);
+    background:color-mix(in srgb,var(--gold) 14%,transparent);
+    border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);
+    border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle;letter-spacing:.03em}
+  .note{font-size:12px;color:var(--muted);background:var(--soft);border:1px dashed var(--line);border-radius:12px;padding:10px 12px;margin-top:12px}
+  .note b{color:var(--ink)}
+  .consent{display:flex;gap:9px;align-items:flex-start;font-size:12.8px;color:var(--muted);margin:12px 0}
+  .consent input{margin-top:3px;flex:none;width:17px;height:17px;accent-color:var(--accent)}
+  .filebox{border:2px dashed var(--line);border-radius:14px;padding:18px;text-align:center;color:var(--muted);cursor:pointer;background:var(--soft);transition:.15s}
+  .filebox:hover{border-color:var(--accent);color:var(--accent-d)}
+  .filebox input{display:none}
+  .prev{margin-top:12px;display:none}
+  .prev img{max-width:100%;border-radius:12px;border:1px solid var(--line)}
+  .ok{color:var(--ok);font-weight:600;font-size:13.5px;display:none;align-items:center;gap:7px;margin-top:10px}
+  /* chat */
+  .chat{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;padding:4px 0}
+  .bub{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.4}
+  .bub.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+  .bub.them{align-self:flex-start;background:var(--soft);border:1px solid var(--line);border-bottom-left-radius:5px}
+  .bub .who{font-size:10.5px;opacity:.7;margin-bottom:2px;font-weight:600}
+  .chatin{display:flex;gap:8px;margin-top:10px}
+  .chatin input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-family:inherit;font-size:14px}
+  .chatin input:focus{outline:none;border-color:var(--accent)}
+  .faq details{border-top:1px solid var(--line);padding:10px 0}
+  .faq details:first-of-type{border-top:none}
+  .faq summary{font-weight:600;font-size:14.5px;cursor:pointer;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::before{content:"+";color:var(--accent);font-weight:700;margin-right:9px}
+  .faq details[open] summary::before{content:"\2013"}
+  .faq p{color:var(--muted);font-size:13.5px;margin:7px 0 0}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 0}
+  /* login gate */
+  #gate{position:fixed;inset:0;background:linear-gradient(140deg,var(--grad1),var(--grad2));z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
+  #gate .box{background:#fff;border-radius:20px;max-width:380px;width:100%;padding:26px 22px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  #gate .brand2{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;color:var(--accent-d)}
+  #gate .brand2 .key{width:28px;height:28px;background:var(--accent);color:#fff;border-radius:9px;display:inline-flex;align-items:center;justify-content:center}
+  #gate h1{font-size:19px;margin:16px 0 4px}
+  #gate p{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+  #gate label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  #gate input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:inherit;font-size:16px;margin:6px 0 4px}
+  #gate input:focus{outline:none;border-color:var(--accent)}
+  #gate .err{color:#c0392b;font-size:12.5px;min-height:16px;margin:2px 0 8px}
+  #gate .demohint{font-size:11.5px;color:var(--muted);background:var(--soft);border-radius:10px;padding:8px 10px;margin-top:12px;text-align:center}
+  .themetag{position:fixed;left:10px;bottom:10px;z-index:40;background:rgba(21,32,43,.85);color:#fff;font-size:11px;padding:4px 9px;border-radius:999px;font-weight:600}
+</style>
+<script>window.THEME_NAME='Navy & zlata (premium)';</script>
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div id="gate">
+  <div class="box">
+    <div class="brand2"><span class="key">&#128273;</span> Vratar</div>
+    <h1 id="gate-h">Dobrodošli</h1>
+    <p id="gate-sub">Za vaše bivanje potrdite priimek nosilca rezervacije.</p>
+    <label id="gate-lab">Priimek</label>
+    <input id="gate-name" autocomplete="family-name" placeholder="Priimek">
+    <div class="err" id="gate-err"></div>
+    <button class="btn p full" id="gate-go">Vstopi</button>
+    <div class="demohint" id="gate-hint"></div>
+  </div>
+</div>
+
+<!-- DEMO BAR -->
+<div class="demobar">
+  <div class="in">
+    <b>DEMO</b> <span id="db-txt">portal gosta</span>
+    <span class="sp"></span>
+    <label style="display:flex;gap:5px;align-items:center">gost
+      <select id="db-guest"></select>
+    </label>
+    <select id="db-lang">
+      <option value="sl">SL</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="key">&#128273;</span> Vratar</div>
+    <div class="hello" id="h-hello"></div>
+    <div class="apt" id="h-apt"></div>
+    <div class="stay" id="h-stay"></div>
+    <div class="statusrow" id="h-status"></div>
+  </div>
+</header>
+
+<nav class="tabsbar"><div class="in" id="tabs"></div></nav>
+
+<main class="wrap" id="main"></main>
+
+<div class="themetag" id="themetag" style="display:none"></div>
+
+<script>
+/* ============================================================
+   VRATAR - PORTAL GOSTA (demo, samostojen, javno objavljiv)
+   Zavihki: Vstop / Prijava / Odkrij / Pomoč
+   Vsi podatki so fiktivni. Noben osebni podatek se ne pošlje.
+   ============================================================ */
+
+/* ---------- i18n ---------- */
+const T={
+ sl:{
+  hello:"Dobrodošli v Ljubljani",
+  nights:"noči", guests:"oseb", night:"noč", nights24:"noči",
+  st_before:"pred prihodom", st_inhouse:"dobrodošli", st_soon:"kmalu pri vas",
+  tab_in:"Vstop", tab_reg:"Prijava", tab_disc:"Odkrij", tab_help:"Pomoč",
+  doc_h:"Pred prihodom - oddajte podatke", doc_lead:"Za zakonsko prijavo bivanja (eTurizem) potrebujemo podatke z osebnega dokumenta. Nalaganje je prostovoljno in varno.",
+  doc_drop:"Dotaknite se za fotografijo osebne izkaznice ali potnega lista",
+  doc_consent:"Soglašam, da gostitelj uporabi sliko dokumenta izključno za zakonsko prijavo bivanja in jo samodejno izbriše najkasneje 7 dni po koncu bivanja.",
+  doc_send:"Oddaj dokument", doc_ok:"Dokument oddan - hvala! Izbrisali ga bomo po prijavi.",
+  doc_note:"<b>Vaša zasebnost:</b> dokument potuje šifrirano, dostopa le naša ekipa, in se samodejno izbriše najkasneje 7 dni po odjavi. Upravljavec: gostitelj. Kadarkoli lahko zahtevate izbris.",
+  doc_demo:"Demo: slika ostane samo v vašem brskalniku in se NIKAMOR ne pošlje.",
+  code_h:"Vstopna koda", code_lead:"S to kodo odprete ključavnico/lockbox pri vhodu.",
+  code_hidden:"Koda bo vidna na dan prihoda.", code_show:"Vseeno pokaži (demo)",
+  how_h:"Kako vstopite", wifi_h:"Wifi", wifi_net:"Omrežje", wifi_pass:"Geslo", copy:"Kopiraj", copied:"kopirano",
+  addr_h:"Naslov & pot", maps_g:"Google Maps", maps_a:"Apple Maps", park:"Parkiranje",
+  reco_h:"Priporočamo v bližini", reco_lead:"Naš osebni izbor - kraji, ki jih imamo radi.",
+  todo_h:"Doživite Ljubljano", todo_lead:"Kaj si ogledati in početi.", more:"Več",
+  chat_h:"Klepet z ekipo", chat_lead:"Vprašanja? Pišite nam - odgovorimo čim prej.",
+  chat_ph:"Napišite sporočilo...", send:"Pošlji", wa:"Raje prek WhatsAppa",
+  chat_auto:"Pozdravljeni! Hvala za sporočilo. Ekipa Vratar vam odgovori v nekaj minutah. Lep pozdrav!",
+  faq_h:"Pomoč & odhod", checkout_h:"Ob odhodu",
+  pick:"naš izbor", team:"Ekipa Vratar", you:"Vi"
+ },
+ en:{
+  hello:"Welcome to Ljubljana",
+  nights:"nights", guests:"guests", night:"night", nights24:"nights",
+  st_before:"before arrival", st_inhouse:"welcome", st_soon:"see you soon",
+  tab_in:"Check-in", tab_reg:"Register", tab_disc:"Discover", tab_help:"Help",
+  doc_h:"Before arrival - share your details", doc_lead:"Slovenian law requires us to register your stay (eTurizem). Please share your ID details. Upload is optional and secure.",
+  doc_drop:"Tap to photograph your ID card or passport",
+  doc_consent:"I agree the host may use my ID image solely to register my stay as required by law, and will delete it automatically within 7 days after check-out.",
+  doc_send:"Submit document", doc_ok:"Document received - thank you! We will delete it after registration.",
+  doc_note:"<b>Your privacy:</b> the document is transferred encrypted, only our team can access it, and it is deleted automatically within 7 days after check-out. Controller: the host. You may request deletion anytime.",
+  doc_demo:"Demo: the image stays only in your browser and is NOT sent anywhere.",
+  code_h:"Entry code", code_lead:"Use this code to open the lockbox/smart lock at the entrance.",
+  code_hidden:"The code becomes visible on your arrival day.", code_show:"Show anyway (demo)",
+  how_h:"How to get in", wifi_h:"Wifi", wifi_net:"Network", wifi_pass:"Password", copy:"Copy", copied:"copied",
+  addr_h:"Address & directions", maps_g:"Google Maps", maps_a:"Apple Maps", park:"Parking",
+  reco_h:"Recommended nearby", reco_lead:"Our personal picks - places we love.",
+  todo_h:"Experience Ljubljana", todo_lead:"What to see and do.", more:"More",
+  chat_h:"Chat with the team", chat_lead:"Questions? Message us - we reply as soon as we can.",
+  chat_ph:"Type a message...", send:"Send", wa:"Use WhatsApp instead",
+  chat_auto:"Hello! Thanks for your message. The Vratar team will reply within a few minutes. Best regards!",
+  faq_h:"Help & check-out", checkout_h:"On departure",
+  pick:"our pick", team:"Vratar team", you:"You"
+ }
+};
+
+/* ---------- curated Ljubljana content ---------- */
+const RECOS=[
+ {em:"&#127860;",nm:"Gostilna As",ds:{sl:"Klasična slovenska in mediteranska kuhinja, ob Prešernovem trgu.",en:"Classic Slovenian & Mediterranean, just off Prešeren Square."},meta:"300 m",pick:true,q:"Gostilna As Ljubljana"},
+ {em:"&#127831;",nm:"Klobasarna",ds:{sl:"Kranjska klobasa in ričet - hitro, pristno, poceni.",en:"Carniolan sausage & barley stew - quick, authentic, cheap."},meta:"400 m",pick:true,q:"Klobasarna Ljubljana"},
+ {em:"&#9749;",nm:"TOZD",ds:{sl:"Priljubljena kavarna ob reki, odlična kava.",en:"Beloved riverside café, excellent coffee."},meta:"250 m",pick:true,q:"TOZD Ljubljana"},
+ {em:"&#127862;",nm:"Šmon slaščičarna",ds:{sl:"Najboljše kremne rezine in sladice v centru.",en:"Best cream cake and desserts in the centre."},meta:"500 m",pick:false,q:"Slascicarna Smon Ljubljana"},
+ {em:"&#127829;",nm:"Pop's Place",ds:{sl:"Burgerji ob Ljubljanici - sproščeno.",en:"Riverside burgers - casual favourite."},meta:"350 m",pick:true,q:"Pop's Place Ljubljana"},
+ {em:"&#127835;",nm:"Monstera Bistro",ds:{sl:"Moderna sezonska kuhinja, degustacijski meni.",en:"Modern seasonal cuisine, tasting menu."},meta:"450 m",pick:false,q:"Monstera Bistro Ljubljana"},
+ {em:"&#127815;",nm:"Odprta kuhna",ds:{sl:"Odprta kuhinja - ulična hrana na tržnici (petki, sezonsko).",en:"Open-air food market (Fridays, seasonal)."},meta:"600 m",pick:true,q:"Odprta kuhna Ljubljana"},
+ {em:"&#127834;",nm:"Le Petit Café",ds:{sl:"Zajtrki in francoske dobrote na Trgu francoske revolucije.",en:"Breakfast & French treats on French Revolution Sq."},meta:"550 m",pick:false,q:"Le Petit Cafe Ljubljana"}
+];
+const TODO=[
+ {em:"&#127984;",nm:{sl:"Ljubljanski grad",en:"Ljubljana Castle"},ds:{sl:"Vzpnite se z vzpenjačo - razgled na mesto in Alpe.",en:"Ride the funicular up - views over the city and Alps."},pick:true,q:"Ljubljana Castle"},
+ {em:"&#128739;",nm:{sl:"Tromostovje in Prešernov trg",en:"Triple Bridge & Prešeren Square"},ds:{sl:"Srce starega mesta, delo arhitekta Plečnika.",en:"Heart of the old town, by architect Plečnik."},pick:true,q:"Triple Bridge Ljubljana"},
+ {em:"&#127795;",nm:{sl:"Park Tivoli",en:"Tivoli Park"},ds:{sl:"Največji mestni park - sprehod ali vzpon na Rožnik.",en:"The largest city park - a stroll or Rožnik hill walk."},pick:true,q:"Tivoli Park Ljubljana"},
+ {em:"&#128676;",nm:{sl:"Osrednja tržnica",en:"Central Market"},ds:{sl:"Plečnikove tržnice ob reki, lokalni pridelki.",en:"Plečnik's riverside market, local produce."},pick:false,q:"Ljubljana Central Market"},
+ {em:"&#128009;",nm:{sl:"Zmajski most",en:"Dragon Bridge"},ds:{sl:"Znameniti zmaji - simbol Ljubljane.",en:"The famous dragons - symbol of Ljubljana."},pick:false,q:"Dragon Bridge Ljubljana"},
+ {em:"&#9973;",nm:{sl:"Vožnja z ladjico",en:"River cruise"},ds:{sl:"Panoramska vožnja po Ljubljanici.",en:"Scenic cruise along the Ljubljanica river."},pick:true,q:"Ljubljanica boat cruise"},
+ {em:"&#127912;",nm:{sl:"Metelkova",en:"Metelkova"},ds:{sl:"Alternativna kultura, ulična umetnost, živ nočni utrip.",en:"Alternative culture, street art, lively nights."},pick:false,q:"Metelkova Ljubljana"},
+ {em:"&#9970;",nm:{sl:"Izlet: Bled",en:"Day trip: Lake Bled"},ds:{sl:"Pravljično jezero in otok, ~40 min z avtom.",en:"Fairytale lake and island, ~40 min by car."},pick:true,q:"Lake Bled"}
+];
+
+/* ---------- apartments ---------- */
+const AP={
+ A1:{name:"Trubarjeva 25",type:{sl:"Studio",en:"Studio"},addr:"Trubarjeva cesta 25, 1000 Ljubljana",code:"4820",
+   wifi:"Vratar_Trubarjeva",wifiPass:"dobrodosli25",checkin:"15:00",checkout:"10:00",
+   entry:{sl:["Pridite do vhoda na Trubarjevi 25 (modra vrata).","Lockbox je desno od vrat, na višini kljuke.","Vnesite kodo in pritisnite ključ - odprite pokrovček.","Vzemite ključ; stanovanje je v 2. nadstropju, vrata levo."],
+          en:["Arrive at the entrance, Trubarjeva 25 (blue door).","The lockbox is on the right of the door, at handle height.","Enter the code and press the key icon - open the cover.","Take the key; the flat is on the 2nd floor, door on the left."]},
+   park:{sl:"Javna garaža NUK/Kongresni trg (150 m). Modra cona na ulici.",en:"Public garage NUK/Kongresni (150 m). Blue zone on-street."},
+   photos:["https://picsum.photos/seed/vratarA1a/520/360","https://picsum.photos/seed/vratarA1b/520/360","https://picsum.photos/seed/vratarA1c/520/360"]},
+ A2:{name:"Stari trg 11",type:{sl:"2-sobno",en:"1-bedroom"},addr:"Stari trg 11, 1000 Ljubljana",code:"7135",
+   wifi:"Vratar_StariTrg",wifiPass:"ljubljana11",checkin:"15:00",checkout:"10:00",
+   entry:{sl:["Vhod je na Starem trgu 11, pod obokom.","Lockbox najdete levo ob poštnih nabiralnikih.","Vnesite 4-mestno kodo, pritisnite OK.","Stanovanje je v 1. nadstropju."],
+          en:["Entrance at Stari trg 11, under the archway.","The lockbox is on the left by the mailboxes.","Enter the 4-digit code, press OK.","The flat is on the 1st floor."]},
+   park:{sl:"Peš cona - najbližja garaža Kongresni trg (400 m).",en:"Pedestrian zone - nearest garage Kongresni (400 m)."},
+   photos:["https://picsum.photos/seed/vratarA2a/520/360","https://picsum.photos/seed/vratarA2b/520/360"]},
+ A3:{name:"Čopova 14",type:{sl:"1-sobno",en:"Studio+"},addr:"Čopova ulica 14, 1000 Ljubljana",code:"2960",
+   wifi:"Vratar_Copova",wifiPass:"center14ab",checkin:"15:00",checkout:"10:00",
+   entry:{sl:["Vhod med trgovinama na Čopovi 14.","Pri zvoncih je mini sef (lockbox).","Koda + gumb spodaj desno.","3. nadstropje, dvigalo na levi."],
+          en:["Entrance between the shops at Čopova 14.","A mini safe (lockbox) sits by the doorbells.","Code + button bottom-right.","3rd floor, lift on the left."]},
+   park:{sl:"Garaža Šentpeter ali Kongresni (500 m).",en:"Garage Šentpeter or Kongresni (500 m)."},
+   photos:["https://picsum.photos/seed/vratarA3a/520/360","https://picsum.photos/seed/vratarA3b/520/360","https://picsum.photos/seed/vratarA3c/520/360"]},
+ A4:{name:"Gornji trg 7",type:{sl:"Mansarda",en:"Attic loft"},addr:"Gornji trg 7, 1000 Ljubljana",code:"5541",
+   wifi:"Vratar_GornjiTrg",wifiPass:"mansarda7",checkin:"16:00",checkout:"10:00",
+   entry:{sl:["Vhod na Gornjem trgu 7 (lesena vrata).","Lockbox na notranji strani dvorišča.","Vnesite kodo, odprite pokrov.","Mansarda, zadnje nadstropje."],
+          en:["Entrance at Gornji trg 7 (wooden door).","Lockbox inside the courtyard.","Enter the code, open the cover.","Attic, top floor."]},
+   park:{sl:"Peš cona starega mesta - garaža Krekov trg (350 m).",en:"Old-town pedestrian zone - garage Krekov trg (350 m)."},
+   photos:["https://picsum.photos/seed/vratarA4a/520/360","https://picsum.photos/seed/vratarA4b/520/360"]}
+};
+
+/* ---------- reservations (demo) ---------- */
+const today=new Date();today.setHours(0,0,0,0);
+const addD=(o)=>{const x=new Date(today);x.setDate(x.getDate()+o);return x;};
+const RES=[
+ {id:"BK-2041",first:"Marco",last:"Rossi",country:"IT",ap:"A2",inOff:0,nights:3,people:2,teamPhone:"38640123456"},
+ {id:"BK-2042",first:"Anna",last:"Weber",country:"DE",ap:"A1",inOff:1,nights:2,people:2,teamPhone:"38640123456"},
+ {id:"BK-2043",first:"James",last:"Smith",country:"GB",ap:"A3",inOff:0,nights:4,people:3,teamPhone:"38640123456"},
+ {id:"BK-2044",first:"Sophie",last:"Dubois",country:"FR",ap:"A4",inOff:2,nights:2,people:2,teamPhone:"38640123456"},
+ {id:"BK-2045",first:"Luka",last:"Horvat",country:"SI",ap:"A3",inOff:0,nights:1,people:1,teamPhone:"38640123456"}
+];
+const langByCountry={SI:"sl",HR:"sl",IT:"en",DE:"en",AT:"en",FR:"en",NL:"en",GB:"en",US:"en",ES:"en",PL:"en"};
+const flags={SI:"&#127480;&#127470;",IT:"&#127470;&#127481;",DE:"&#127465;&#127466;",FR:"&#127467;&#127479;",GB:"&#127468;&#127463;"};
+
+/* ---------- state ---------- */
+let LANG="sl";
+let CUR=null;
+let TAB="in"; /* in | reg | disc | help */
+const params=new URLSearchParams(location.search);
+
+function resById(id){return RES.find(r=>r.id===id);}
+function pick(){const q=params.get("r")||params.get("t");return resById(q)||RES[0];}
+function fmt(dt){return dt.toLocaleDateString(LANG==="sl"?"sl-SI":"en-GB",{day:"numeric",month:"short"});}
+function stayDates(r){const i=addD(r.inOff);const o=addD(r.inOff+r.nights);return{i,o};}
+function esc(s){return(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+/* ---------- section builders ---------- */
+function secDoc(t){
+ return `<section class="card">
+   <h2><span class="ic">&#128196;</span>${t.doc_h}</h2>
+   <p class="lead">${t.doc_lead}</p>
+   <label class="filebox" id="doc-box">
+     <div style="font-size:26px">&#128247;</div>
+     <div style="margin-top:6px">${t.doc_drop}</div>
+     <input type="file" accept="image/*" capture="environment" id="doc-file">
+   </label>
+   <div class="prev" id="doc-prev"><img id="doc-img" alt=""></div>
+   <label class="consent"><input type="checkbox" id="doc-consent"><span>${t.doc_consent}</span></label>
+   <button class="btn p full" id="doc-send" disabled>${t.doc_send}</button>
+   <div class="ok" id="doc-ok">&#10003; ${t.doc_ok}</div>
+   <div class="note">${t.doc_note}</div>
+   <div class="note" style="border-style:solid;color:var(--accent-d)"><b>&#9432;</b> ${t.doc_demo}</div>
+ </section>`;
+}
+function secCode(t,a,codeDay){
+ return `<section class="card">
+   <h2><span class="ic">&#128273;</span>${t.code_h}</h2>
+   <p class="lead">${t.code_lead}</p>
+   <div style="text-align:center;padding:4px 0 6px">
+     ${codeDay
+       ? `<div class="code">${a.code}</div>`
+       : `<div class="kv" style="text-transform:none;font-size:14px;color:var(--muted)">${t.code_hidden}</div>
+          <button class="btn sm" id="code-show" style="margin-top:10px">${t.code_show}</button>
+          <div class="code" id="code-val" style="display:none;margin-top:8px">${a.code}</div>`}
+   </div>
+ </section>`;
+}
+function secHow(t,a){
+ const entry=a.entry[LANG].map(s=>"<li>"+esc(s)+"</li>").join("");
+ return `<section class="card">
+   <h2><span class="ic">&#128682;</span>${t.how_h}</h2>
+   <ol class="steps">${entry}</ol>
+   ${a.photos&&a.photos.length?`<div class="photos">${a.photos.map(s=>`<img src="${s}" alt="">`).join("")}</div>`:""}
+ </section>`;
+}
+function secWifi(t,a){
+ return `<section class="card">
+   <h2><span class="ic">&#128246;</span>${t.wifi_h}</h2>
+   <div class="row2" style="margin-top:4px">
+     <div style="flex:1"><div class="kv">${t.wifi_net}</div>
+       <div style="font-weight:600;margin-top:2px">${a.wifi} <button class="btn sm" data-copy="${a.wifi}" style="margin-left:4px">${t.copy}</button></div></div>
+     <div style="flex:1"><div class="kv">${t.wifi_pass}</div>
+       <div style="font-weight:600;margin-top:2px">${a.wifiPass} <button class="btn sm" data-copy="${a.wifiPass}" style="margin-left:4px">${t.copy}</button></div></div>
+   </div>
+ </section>`;
+}
+function secAddr(t,a){
+ const gmaps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(a.addr);
+ const amaps="https://maps.apple.com/?q="+encodeURIComponent(a.addr);
+ return `<section class="card">
+   <h2><span class="ic">&#128205;</span>${t.addr_h}</h2>
+   <div style="font-weight:600">${a.addr}</div>
+   <div class="row2" style="margin-top:12px">
+     <a class="btn p" href="${gmaps}" target="_blank" rel="noopener">${t.maps_g}</a>
+     <a class="btn" href="${amaps}" target="_blank" rel="noopener">${t.maps_a}</a>
+   </div>
+   <div style="margin-top:14px"><div class="kv">${t.park}</div>
+     <div style="font-size:13.5px;color:var(--muted);margin-top:3px">${a.park[LANG]}</div></div>
+ </section>`;
+}
+function secReco(t){
+ return `<section class="card">
+   <h2><span class="ic">&#127860;</span>${t.reco_h}</h2>
+   <p class="lead">${t.reco_lead}</p>
+   ${RECOS.map(x=>recoRow(x.em,x.nm,x.ds[LANG],x.meta,x.pick,x.q)).join("")}
+ </section>`;
+}
+function secTodo(t){
+ return `<section class="card">
+   <h2><span class="ic">&#127963;</span>${t.todo_h}</h2>
+   <p class="lead">${t.todo_lead}</p>
+   ${TODO.map(x=>recoRow(x.em,x.nm[LANG],x.ds[LANG],"",x.pick,x.q)).join("")}
+ </section>`;
+}
+function secChat(t,r){
+ return `<section class="card">
+   <h2><span class="ic">&#128172;</span>${t.chat_h}</h2>
+   <p class="lead">${t.chat_lead}</p>
+   <div class="chat" id="chat"></div>
+   <div class="chatin"><input id="chat-in" placeholder="${t.chat_ph}"><button class="btn p" id="chat-send">${t.send}</button></div>
+   <a class="btn full" style="margin-top:10px" href="https://wa.me/${r.teamPhone}?text=${encodeURIComponent(r.id+": ")}" target="_blank" rel="noopener">&#128241; ${t.wa}</a>
+ </section>`;
+}
+function secFaq(t,a){
+ return `<section class="card faq"><h2><span class="ic">&#10067;</span>${t.faq_h}</h2>${faqHtml(t,a)}</section>`;
+}
+
+function recoRow(em,nm,ds,meta,isPick,q){
+ const url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q+" Ljubljana");
+ return `<div class="reco">
+   <div class="em">${em}</div>
+   <div style="flex:1">
+     <div class="nm">${esc(nm)}${isPick?`<span class="tag">${T[LANG].pick}</span>`:""}</div>
+     <div class="ds">${esc(ds)}</div>
+     ${meta?`<div class="meta">${esc(meta)}</div>`:""}
+   </div>
+   <a href="${url}" target="_blank" rel="noopener">${T[LANG].more} &rsaquo;</a>
+ </div>`;
+}
+function faqHtml(t,a){
+ const sl=[
+  ["Ob kateri uri je prijava in odjava?","Prijava po "+a.checkin+", odjava do "+a.checkout+". Za zgodnejšo prijavo nam pišite v klepet."],
+  ["Kje pustim ključ ob odhodu?","Ključ vrnite v lockbox in premešajte kodo. Ugasnite luči in zaprite okna."],
+  ["Je kajenje dovoljeno?","Kajenje v stanovanju ni dovoljeno. Dovoljeno je na balkonu/pred vhodom."],
+  ["Potrebujem pomoč zdaj.","Napišite nam v klepet ali prek WhatsAppa - odzovemo se čim prej."]
+ ];
+ const en=[
+  ["What time is check-in and check-out?","Check-in after "+a.checkin+", check-out by "+a.checkout+". For early check-in, message us in the chat."],
+  ["Where do I leave the key on departure?","Return the key to the lockbox and scramble the code. Turn off lights and close windows."],
+  ["Is smoking allowed?","No smoking inside the flat. Allowed on the balcony / outside the entrance."],
+  ["I need help right now.","Message us in the chat or via WhatsApp - we reply as soon as we can."]
+ ];
+ const list=LANG==="sl"?sl:en;
+ return list.map(q=>`<details><summary>${esc(q[0])}</summary><p>${esc(q[1])}</p></details>`).join("");
+}
+
+/* ---------- render ---------- */
+function render(){
+ const t=T[LANG];const r=CUR;const a=AP[r.ap];const {i,o}=stayDates(r);
+ document.documentElement.lang=LANG;
+ document.getElementById("h-hello").innerHTML=t.hello+", "+esc(r.first)+" "+(flags[r.country]||"");
+ document.getElementById("h-apt").textContent=a.name+" - "+a.type[LANG];
+ const nl=r.nights===1?t.night:t.nights24;
+ document.getElementById("h-stay").innerHTML="<b>"+fmt(i)+" &ndash; "+fmt(o)+"</b> &middot; "+r.nights+" "+nl+" &middot; "+r.people+" "+t.guests;
+ const arrived=r.inOff<=0 && r.inOff+r.nights>0;
+ const stLabel=arrived?t.st_inhouse:(r.inOff<=1?t.st_soon:t.st_before);
+ document.getElementById("h-status").innerHTML='<span class="spill">'+stLabel+'</span><span class="spill">'+r.id+'</span>';
+
+ // tabs
+ const tabs=[["in","&#128273;",t.tab_in],["reg","&#128196;",t.tab_reg],["disc","&#129517;",t.tab_disc],["help","&#128172;",t.tab_help]];
+ document.getElementById("tabs").innerHTML=tabs.map(x=>
+   `<button class="tabbtn ${x[0]===TAB?"on":""}" data-tab="${x[0]}"><span class="ti">${x[1]}</span>${x[2]}</button>`).join("");
+
+ // panels
+ const codeDay=r.inOff<=0;
+ document.getElementById("main").innerHTML=`
+  <div class="panel ${TAB==="in"?"on":""}" data-panel="in">
+    ${secCode(t,a,codeDay)}${secHow(t,a)}${secAddr(t,a)}${secWifi(t,a)}
+  </div>
+  <div class="panel ${TAB==="reg"?"on":""}" data-panel="reg">
+    ${secDoc(t)}
+  </div>
+  <div class="panel ${TAB==="disc"?"on":""}" data-panel="disc">
+    ${secReco(t)}${secTodo(t)}
+  </div>
+  <div class="panel ${TAB==="help"?"on":""}" data-panel="help">
+    ${secChat(t,r)}${secFaq(t,a)}
+  </div>
+  <footer>Vratar &middot; ${r.id} &middot; demo</footer>
+ `;
+ wireCard();
+ renderChat();
+}
+
+function goTab(tab){
+ TAB=tab;
+ document.querySelectorAll(".tabbtn").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.dataset.panel===tab));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- chat ---------- */
+function chatKey(){return "vratar_chat_"+CUR.id;}
+function loadChat(){try{return JSON.parse(localStorage.getItem(chatKey())||"null")||defaultChat();}catch(e){return defaultChat();}}
+function defaultChat(){return [{who:"them",txt:LANG==="sl"?"Pozdravljeni in dobrodošli! Smo ekipa Vratar. Če kaj potrebujete, smo tu.":"Hello and welcome! We are the Vratar team. We are here if you need anything."}];}
+function saveChat(m){try{localStorage.setItem(chatKey(),JSON.stringify(m));}catch(e){}}
+function renderChat(){
+ const box=document.getElementById("chat");if(!box)return;
+ const msgs=loadChat();const t=T[LANG];
+ box.innerHTML=msgs.map(m=>`<div class="bub ${m.who}"><div class="who">${m.who==="me"?t.you:t.team}</div>${esc(m.txt)}</div>`).join("");
+ box.scrollTop=box.scrollHeight;
+}
+function sendChat(){
+ const inp=document.getElementById("chat-in");const v=(inp.value||"").trim();if(!v)return;
+ const msgs=loadChat();msgs.push({who:"me",txt:v});saveChat(msgs);inp.value="";renderChat();
+ setTimeout(()=>{const m=loadChat();m.push({who:"them",txt:T[LANG].chat_auto});saveChat(m);renderChat();},900);
+}
+
+/* ---------- wire ---------- */
+function wireCard(){
+ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{
+   const v=b.getAttribute("data-copy");
+   (navigator.clipboard?navigator.clipboard.writeText(v):Promise.resolve()).finally(()=>{
+     const old=b.textContent;b.textContent=T[LANG].copied;setTimeout(()=>b.textContent=old,1200);});
+ }));
+ const cs=document.getElementById("code-show");
+ if(cs)cs.addEventListener("click",()=>{document.getElementById("code-val").style.display="block";cs.style.display="none";});
+ const file=document.getElementById("doc-file"),cons=document.getElementById("doc-consent"),
+       send=document.getElementById("doc-send"),prev=document.getElementById("doc-prev"),img=document.getElementById("doc-img");
+ let hasFile=false;function sync(){if(send)send.disabled=!(hasFile&&cons.checked);}
+ if(file)file.addEventListener("change",e=>{const f=e.target.files&&e.target.files[0];if(!f)return;hasFile=true;
+   const url=URL.createObjectURL(f);img.src=url;prev.style.display="block";sync();});
+ if(cons)cons.addEventListener("change",sync);
+ if(send)send.addEventListener("click",()=>{document.getElementById("doc-ok").style.display="flex";send.disabled=true;send.style.display="none";});
+ const ci=document.getElementById("chat-in"),cbtn=document.getElementById("chat-send");
+ if(cbtn)cbtn.addEventListener("click",sendChat);
+ if(ci)ci.addEventListener("keydown",e=>{if(e.key==="Enter")sendChat();});
+}
+document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest(".tabbtn");if(b)goTab(b.dataset.tab);});
+
+/* ---------- login gate ---------- */
+function setupGate(){
+ const r=pick();CUR=r;
+ LANG=params.get("lang")||langByCountry[r.country]||"sl";
+ document.getElementById("gate-h").textContent=T[LANG].hello.split(",")[0];
+ document.getElementById("gate-sub").textContent=LANG==="sl"?"Za vaše bivanje potrdite priimek nosilca rezervacije.":"Confirm the surname on the reservation to enter.";
+ document.getElementById("gate-lab").textContent=LANG==="sl"?"Priimek":"Surname";
+ document.getElementById("gate-go").textContent=LANG==="sl"?"Vstopi":"Enter";
+ document.getElementById("gate-name").placeholder=LANG==="sl"?"Priimek":"Surname";
+ document.getElementById("gate-hint").innerHTML=(LANG==="sl"?"Demo namig - priimek: ":"Demo hint - surname: ")+"<b>"+esc(r.last)+"</b>";
+ const go=()=>{const v=document.getElementById("gate-name").value.trim().toLowerCase();
+   if(v===r.last.toLowerCase()){document.getElementById("gate").style.display="none";}
+   else{document.getElementById("gate-err").textContent=LANG==="sl"?"Priimek se ne ujema. Poskusite znova.":"Surname does not match. Try again.";}};
+ document.getElementById("gate-go").addEventListener("click",go);
+ document.getElementById("gate-name").addEventListener("keydown",e=>{if(e.key==="Enter")go();});
+}
+
+/* ---------- demo bar ---------- */
+function setupDemoBar(){
+ const gsel=document.getElementById("db-guest");
+ gsel.innerHTML=RES.map(r=>`<option value="${r.id}">${r.first} ${r.last}</option>`).join("");
+ gsel.value=CUR.id;
+ gsel.addEventListener("change",()=>{CUR=resById(gsel.value);LANG=langByCountry[CUR.country]||"sl";
+   document.getElementById("db-lang").value=LANG;TAB="in";render();});
+ const lsel=document.getElementById("db-lang");lsel.value=LANG;
+ lsel.addEventListener("change",()=>{LANG=lsel.value;render();});
+ document.getElementById("db-txt").textContent=LANG==="sl"?"portal gosta":"guest portal";
+ // theme tag (if THEME_NAME injected)
+ if(window.THEME_NAME){const el=document.getElementById("themetag");el.style.display="block";el.textContent="tema: "+window.THEME_NAME;}
+}
+
+/* ---------- init ---------- */
+setupGate();
+setupDemoBar();
+render();
+</script>
+</body>
+</html>
