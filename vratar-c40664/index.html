@@ -538,10 +538,13 @@ function renderGuest(){
 }
 
 /* ---------- NAV ---------- */
+const SEGS=["dash","res","msg","ap","comp","guest"];
 function go(seg){
+  if(!SEGS.includes(seg))seg="dash";
   document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b.dataset.seg===seg));
   document.querySelectorAll(".seg").forEach(s=>s.classList.toggle("on",s.id==="seg-"+seg));
   ({dash:renderDash,res:renderRes,msg:renderMsgPanel,ap:renderAp,comp:renderComp,guest:renderGuest}[seg])();
+  if(location.hash!=="#"+seg)history.replaceState(null,"","#"+seg);
   window.scrollTo(0,0);
 }
 document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.seg);});
@@ -555,7 +558,8 @@ document.getElementById("guest-res").addEventListener("change",renderGuest);
 
 let tt;function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2600);}
 
-renderDash();
+window.addEventListener("hashchange",()=>go((location.hash||"").slice(1)));
+go((location.hash||"").slice(1)||"dash");
 </script>
 </body>
 </html>
