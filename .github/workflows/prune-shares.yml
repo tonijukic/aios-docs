@@ -1,0 +1,46 @@
+name: Prune expired shares
+
+# Deletes any top-level share folder that contains a `.expires` file whose
+# ISO-8601 timestamp is in the past. Folders WITHOUT `.expires` are never touched
+# (persistent docs like client plans stay). Runs hourly + on demand.
+
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly (minute 17)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete expired share folders
+        run: |
+          set -euo pipefail
+          now=$(date -u +%s)
+          removed=0
+          for marker in */.expires; do
+            [ -e "$marker" ] || continue
+            dir=$(dirname "$marker")
+            exp=$(head -n1 "$marker" | tr -d '[:space:]')
+            exp_epoch=$(date -u -d "$exp" +%s 2>/dev/null || echo 0)
+            if [ "$exp_epoch" -gt 0 ] && [ "$now" -ge "$exp_epoch" ]; then
+              echo "Expired: $dir (expired $exp) -> deleting"
+              git rm -r --quiet "$dir"
+              removed=$((removed+1))
+            else
+              echo "Keeping: $dir (expires $exp)"
+            fi
+          done
+          if [ "$removed" -gt 0 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -q -m "chore: prune $removed expired share(s) (48h policy)"
+            git push
+            echo "Pruned $removed folder(s)."
+          else
+            echo "Nothing to prune."
+          fi
