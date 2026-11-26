@@ -1,0 +1,91 @@
+<!doctype html><html lang="sl"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zagreb - doživetja in hrana</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2a4a;--mut:#5b6475;--gold:#e8b931;--red:#c8102e;--blue:#1b4fa0;--grn:#1d7a46;--line:#e3e6ec}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:32px 16px 60px}h1{margin:0 0 4px;font-size:26px}.sub{color:var(--mut);margin:0 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:0 0 16px}
+h2{font-size:18px;margin:0 0 12px;border-left:4px solid var(--gold);padding-left:10px}
+#map{height:460px;border-radius:10px;border:1px solid var(--line)}
+.legend{font-size:13px;color:var(--mut);margin-top:8px}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin:0 4px 0 12px;vertical-align:-1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card h3{margin:0 0 4px;font-size:16px}.n{display:inline-block;background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;text-align:center;font-size:12px;line-height:22px;margin-right:6px}
+.f .n{background:var(--red)}
+.meta{font-size:13.5px;margin:2px 0}.meta b{color:var(--mut);font-weight:600}
+.tag{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 7px;border-radius:20px;background:#fdf3d6;color:#8a6500;margin-top:4px}
+.tag.ok{background:#e3f4ea;color:var(--grn)}
+a{color:var(--blue)}small{color:var(--mut)}ul{margin:6px 0;padding-left:20px}
+</style></head><body><div class="wrap">
+<h1>Zagreb - 10 doživetij + poceni hrana</h1>
+<p class="sub">Za vikend pet 27. - sob 28.11.2026. Ure so za ta dva dni. Oznaka <span class="tag ok">uradno</span> pomeni, da sem podatek preverila na uradni strani muzeja. Ostalo je iz turističnih vodnikov, zato pred obiskom preveri.</p>
+
+<section style="border-left:4px solid var(--red)"><h2>Ta vikend posebej</h2>
+<p><b>Advent v Zagrebu se odpre prav v soboto 28.11.</b> Prižig prve sveče na Jelačićevem trgu (fontana Manduševac) je ob ~16:30. Od takrat dalje so po centru stojnice s kobasicami, fritulami in kuhanim vinom - najboljši street food vikenda. Pričakuj gnečo v centru in pri garažah.</p></section>
+
+<section><h2>Zemljevid</h2>
+<div id="map"></div>
+<div class="legend"><span class="dot" style="background:#1b4fa0"></span>doživetja <span class="dot" style="background:#c8102e"></span>hrana <span class="dot" style="background:#e8b931"></span>Nuré + Quahwa</div>
+<p><small>Pike so približne. Za navigacijo klikni povezavo "Google Maps" na kartici.</small></p></section>
+
+<section><h2>10 doživetij</h2><div class="grid" id="sights"></div></section>
+<section class="f"><h2>Poceni hrana - krofi, burek, ćevapi, štrukli, street food</h2><div class="grid f" id="food"></div></section>
+
+<section><h2>Predlog razporeda</h2>
+<ul>
+<li><b>Petek popoldne:</b> Muzej prekinutih vez + Muzej naivne umetnosti (sosednji stavbi), uspinjača, sprehod po Gornjem gradu, Lotrščak ob sončnem zahodu. Nato večerja v Nuréju.</li>
+<li><b>Sobota zjutraj:</b> Quahwa, nato tržnica Dolac in burek, štrukli v La Štruku.</li>
+<li><b>Sobota opoldne:</b> top z Lotrščaka ob 12:00 (slišiš ga po celem centru). Za tehnični muzej moraš priti do 13:00, MSU s toboganom je z avtom 10 min.</li>
+<li><b>Sobota popoldne:</b> krofi na Ilici, ob 16:30 otvoritev Adventa in kobasice ter fritule na stojnicah.</li>
+</ul></section>
+
+<section><h2>Opozorila</h2>
+<ul>
+<li><b>Zagreb 360</b> (razgledna ploščad na Nebodru) in <b>Zagreb 80's Museum</b> sta izpuščena: viri navajajo, da sta lahko zaprta.</li>
+<li><b>Uspinjača</b> je bila v obnovi do pomladi 2026 - preveri, ali vozi. Če ne, se do Gornjega grada peš pride v 5 min po stopnicah.</li>
+<li>Krofi so tradicionalno pustna jed. Krafneraj jih peče celo leto, drugje so lahko sezonski.</li>
+<li>Cene so lahko že višje (zlasti ćevapi so se v zadnjem letu podražili).</li>
+</ul>
+<p><small>Viri: <a href="https://brokenships.com/visit/museum-details/zagreb">brokenships.com</a>, <a href="https://www.hmnu.hr/">hmnu.hr</a>, <a href="https://tmnt.hr/en-gb/Visit">tmnt.hr</a>, <a href="https://gkd.hr/?p=5671">gkd.hr (Lotrščak)</a>, <a href="https://infozagreb.hr/en/museums-maybe/museum-of-illusions-en">infozagreb.hr (Muzej iluzij)</a>, <a href="https://www.absolute-croatia.com/zagreb/museums/museum-of-contemporary-art">absolute-croatia.com (MSU)</a>, <a href="https://www.inyourpocket.com/zagreb/funicular_4238v">inyourpocket.com (uspinjača)</a>, <a href="https://www.visit-croatia.co.uk/?p=27724">visit-croatia.co.uk (Advent)</a>, <a href="https://www.croatiaweek.com/krafneraj-the-first-dedicated-doughnut-spot-opens-in-zagreb/">croatiaweek.com (Krafneraj)</a>, <a href="https://www.croatiaweek.com/cevapi-no-longer-cheap-why-a-croatian-favourite-is-getting-pricier/">croatiaweek.com (cene ćevapov)</a>, <a href="https://www.croatiaweek.com/best-cevapi-in-zagreb-7-top-spots/">croatiaweek.com (ćevapi)</a>, <a href="https://wanderlog.com/place/details/491305/la-truk">wanderlog.com (La Štruk)</a>, <a href="https://www.inyourpocket.com/zagreb/local-flavour/Street-Food">inyourpocket.com (street food)</a>, <a href="https://www.trip.com/travel-guide/attraction/zagreb/zagreb-360-observation-deck-32987609/">trip.com (Zagreb 360 status)</a>.</small></p>
+</section>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const S=[
+{n:"Muzej prekinutih vez",d:"Svetovno znan muzej predmetov iz končanih zvez - duhovit in ganljiv. Najbolj priljubljen muzej v mestu.",a:"Ćirilometodska 2 (Gornji grad)",p:"9 EUR (znižana 7 EUR)",h:"vsak dan 9:00-21:00, zadnji vstop 20:30",ok:1,ll:[45.8148,15.9735]},
+{n:"Hrvatski muzej naivne umetnosti",d:"Majhen, a odličen muzej hrvaške naivne umetnosti (Generalić, Rabuzin). Takoj nasproti Muzeja prekinutih vez, zato ju vzemi skupaj.",a:"Ćirilometodska 3",p:"cena ni objavljena (manjša vstopnina)",h:"pet 9:00-17:00, sob 10:00-14:00",ok:1,ll:[45.8151,15.9739]},
+{n:"Kula Lotrščak + opoldanski top",d:"Srednjeveški stolp z razgledom na center. Vsak dan ob 12:00 iz njega izstrelijo top (tradicija od 1877).",a:"Strossmayerovo šetalište 9",p:"3 EUR",h:"pet 9:00-20:00, sob 11:00-20:00",ok:0,ll:[45.8143,15.9729]},
+{n:"Uspinjača (vzpenjača)",d:"Ena najkrajših vzpenjač na svetu (66 m), iz Ilice v Gornji grad.",a:"Tomićeva ulica (spodnja postaja ob Ilici)",p:"0,66 EUR v eno smer",h:"6:30-22:00 (preveri, ali je obnova končana)",ok:0,ll:[45.8131,15.9727]},
+{n:"Tunel Grič",d:"350 m dolg protiletalski tunel iz 2. svetovne vojne pod Gornjim gradom, danes pešpot. Brezplačna, malo nenavadna bližnjica.",a:"vhod Mesnička ulica, izhod Radićeva",p:"brezplačno",h:"podnevi in zvečer (točnega urnika ni objavljenega)",ok:0,ll:[45.8133,15.9712]},
+{n:"Muzej iluzij",d:"Interaktivne optične iluzije in sobe za fotke - zabavno za dva, ~1 ura.",a:"Ilica 72",p:"12 EUR",h:"vsak dan 9:00-22:00",ok:0,ll:[45.8124,15.9677]},
+{n:"Tržnica Dolac",d:"Glavna mestna tržnica nad Jelačićevim trgom, rdeči senčniki, lokalni sir in smetana, sobotno vzdušje.",a:"Dolac (nad Jelačićevim trgom)",p:"brezplačno",h:"zjutraj do zgodnjega popoldneva, sobota je najbolj živahna",ok:0,ll:[45.8146,15.9771]},
+{n:"MSU - Muzej sodobne umetnosti",d:"Velik moderni muzej. V vstopnico je vključen spust po Höllerjevem dvojnem toboganu čez 2 nadstropji. Z avtom ~10 min (Novi Zagreb), parking pri muzeju.",a:"Avenija Dubrovnik 17",p:"11 EUR (znižana 7 EUR)",h:"tor-ned ~11:00-18:00 (viri se razlikujejo), pon zaprto",ok:0,ll:[45.7787,15.9806]},
+{n:"Tehniški muzej Nikola Tesla",d:"Starodobni avti, letala, rudnik pod zemljo, demonstracija Teslinih tuljav in planetarij.",a:"Savska cesta 18",p:"4 EUR + planetarij 4 EUR",h:"pet 9:00-17:00, sob SAMO 9:00-13:00",ok:1,ll:[45.8031,15.9661]},
+{n:"Otvoritev Adventa",d:"Sobota 28.11.: prižig prve adventne sveče, koncerti, stojnice po centru (Jelačićev trg, Zrinjevac, Gornji grad).",a:"Trg bana Jelačića",p:"brezplačno",h:"sob 28.11. ob ~16:30, stojnice do večera",ok:0,ll:[45.8130,15.9773]}
+];
+const F=[
+{n:"Krafneraj - krofi",d:"Prva prava trgovina s krofi v Zagrebu. Pečejo jih sproti ves dan, nadev izbereš sam. Lahko naročiš vnaprej.",a:"Ilica 52",p:"cena ni objavljena (krof ~2-3 EUR)",ll:[45.8126,15.9696]},
+{n:"Burek na Dolcu",d:"Klasika: burek s sirom ali mesom iz pekarne/bistroja ob tržnici, idealno po kavi v Quahwi.",a:"tržnica Dolac / Bistro Dolac",p:"~2-3 EUR na kos",ll:[45.8149,15.9766]},
+{n:"La Štruk - štrukli",d:"Lokal samo za zagrebške štruklje (kuhane ali zapečene, sladke ali slane, tudi s tartufi). Ne smeš ga izpustiti.",a:"Skalinska 5 (pri Tkalčićevi)",p:"~7-8 EUR porcija",ll:[45.8148,15.9760]},
+{n:"Plac Kitchen & Grill - ćevapi",d:"Majhen, prijeten grill tik ob Dolcu, po ocenah najboljši ćevapi v centru. V soboto je gneča in streže se počasi.",a:"Dolac 2",p:"~8-10 EUR",ll:[45.8143,15.9764]},
+{n:"Batak Grill - ćevapi",d:"Lokalna veriga, zanesljivi ćevapi na Tkalčićevi.",a:"Tkalčićeva 70",p:"7 kosov 7,60 EUR, 10 kosov 9,60 EUR, kruh 1,60 EUR",ll:[45.8176,15.9757]},
+{n:"City Club Grill - ćevapi na oglju",d:"Staromoden lokal, ćevapi na oglju, nekaj hiš stran od Nuréja.",a:"Ilica 25",p:"~8-10 EUR",ll:[45.8129,15.9730]},
+{n:"Adventne stojnice (od sob 28.11.)",d:"Kobasice, fritule (ocvrte kroglice), štrudl, kuhano vino in čaj - pravi zagrebški street food vikenda.",a:"Jelačićev trg, Zrinjevac, Gornji grad",p:"~3-7 EUR na jed",ll:[45.8107,15.9780]}
+];
+const g=(x)=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.n.split(' - ')[0].split(' (')[0]+', '+x.a.split(' (')[0]+', Zagreb')}`;
+function cards(arr,el,food){document.getElementById(el).innerHTML=arr.map((x,i)=>`<div class="card"><h3><span class="n">${i+1}</span>${x.n}</h3><div>${x.d}</div>
+<div class="meta"><b>Kje:</b> ${x.a}</div><div class="meta"><b>${food?'Cena':'Vstopnina'}:</b> ${x.p}</div>${x.h?`<div class="meta"><b>Odprto:</b> ${x.h}</div>`:''}
+${x.ok?'<span class="tag ok">uradno</span> ':''}<a href="${g(x)}" target="_blank">Google Maps</a></div>`).join('')}
+cards(S,'sights');cards(F,'food',1);
+try{
+const m=L.map('map').setView([45.808,15.974],14);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles &copy; Esri'}).addTo(m);
+const pin=(ll,c,t,lab)=>L.marker(ll,{icon:L.divIcon({className:'',html:`<div style="background:${c};color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;font:600 12px/20px sans-serif;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.4)">${lab}</div>`,iconSize:[24,24],iconAnchor:[12,12]})}).addTo(m).bindPopup(t);
+S.forEach((x,i)=>pin(x.ll,'#1b4fa0',`<b>${x.n}</b><br>${x.p}<br>${x.h}`,i+1));
+F.forEach((x,i)=>pin(x.ll,'#c8102e',`<b>${x.n}</b><br>${x.p}`,i+1));
+pin([45.8128,15.9717],'#e8b931','<b>Nuré</b> - večerja pet','N');
+pin([45.8112,15.9762],'#e8b931','<b>Quahwa</b> - kava sob','Q');
+m.fitBounds(L.latLngBounds([...S.filter((x,i)=>i!==7&&i!==8),...F].map(x=>x.ll)),{padding:[30,30]});
+}catch(e){document.getElementById('map').innerHTML='<p style="padding:20px">Zemljevid se ni naložil (rabi internet). Uporabi povezave Google Maps na karticah.</p>'}
+</script></body></html>
